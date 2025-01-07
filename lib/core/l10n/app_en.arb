@@ -1,0 +1,15 @@
+{
+  "defaultError": "Failed to process",
+  "defaultSuccess": "Success to process",
+  "helloWorld": "Hello World!",
+  "email": "Email",
+  "password": "Password",
+  "login": "Login",
+  "register": "Register",
+  "dashboard": "Dashboard",
+  "posts": "Posts",
+  "activities": "Activities",
+  "meals": "Meals",
+  "profile": "Profile",
+  "developer": "Developer"
+}

@@ -1,0 +1,15 @@
+{
+  "defaultError": "Error al procesar",
+  "defaultSuccess": "Éxito al procesar",
+  "helloWorld": "¡Hola Mundo!",
+  "email": "Correo electrónico",
+  "password": "Contraseña",
+  "login": "iniciar sesión",
+  "register": "Registro",
+  "dashboard": "Tablero",
+  "posts": "Publicaciones",
+  "activities": "Actividades",
+  "meals": "Comidas",
+  "profile": "Perfil",
+  "developer": "Desarrollador"
+}

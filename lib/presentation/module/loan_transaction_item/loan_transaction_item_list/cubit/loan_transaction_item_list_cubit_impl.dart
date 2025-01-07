@@ -1,0 +1,203 @@
+import 'package:hyper_supabase/core.dart';
+
+class LoanTransactionItemListCubitImpl extends Cubit<LoanTransactionItemListState> implements LoanTransactionItemListCubit {
+  final GetCurrentAppSessionUseCase getCurrentAppSessionUseCase;
+  final GetAllLoanTransactionItemUseCase getAllLoanTransactionItemUseCase;
+  final DeleteLoanTransactionItemUseCase deleteLoanTransactionItemUseCase;
+  final DeleteAllLoanTransactionItemUseCase deleteAllLoanTransactionItemUseCase;
+
+  LoanTransactionItemListCubitImpl({
+    required this.getCurrentAppSessionUseCase,
+    required this.getAllLoanTransactionItemUseCase,
+    required this.deleteLoanTransactionItemUseCase,
+    required this.deleteAllLoanTransactionItemUseCase,
+  }) : super(LoanTransactionItemListState());
+
+  @override
+  void initState({
+      Function? init,
+    }) {
+    //initState event
+    emit(LoanTransactionItemListState());
+    init?.call();
+    initializeData();
+  }
+
+  @override
+  void dispose() {
+    //dispose event
+  }
+
+  @override
+  void ready() {
+    //ready event
+  }
+
+  
+  void initializeData() async {
+    state.fullViewState = FullViewState.loading;
+    emit(state.copyWith());
+
+    state.session = await getCurrentAppSessionUseCase.call();
+    await getData();
+
+    state.fullViewState = FullViewState.ready;
+    emit(state.copyWith());
+  }
+
+
+  Future getData() async {
+    printg("[Pagination] Load more.. ${state.page}");
+    if (state.page == 0) {
+      state.items = [];
+    }
+
+    final newItems = await getAllLoanTransactionItemUseCase.call(
+      //::FILTER_SNAPSHOT_STATE_PARAMS
+      id: state.id,
+loanTransactionId: state.loanTransactionId,
+toolId: state.toolId,
+qty: state.qty,
+memo: state.memo,
+status: state.status,
+idOperatorAndValue: state.idOperatorAndValue,
+loanTransactionIdOperatorAndValue: state.loanTransactionIdOperatorAndValue,
+toolIdOperatorAndValue: state.toolIdOperatorAndValue,
+qtyOperatorAndValue: state.qtyOperatorAndValue,
+createdAtFrom: state.createdAtFrom,
+createdAtTo: state.createdAtTo,
+updatedAtFrom: state.updatedAtFrom,
+updatedAtTo: state.updatedAtTo,
+      page: state.page,
+      limit: state.limit,
+    );
+
+    if (newItems.isEmpty) {
+      // No more data on next page, revert page state to previous
+      state.page = state.page - 1;
+    }
+
+    state.items = [
+      ...state.items,
+      ...newItems,
+    ];
+  }
+
+
+  Future<void> delete(int id) async {
+    try {
+      state.viewState = ViewState.loading;
+      emit(state.copyWith());
+
+      await deleteLoanTransactionItemUseCase.call(id);
+      state.items = state.items.where((element) => element.id != id).toList();
+
+      state.viewState = ViewState.success;
+      emit(state.copyWith());
+    } on Exception catch (_) {
+      state.viewState = ViewState.error;
+      emit(state.copyWith());
+    }
+  }
+
+  Future<void> deleteAll() async {
+    try {
+      state.viewState = ViewState.loading;
+      emit(state.copyWith());
+
+      await deleteAllLoanTransactionItemUseCase.call();
+
+      state.viewState = ViewState.success;
+      emit(state.copyWith());
+      reload();
+    } on Exception catch (_) {
+      state.viewState = ViewState.error;
+      emit(state.copyWith());
+    }
+  }
+
+  //@CHECK_FILTER_MODE
+  bool get isFilterMode {
+    List values = [
+      //state.id,
+state.loanTransactionId,
+state.toolId,
+state.qty,
+state.memo,
+state.status,
+state.createdAt,
+state.updatedAt,
+state.idOperatorAndValue,
+state.loanTransactionIdOperatorAndValue,
+state.toolIdOperatorAndValue,
+state.qtyOperatorAndValue,
+state.createdAtFrom,
+state.createdAtTo,
+state.updatedAtFrom,
+state.updatedAtTo,
+    ];
+    return values.indexWhere((i) =>
+            (i != null && i != "") ||
+            (i != null && i is String && i.isNotEmpty)) >
+        -1;
+  }
+  //@:CHECK_FILTER_MODE
+
+  void resetFilter() {
+    //state.id = null;
+state.loanTransactionId = null;
+state.toolId = null;
+state.qty = null;
+state.memo = null;
+state.status = null;
+state.createdAt = null;
+state.updatedAt = null;
+state.idOperatorAndValue = null;
+state.loanTransactionIdOperatorAndValue = null;
+state.toolIdOperatorAndValue = null;
+state.qtyOperatorAndValue = null;
+state.createdAtFrom = null;
+state.createdAtTo = null;
+state.updatedAtFrom = null;
+state.updatedAtTo = null;
+    reload();
+  }
+
+  Future<void> refresh() async {
+    state.fullViewState = FullViewState.loading;
+    emit(state.copyWith());
+
+    await Future.delayed(const Duration(milliseconds: 100));
+
+    state.fullViewState = FullViewState.ready;
+    emit(state.copyWith());
+  }
+
+  void updateFilter() {
+    reload();
+  }
+
+  void loadMore() async {
+    state.listViewItemState = ListViewItemState.loadMoreLoading;
+    emit(state.copyWith());
+
+    state.page = state.page + 1;
+    await getData();
+
+    state.listViewItemState = ListViewItemState.ready;
+    emit(state.copyWith());
+  }
+
+  void reload() async {
+    state.fullViewState = FullViewState.loading;
+    emit(state.copyWith());
+
+    state.page = 1;
+    state.items = [];
+    await getData();
+
+    state.fullViewState = FullViewState.ready;
+    emit(state.copyWith());
+  }
+}
+  

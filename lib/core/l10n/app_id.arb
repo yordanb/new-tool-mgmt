@@ -1,0 +1,15 @@
+{
+  "defaultError": "Terjadi kesalahan",
+  "defaultSuccess": "Berhasil memproses data",
+  "helloWorld": "Halo Dunia!",
+  "email": "Email",
+  "password": "Kata sandi",
+  "login": "Masuk",
+  "register": "Daftar",
+  "dashboard": "Dasbor",
+  "posts": "Postingan",
+  "activities": "Aktivitas",
+  "meals": "Makanan",
+  "profile": "Profil",
+  "developer": "Pengembang"
+}

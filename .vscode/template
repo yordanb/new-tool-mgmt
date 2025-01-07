@@ -1,0 +1,201 @@
+@@@lib/presentation/hyper_example/view/hyper_example_view.dart
+import 'package:flutter/material.dart';
+import 'package:hyper_supabase/core.dart';
+
+@RoutePage()
+class HyperExampleView extends StatefulWidget {
+  const HyperExampleView({
+    super.key,
+  });
+
+  @override
+  State<HyperExampleView> createState() => _HyperExampleViewState();
+}
+
+class _HyperExampleViewState extends State<HyperExampleView> {
+  final HyperExampleCubit cubit = sl<HyperExampleCubit>();
+  AppLocalizations get lang => AppLocalizations.of(context)!;
+  HyperExampleState get state => cubit.state;
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    cubit.initState(init: () {
+      //--
+    });
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => cubit.ready(),
+    );
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    cubit.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiBlocListener(
+      listeners: [
+        HyperExampleListener(),
+      ],
+      child: BlocSelector<HyperExampleCubit, HyperExampleState,
+          FullViewState>(
+        selector: (state) => state.fullViewState,
+        builder: (context, _) {
+          if (cubit.state.fullViewState == FullViewState.loading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text("HyperExample"),
+              actions: const [],
+            ),
+            body: const SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+---
+@@@lib/presentation/hyper_example/state/hyper_example_state.dart
+import 'package:hyper_supabase/core.dart';
+part 'hyper_example_state.freezed.dart';
+
+@unfreezed
+class HyperExampleState with _$HyperExampleState {
+  factory HyperExampleState({
+    @Default(FullViewState.idle) FullViewState fullViewState,
+    @Default(ViewState.idle) ViewState viewState,
+    @Default(null) AppSessionEntity? session,
+  }) = _HyperExampleState;
+}
+
+---
+
+@@@lib/presentation/hyper_example/listener/hyper_example_listener.dart
+import 'package:hyper_supabase/core.dart';
+import 'package:flutter/material.dart';
+
+class HyperExampleListener extends SingleChildStatelessWidget {
+  const HyperExampleListener({
+    super.key,
+    super.child,
+  });
+
+  @override
+  Widget buildWithChild(BuildContext context, Widget? child) {
+    return BlocListener<HyperExampleCubit, HyperExampleState>(
+      listener: (context, state) {
+        AppLocalizations lang = AppLocalizations.of(context)!;
+
+        if (state.viewState == ViewState.idle) {
+          hideLoading();
+          return;
+        }
+
+        if (state.viewState == ViewState.success) {
+          hideLoading();
+          snackSuccess(message: lang.defaultSuccess);
+          pop();
+          return;
+        }
+
+        if (state.viewState == ViewState.error) {
+          hideLoading();
+          snackError(message: lang.defaultError);
+          return;
+        }
+
+        if (state.viewState == ViewState.loading) {
+          showLoading();
+          return;
+        }
+
+        if (state.viewState == ViewState.hideLoading) {
+          hideLoading();
+          return;
+        }
+      },
+      child: child,
+    );
+  }
+}
+
+---
+
+@@@lib/presentation/hyper_example/cubit/hyper_example_cubit.dart
+
+import 'package:hyper_supabase/core.dart';
+
+abstract class HyperExampleCubit extends Cubit<HyperExampleState> {
+  HyperExampleCubit(HyperExampleState state) : super(state);
+
+  void initState({
+    Function? init,
+  });
+
+  void dispose();
+
+  void ready();
+
+  void initializeData();
+}
+
+
+---
+
+@@@lib/presentation/hyper_example/cubit/hyper_example_cubit_impl.dart
+
+import 'package:hyper_supabase/core.dart';
+
+class HyperExampleCubitImpl extends Cubit<HyperExampleState> implements HyperExampleCubit {
+  final GetCurrentAppSessionUseCase getCurrentAppSessionUseCase;
+
+  HyperExampleCubitImpl({
+    required this.getCurrentAppSessionUseCase,
+  }) : super(HyperExampleState());
+
+  @override
+  void initState({
+      Function? init,
+    }) {
+    //initState event
+    emit(HyperExampleState());
+    init?.call();
+    initializeData();
+  }
+
+  @override
+  void dispose() {
+    //dispose event
+  }
+
+  @override
+  void ready() {
+    //ready event
+  }
+
+  void initializeData() async {
+    state.fullViewState = FullViewState.loading;
+    emit(state.copyWith());
+
+    state.session = await getCurrentAppSessionUseCase.call();
+
+    state.fullViewState = FullViewState.ready;
+    emit(state.copyWith());
+  }
+}
+  
+---
+@@@lib/presentation/hyper_example/widget/_
+---
