@@ -35,7 +35,7 @@ class AppQueue {
       appMode: json['app_mode'],
       createdAt: DateTime.tryParse(json['created_at'].toString()),
       updatedAt: DateTime.tryParse(json['updated_at'].toString()),
-      userProfile: json['user_profile']
+      userProfile: UserProfile.fromJson(json['user_profile'])
     );
   }
 

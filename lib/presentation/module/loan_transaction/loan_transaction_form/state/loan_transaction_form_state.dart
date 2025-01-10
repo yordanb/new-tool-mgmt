@@ -58,8 +58,8 @@ class LoanTransactionFormState {
       viewState: json['view_state'],
       isEditMode: json['is_edit_mode'],
       isCreateMode: json['is_create_mode'],
-      session: json['session'],
-      current: json['current'],
+      session: AppSessionEntity.fromJson(json['session']),
+      current: LoanTransactionEntity.fromJson(json['current']),
       id: json['id'],
       status: json['status'],
       userProfileId: json['user_profile_id'],
@@ -71,8 +71,8 @@ class LoanTransactionFormState {
       createdAtTo: DateTime.tryParse(json['created_at_to'].toString()),
       updatedAtFrom: DateTime.tryParse(json['updated_at_from'].toString()),
       updatedAtTo: DateTime.tryParse(json['updated_at_to'].toString()),
-      tools: json['tools'],
-      loanTransactionItems: json['loan_transaction_items'],
+      tools: List<ToolEntity>.from(json['tools'].map((model) => ToolEntity.fromJson(model))),
+      loanTransactionItems: List<LoanTransactionItemEntity>.from(json['loan_transaction_items'].map((model) => LoanTransactionItemEntity.fromJson(model))),
       tabFilter: json['tab_filter'],
       search: json['search']
     );

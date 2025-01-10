@@ -40,8 +40,8 @@ class LoanTransactionItemEntity {
       status: json['status'],
       createdAt: DateTime.tryParse(json['created_at'].toString()),
       updatedAt: DateTime.tryParse(json['updated_at'].toString()),
-      loanTransaction: json['loan_transaction'],
-      tool: json['tool']
+      loanTransaction: LoanTransactionEntity.fromJson(json['loan_transaction']),
+      tool: ToolEntity.fromJson(json['tool'])
     );
   }
 

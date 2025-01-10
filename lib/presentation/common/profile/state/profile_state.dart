@@ -22,8 +22,8 @@ class ProfileState {
     return ProfileState(
       viewState: json['view_state'],
       fullViewState: json['full_view_state'],
-      session: json['session'],
-      current: json['current']
+      session: AppSessionEntity.fromJson(json['session']),
+      current: UserProfileEntity.fromJson(json['current'])
     );
   }
 
