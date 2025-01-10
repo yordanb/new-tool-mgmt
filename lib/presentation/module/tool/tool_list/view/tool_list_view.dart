@@ -3,23 +3,20 @@ import 'package:hyper_supabase/core.dart';
 
 @RoutePage()
 class ToolListView extends StatefulWidget {
+  const ToolListView({
+    super.key,
+  });
 
-const ToolListView({
-  super.key,
-  
-});
-
-@override
-State<ToolListView> createState() => _ToolListViewState();
+  @override
+  State<ToolListView> createState() => _ToolListViewState();
 }
 
 class _ToolListViewState extends State<ToolListView> {
   final ToolListCubit cubit = sl<ToolListCubit>();
   AppLocalizations get lang => AppLocalizations.of(context)!;
   ToolListState get state => cubit.state;
-  
-  ScrollController scrollController = ScrollController();
 
+  ScrollController scrollController = ScrollController();
 
   @override
   void initState() {
@@ -47,12 +44,11 @@ class _ToolListViewState extends State<ToolListView> {
 
   @override
   Widget build(BuildContext context) {
-  return MultiBlocListener(
+    return MultiBlocListener(
       listeners: const [
         ToolListListener(),
       ],
-      child: BlocSelector<ToolListCubit, ToolListState,
-          FullViewState>(
+      child: BlocSelector<ToolListCubit, ToolListState, FullViewState>(
         selector: (state) => state.fullViewState,
         builder: (context, _) {
           if (cubit.state.fullViewState == FullViewState.loading) {
@@ -76,44 +72,42 @@ class _ToolListViewState extends State<ToolListView> {
                     filterMode: cubit.isFilterMode,
                     widgets: [
                       //::FILTER_FORM
-QTextField(
-  label: "Name",
-  validator: Validator.required ,
-  value: cubit.state.name,
-  
-  
-  onChanged: (value) {
-    cubit.state.name = value;
-  },
-),
-QMemoField(
-  label: "Description",
-  validator: Validator.required,
-  value: cubit.state.description,
-  onChanged: (value) {
-    cubit.state.description = value;
-  },
-),
-QDateRangePicker(
-  label: "Created At",
-  validator: Validator.required,
-  fromValue: cubit.state.createdAtFrom,
-  toValue: cubit.state.createdAtTo,
-  onChanged: (from, to) {
-    cubit.state.createdAtFrom = from;
-    cubit.state.createdAtTo = to;
-  },
-),
-QDateRangePicker(
-  label: "Updated At",
-  validator: Validator.required,
-  fromValue: cubit.state.updatedAtFrom,
-  toValue: cubit.state.updatedAtTo,
-  onChanged: (from, to) {
-    cubit.state.updatedAtFrom = from;
-    cubit.state.updatedAtTo = to;
-  },
-),
+                      QTextField(
+                        label: "Name",
+                        validator: Validator.required,
+                        value: cubit.state.name,
+                        onChanged: (value) {
+                          cubit.state.name = value;
+                        },
+                      ),
+                      QMemoField(
+                        label: "Description",
+                        validator: Validator.required,
+                        value: cubit.state.description,
+                        onChanged: (value) {
+                          cubit.state.description = value;
+                        },
+                      ),
+                      QDateRangePicker(
+                        label: "Created At",
+                        validator: Validator.required,
+                        fromValue: cubit.state.createdAtFrom,
+                        toValue: cubit.state.createdAtTo,
+                        onChanged: (from, to) {
+                          cubit.state.createdAtFrom = from;
+                          cubit.state.createdAtTo = to;
+                        },
+                      ),
+                      QDateRangePicker(
+                        label: "Updated At",
+                        validator: Validator.required,
+                        fromValue: cubit.state.updatedAtFrom,
+                        toValue: cubit.state.updatedAtTo,
+                        onChanged: (from, to) {
+                          cubit.state.updatedAtFrom = from;
+                          cubit.state.updatedAtTo = to;
+                        },
+                      ),
                     ],
                   ),
                   //@:SEARCH
@@ -124,8 +118,8 @@ QDateRangePicker(
                 child: Column(
                   children: [
                     Expanded(
-                      child: BlocSelector<ToolListCubit,
-                              ToolListState, ListViewItemState>(
+                      child: BlocSelector<ToolListCubit, ToolListState,
+                              ListViewItemState>(
                           selector: (state) => state.listViewItemState,
                           builder: (context, _) {
                             return Column(
@@ -155,17 +149,17 @@ QDateRangePicker(
                                         children: [
                                           //::LIST_VIEW_ITEM
                                           ListRowItem(
-            label: "Name",
-            value: item.name,
-          ),
-ListRowImageItem(
-            label: "Image Url",
-            value: item.imageUrl,
-          ),
-ListRowItem(
-            label: "Created At",
-            value: item.createdAt,
-          ),
+                                            label: "Name",
+                                            value: item.name,
+                                          ),
+                                          ListRowImageItem(
+                                            label: "Image Url",
+                                            value: item.imageUrl,
+                                          ),
+                                          ListRowItem(
+                                            label: "Created At",
+                                            value: item.createdAt,
+                                          ),
                                         ],
                                       );
                                     },
@@ -188,7 +182,6 @@ ListRowItem(
               ),
               floatingActionButton: FloatingActions(
                 children: [
-                  
                   FloatingActionButton(
                     heroTag: UniqueKey(),
                     onPressed: () async {
@@ -206,4 +199,3 @@ ListRowItem(
     );
   }
 }
-  

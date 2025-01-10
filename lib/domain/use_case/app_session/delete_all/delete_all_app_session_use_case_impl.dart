@@ -7,7 +7,7 @@ class DeleteAllAppSessionUseCaseImpl implements DeleteAllAppSessionUseCase {
   DeleteAllAppSessionUseCaseImpl({
     required this.repository,
   });
-  
+
   Future<void> call() async {
     try {
       await repository.deleteAll();

@@ -25,7 +25,8 @@ class ApplicationConfigCheckField extends StatelessWidget {
       stream: sl<SnapshotApplicationConfigUseCase>().call(),
       shrinkWrap: true,
       itemsBuilder: (obj) {
-        List<ApplicationConfigEntity> items = obj as List<ApplicationConfigEntity>;
+        List<ApplicationConfigEntity> items =
+            obj as List<ApplicationConfigEntity>;
 
         return QCheckField(
           label: label,

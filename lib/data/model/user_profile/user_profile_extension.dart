@@ -9,8 +9,7 @@ extension UserProfileExtension on UserProfile {
 extension UserProfileListExtension on List<UserProfile> {
   List<UserProfileEntity> toEntityList() {
     return this
-        .map((model) =>
-            UserProfileEntity.fromJson(model.toJson().cleanJson()))
+        .map((model) => UserProfileEntity.fromJson(model.toJson().cleanJson()))
         .toList();
   }
 

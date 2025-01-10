@@ -9,8 +9,7 @@ extension AppPrinterExtension on AppPrinter {
 extension AppPrinterListExtension on List<AppPrinter> {
   List<AppPrinterEntity> toEntityList() {
     return this
-        .map((model) =>
-            AppPrinterEntity.fromJson(model.toJson().cleanJson()))
+        .map((model) => AppPrinterEntity.fromJson(model.toJson().cleanJson()))
         .toList();
   }
 

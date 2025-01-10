@@ -10,36 +10,62 @@ class ApplicationConfigRepositoryImpl implements ApplicationConfigRepository {
     required this.localDataSource,
     required this.networkManager,
   });
-  
-  Future<int> count({int? id,
-String? idOperatorAndValue, String? appMode, String? companyName, String? address, String? phoneNumber, DateTime? createdAtFrom,
-DateTime? createdAtTo, DateTime? updatedAtFrom,
-DateTime? updatedAtTo,}) async {
+
+  Future<int> count({
+    int? id,
+    String? idOperatorAndValue,
+    String? appMode,
+    String? companyName,
+    String? address,
+    String? phoneNumber,
+    DateTime? createdAtFrom,
+    DateTime? createdAtTo,
+    DateTime? updatedAtFrom,
+    DateTime? updatedAtTo,
+  }) async {
     //@ OFFLINE MODE HANDLER
     if (await networkManager.isOffline()) {
       printo("OfflineMode: ApplicationConfigRepositoryImpl count");
       return await localDataSource.count(
         id: id,
-idOperatorAndValue: idOperatorAndValue, appMode: appMode, companyName: companyName, address: address, phoneNumber: phoneNumber, createdAtFrom: createdAtFrom,
-createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
-updatedAtTo: updatedAtTo,
+        idOperatorAndValue: idOperatorAndValue,
+        appMode: appMode,
+        companyName: companyName,
+        address: address,
+        phoneNumber: phoneNumber,
+        createdAtFrom: createdAtFrom,
+        createdAtTo: createdAtTo,
+        updatedAtFrom: updatedAtFrom,
+        updatedAtTo: updatedAtTo,
       );
     }
     //:@ OFFLINE MODE HANDLER
 
     return await remoteDataSource.count(
       id: id,
-idOperatorAndValue: idOperatorAndValue, appMode: appMode, companyName: companyName, address: address, phoneNumber: phoneNumber, createdAtFrom: createdAtFrom,
-createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
-updatedAtTo: updatedAtTo,
+      idOperatorAndValue: idOperatorAndValue,
+      appMode: appMode,
+      companyName: companyName,
+      address: address,
+      phoneNumber: phoneNumber,
+      createdAtFrom: createdAtFrom,
+      createdAtTo: createdAtTo,
+      updatedAtFrom: updatedAtFrom,
+      updatedAtTo: updatedAtTo,
     );
   }
 
   Future<List<ApplicationConfigEntity>> getAll({
     int? id,
-String? idOperatorAndValue, String? appMode, String? companyName, String? address, String? phoneNumber, DateTime? createdAtFrom,
-DateTime? createdAtTo, DateTime? updatedAtFrom,
-DateTime? updatedAtTo,
+    String? idOperatorAndValue,
+    String? appMode,
+    String? companyName,
+    String? address,
+    String? phoneNumber,
+    DateTime? createdAtFrom,
+    DateTime? createdAtTo,
+    DateTime? updatedAtFrom,
+    DateTime? updatedAtTo,
     int limit = 10,
     int page = 1,
   }) async {
@@ -48,9 +74,15 @@ DateTime? updatedAtTo,
       printo("OfflineMode: ApplicationConfigRepositoryImpl getAll");
       final models = await localDataSource.getAll(
         id: id,
-idOperatorAndValue: idOperatorAndValue, appMode: appMode, companyName: companyName, address: address, phoneNumber: phoneNumber, createdAtFrom: createdAtFrom,
-createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
-updatedAtTo: updatedAtTo,
+        idOperatorAndValue: idOperatorAndValue,
+        appMode: appMode,
+        companyName: companyName,
+        address: address,
+        phoneNumber: phoneNumber,
+        createdAtFrom: createdAtFrom,
+        createdAtTo: createdAtTo,
+        updatedAtFrom: updatedAtFrom,
+        updatedAtTo: updatedAtTo,
         limit: limit,
         page: page,
       );
@@ -61,9 +93,15 @@ updatedAtTo: updatedAtTo,
 
     final models = await remoteDataSource.getAll(
       id: id,
-idOperatorAndValue: idOperatorAndValue, appMode: appMode, companyName: companyName, address: address, phoneNumber: phoneNumber, createdAtFrom: createdAtFrom,
-createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
-updatedAtTo: updatedAtTo,
+      idOperatorAndValue: idOperatorAndValue,
+      appMode: appMode,
+      companyName: companyName,
+      address: address,
+      phoneNumber: phoneNumber,
+      createdAtFrom: createdAtFrom,
+      createdAtTo: createdAtTo,
+      updatedAtFrom: updatedAtFrom,
+      updatedAtTo: updatedAtTo,
       limit: limit,
       page: page,
     );
@@ -73,9 +111,15 @@ updatedAtTo: updatedAtTo,
   //@ SNAPSHOT
   Stream<List<ApplicationConfigEntity>> snapshot({
     int? id,
-String? idOperatorAndValue, String? appMode, String? companyName, String? address, String? phoneNumber, DateTime? createdAtFrom,
-DateTime? createdAtTo, DateTime? updatedAtFrom,
-DateTime? updatedAtTo,
+    String? idOperatorAndValue,
+    String? appMode,
+    String? companyName,
+    String? address,
+    String? phoneNumber,
+    DateTime? createdAtFrom,
+    DateTime? createdAtTo,
+    DateTime? updatedAtFrom,
+    DateTime? updatedAtTo,
     int limit = 10,
     int page = 1,
   }) async* {
@@ -84,9 +128,15 @@ DateTime? updatedAtTo,
       print("OfflineMode: ApplicationConfigRepositoryImpl snapshot");
       final localData = await localDataSource.getAll(
         id: id,
-idOperatorAndValue: idOperatorAndValue, appMode: appMode, companyName: companyName, address: address, phoneNumber: phoneNumber, createdAtFrom: createdAtFrom,
-createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
-updatedAtTo: updatedAtTo,
+        idOperatorAndValue: idOperatorAndValue,
+        appMode: appMode,
+        companyName: companyName,
+        address: address,
+        phoneNumber: phoneNumber,
+        createdAtFrom: createdAtFrom,
+        createdAtTo: createdAtTo,
+        updatedAtFrom: updatedAtFrom,
+        updatedAtTo: updatedAtTo,
         limit: limit,
         page: page,
       );
@@ -96,28 +146,38 @@ updatedAtTo: updatedAtTo,
       // Online mode: Gunakan stream dari remoteDataSource
       var stream = remoteDataSource.snapshot(
         id: id,
-idOperatorAndValue: idOperatorAndValue, appMode: appMode, companyName: companyName, address: address, phoneNumber: phoneNumber, createdAtFrom: createdAtFrom,
-createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
-updatedAtTo: updatedAtTo,
+        idOperatorAndValue: idOperatorAndValue,
+        appMode: appMode,
+        companyName: companyName,
+        address: address,
+        phoneNumber: phoneNumber,
+        createdAtFrom: createdAtFrom,
+        createdAtTo: createdAtTo,
+        updatedAtFrom: updatedAtFrom,
+        updatedAtTo: updatedAtTo,
         limit: limit,
         page: page,
       );
       List<ApplicationConfig> models = [];
       await for (List<Map<String, dynamic>> datas in stream) {
-      for (var data in datas) {
-        models.add(ApplicationConfig.fromJson(data));
-      }
+        for (var data in datas) {
+          models.add(ApplicationConfig.fromJson(data));
+        }
 
-      await localDataSource.deleteAll();
-      for (var model in models) {
-        await localDataSource.create(
-          id: model.id!,
-          appMode: model.appMode,companyName: model.companyName,address: model.address,phoneNumber: model.phoneNumber,createdAt: DateTime.now(),
-        );
+        await localDataSource.deleteAll();
+        for (var model in models) {
+          await localDataSource.create(
+            id: model.id!,
+            appMode: model.appMode,
+            companyName: model.companyName,
+            address: model.address,
+            phoneNumber: model.phoneNumber,
+            createdAt: DateTime.now(),
+          );
+        }
+
+        yield models.toEntityList();
       }
-      
-      yield models.toEntityList();
-    }
     }
   }
   //:@ SNAPSHOT
@@ -128,26 +188,25 @@ updatedAtTo: updatedAtTo,
       if (await networkManager.isOffline()) {
         printo("OfflineMode: ApplicationConfigRepositoryImpl getByID $id");
         final model = await localDataSource.get(id);
-        if(model==null) return null;
+        if (model == null) return null;
         return model.toEntity();
       }
       //:@ OFFLINE MODE HANDLER
-      
+
       final model = await remoteDataSource.get(id);
       if (model == null) return null;
       return model.toEntity();
-    }
-    on Exception catch (err) {
+    } on Exception catch (err) {
       throw Exception(err);
     }
   }
 
   Future<ApplicationConfigEntity?> create({
     String? appMode,
-String? companyName,
-String? address,
-String? phoneNumber,
-DateTime? createdAt,
+    String? companyName,
+    String? address,
+    String? phoneNumber,
+    DateTime? createdAt,
   }) async {
     try {
       //@ OFFLINE MODE HANDLER
@@ -155,21 +214,28 @@ DateTime? createdAt,
         printo("OfflineMode: ApplicationConfigRepositoryImpl create");
         final model = await localDataSource.create(
           id: -1,
-          appMode: appMode,companyName: companyName,address: address,phoneNumber: phoneNumber,createdAt: createdAt,
+          appMode: appMode,
+          companyName: companyName,
+          address: address,
+          phoneNumber: phoneNumber,
+          createdAt: createdAt,
         );
 
         await localDataSource.createQueue(
           queueAction: QueueAction.create,
           data: model!,
         );
-        
+
         return model.toEntity();
       }
       //:@ OFFLINE MODE HANDLER
-      
+
       final model = await remoteDataSource.create(
-        
-        appMode: appMode,companyName: companyName,address: address,phoneNumber: phoneNumber,createdAt: createdAt,
+        appMode: appMode,
+        companyName: companyName,
+        address: address,
+        phoneNumber: phoneNumber,
+        createdAt: createdAt,
       );
       return model!.toEntity();
     } on Exception catch (err) {
@@ -179,18 +245,23 @@ DateTime? createdAt,
 
   Future<void> update({
     required int id,
-String? appMode,
-String? companyName,
-String? address,
-String? phoneNumber,
-DateTime? updatedAt,
-  }) async { 
+    String? appMode,
+    String? companyName,
+    String? address,
+    String? phoneNumber,
+    DateTime? updatedAt,
+  }) async {
     try {
       //@ OFFLINE MODE HANDLER
       if (await networkManager.isOffline()) {
         printo("OfflineMode: ApplicationConfigRepositoryImpl update $id");
         await localDataSource.update(
-          id: id,appMode: appMode,companyName: companyName,address: address,phoneNumber: phoneNumber,updatedAt: updatedAt,
+          id: id,
+          appMode: appMode,
+          companyName: companyName,
+          address: address,
+          phoneNumber: phoneNumber,
+          updatedAt: updatedAt,
         );
 
         var model = await localDataSource.get(id);
@@ -202,9 +273,14 @@ DateTime? updatedAt,
         return;
       }
       //:@ OFFLINE MODE HANDLER
-      
+
       await remoteDataSource.update(
-        id: id,appMode: appMode,companyName: companyName,address: address,phoneNumber: phoneNumber,updatedAt: updatedAt,
+        id: id,
+        appMode: appMode,
+        companyName: companyName,
+        address: address,
+        phoneNumber: phoneNumber,
+        updatedAt: updatedAt,
       );
     } on Exception catch (err) {
       throw Exception(err);
@@ -215,7 +291,7 @@ DateTime? updatedAt,
     try {
       //@ OFFLINE MODE HANDLER
       if (await networkManager.isOffline()) {
-         printo("OfflineMode: ApplicationConfigRepositoryImpl delete $id");
+        printo("OfflineMode: ApplicationConfigRepositoryImpl delete $id");
 
         var model = await localDataSource.get(
           id,
@@ -229,11 +305,11 @@ DateTime? updatedAt,
           queueAction: QueueAction.delete,
           data: model!,
         );
-        
+
         return;
       }
       //:@ OFFLINE MODE HANDLER
-      
+
       await remoteDataSource.delete(
         id,
       );
@@ -278,12 +354,21 @@ DateTime? updatedAt,
         switch (action) {
           case 'create':
             await remoteDataSource.create(
-              appMode: data.appMode,companyName: data.companyName,address: data.address,phoneNumber: data.phoneNumber,createdAt: data.createdAt,
+              appMode: data.appMode,
+              companyName: data.companyName,
+              address: data.address,
+              phoneNumber: data.phoneNumber,
+              createdAt: data.createdAt,
             );
             break;
           case 'update':
             await remoteDataSource.update(
-              id: data.id!,appMode: data.appMode,companyName: data.companyName,address: data.address,phoneNumber: data.phoneNumber,updatedAt: data.updatedAt,
+              id: data.id!,
+              appMode: data.appMode,
+              companyName: data.companyName,
+              address: data.address,
+              phoneNumber: data.phoneNumber,
+              updatedAt: data.updatedAt,
             );
             break;
           case 'delete':

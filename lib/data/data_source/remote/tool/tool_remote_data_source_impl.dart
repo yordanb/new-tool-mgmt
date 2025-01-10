@@ -9,119 +9,124 @@ class ToolRemoteDataSourceImpl implements ToolRemoteDataSource {
     required this.r,
   });
 
-  Future<int> count({
-    int? id,
-String? idOperatorAndValue, String? name, String? description, String? imageUrl, DateTime? createdAtFrom,
-DateTime? createdAtTo, DateTime? updatedAtFrom,
-DateTime? updatedAtTo
-  }) async {
-    var query = client
-      .from('tool')
-      .select(
-"""
+  Future<int> count(
+      {int? id,
+      String? idOperatorAndValue,
+      String? name,
+      String? description,
+      String? imageUrl,
+      DateTime? createdAtFrom,
+      DateTime? createdAtTo,
+      DateTime? updatedAtFrom,
+      DateTime? updatedAtTo}) async {
+    var query = client.from('tool').select(
+      """
 *
 """,
-  );
+    );
 
-  if (idOperatorAndValue != null) {
-  query = query.eqo('id', idOperatorAndValue);
-}
-if (name != null) {
-  query = query.eq('name', name);
-}
-if (description != null) {
-  query = query.eq('description', description);
-}
-if (imageUrl != null) {
-  query = query.eq('image_url', imageUrl);
-}
-if (createdAtFrom != null && createdAtTo != null) {
-    final startOfDayFrom =
-        DateTime(createdAtFrom.year, createdAtFrom.month, createdAtFrom.day)
-            .toUtc();
-    final startOfDayTo =
-        DateTime(createdAtTo.year, createdAtTo.month, createdAtTo.day)
-            .toUtc()
-            .add(const Duration(days: 1));
-    query = query
-        .gte('created_at', startOfDayFrom.toIso8601String())
-        .lt('created_at', startOfDayTo.toIso8601String());
-  }
-if (updatedAtFrom != null && updatedAtTo != null) {
-    final startOfDayFrom =
-        DateTime(updatedAtFrom.year, updatedAtFrom.month, updatedAtFrom.day)
-            .toUtc();
-    final startOfDayTo =
-        DateTime(updatedAtTo.year, updatedAtTo.month, updatedAtTo.day)
-            .toUtc()
-            .add(const Duration(days: 1));
-    query = query
-        .gte('updated_at', startOfDayFrom.toIso8601String())
-        .lt('updated_at', startOfDayTo.toIso8601String());
-  }
-    
+    if (idOperatorAndValue != null) {
+      query = query.eqo('id', idOperatorAndValue);
+    }
+    if (name != null) {
+      query = query.eq('name', name);
+    }
+    if (description != null) {
+      query = query.eq('description', description);
+    }
+    if (imageUrl != null) {
+      query = query.eq('image_url', imageUrl);
+    }
+    if (createdAtFrom != null && createdAtTo != null) {
+      final startOfDayFrom =
+          DateTime(createdAtFrom.year, createdAtFrom.month, createdAtFrom.day)
+              .toUtc();
+      final startOfDayTo =
+          DateTime(createdAtTo.year, createdAtTo.month, createdAtTo.day)
+              .toUtc()
+              .add(const Duration(days: 1));
+      query = query
+          .gte('created_at', startOfDayFrom.toIso8601String())
+          .lt('created_at', startOfDayTo.toIso8601String());
+    }
+    if (updatedAtFrom != null && updatedAtTo != null) {
+      final startOfDayFrom =
+          DateTime(updatedAtFrom.year, updatedAtFrom.month, updatedAtFrom.day)
+              .toUtc();
+      final startOfDayTo =
+          DateTime(updatedAtTo.year, updatedAtTo.month, updatedAtTo.day)
+              .toUtc()
+              .add(const Duration(days: 1));
+      query = query
+          .gte('updated_at', startOfDayFrom.toIso8601String())
+          .lt('updated_at', startOfDayTo.toIso8601String());
+    }
+
     var response = await query.count();
     return response.count;
   }
 
   Future<List<Tool>> getAll({
     int? id,
-String? idOperatorAndValue, String? name, String? description, String? imageUrl, DateTime? createdAtFrom,
-DateTime? createdAtTo, DateTime? updatedAtFrom,
-DateTime? updatedAtTo,
+    String? idOperatorAndValue,
+    String? name,
+    String? description,
+    String? imageUrl,
+    DateTime? createdAtFrom,
+    DateTime? createdAtTo,
+    DateTime? updatedAtFrom,
+    DateTime? updatedAtTo,
     int limit = 10,
     int page = 1,
   }) async {
-    var query = client
-      .from('tool')
-      .select(
-"""
+    var query = client.from('tool').select(
+      """
 *
 """,
-  );
+    );
 
-  if (idOperatorAndValue != null) {
-  query = query.eqo('id', idOperatorAndValue);
-}
-if (name != null) {
-  query = query.eq('name', name);
-}
-if (description != null) {
-  query = query.eq('description', description);
-}
-if (imageUrl != null) {
-  query = query.eq('image_url', imageUrl);
-}
-if (createdAtFrom != null && createdAtTo != null) {
-    final startOfDayFrom =
-        DateTime(createdAtFrom.year, createdAtFrom.month, createdAtFrom.day)
-            .toUtc();
-    final startOfDayTo =
-        DateTime(createdAtTo.year, createdAtTo.month, createdAtTo.day)
-            .toUtc()
-            .add(const Duration(days: 1));
-    query = query
-        .gte('created_at', startOfDayFrom.toIso8601String())
-        .lt('created_at', startOfDayTo.toIso8601String());
-  }
-if (updatedAtFrom != null && updatedAtTo != null) {
-    final startOfDayFrom =
-        DateTime(updatedAtFrom.year, updatedAtFrom.month, updatedAtFrom.day)
-            .toUtc();
-    final startOfDayTo =
-        DateTime(updatedAtTo.year, updatedAtTo.month, updatedAtTo.day)
-            .toUtc()
-            .add(const Duration(days: 1));
-    query = query
-        .gte('updated_at', startOfDayFrom.toIso8601String())
-        .lt('updated_at', startOfDayTo.toIso8601String());
-  }
-    
+    if (idOperatorAndValue != null) {
+      query = query.eqo('id', idOperatorAndValue);
+    }
+    if (name != null) {
+      query = query.eq('name', name);
+    }
+    if (description != null) {
+      query = query.eq('description', description);
+    }
+    if (imageUrl != null) {
+      query = query.eq('image_url', imageUrl);
+    }
+    if (createdAtFrom != null && createdAtTo != null) {
+      final startOfDayFrom =
+          DateTime(createdAtFrom.year, createdAtFrom.month, createdAtFrom.day)
+              .toUtc();
+      final startOfDayTo =
+          DateTime(createdAtTo.year, createdAtTo.month, createdAtTo.day)
+              .toUtc()
+              .add(const Duration(days: 1));
+      query = query
+          .gte('created_at', startOfDayFrom.toIso8601String())
+          .lt('created_at', startOfDayTo.toIso8601String());
+    }
+    if (updatedAtFrom != null && updatedAtTo != null) {
+      final startOfDayFrom =
+          DateTime(updatedAtFrom.year, updatedAtFrom.month, updatedAtFrom.day)
+              .toUtc();
+      final startOfDayTo =
+          DateTime(updatedAtTo.year, updatedAtTo.month, updatedAtTo.day)
+              .toUtc()
+              .add(const Duration(days: 1));
+      query = query
+          .gte('updated_at', startOfDayFrom.toIso8601String())
+          .lt('updated_at', startOfDayTo.toIso8601String());
+    }
+
     var response = await query
-      .order('id', ascending: false)
-      .range((page - 1) * limit, page * limit)
-      .limit(limit)
-      .exec();
+        .order('id', ascending: false)
+        .range((page - 1) * limit, page * limit)
+        .limit(limit)
+        .exec();
 
     List<Tool> result = [];
     for (var item in response!) {
@@ -132,57 +137,60 @@ if (updatedAtFrom != null && updatedAtTo != null) {
 
   Stream snapshot({
     int? id,
-String? idOperatorAndValue, String? name, String? description, String? imageUrl, DateTime? createdAtFrom,
-DateTime? createdAtTo, DateTime? updatedAtFrom,
-DateTime? updatedAtTo,
+    String? idOperatorAndValue,
+    String? name,
+    String? description,
+    String? imageUrl,
+    DateTime? createdAtFrom,
+    DateTime? createdAtTo,
+    DateTime? updatedAtFrom,
+    DateTime? updatedAtTo,
     int limit = 10,
     int page = 1,
   }) {
-    var query = client
-      .from('tool')
-      .select(
-"""
+    var query = client.from('tool').select(
+      """
 *
 """,
-  );
+    );
 
-  if (idOperatorAndValue != null) {
-  query = query.eqo('id', idOperatorAndValue);
-}
-if (name != null) {
-  query = query.eq('name', name);
-}
-if (description != null) {
-  query = query.eq('description', description);
-}
-if (imageUrl != null) {
-  query = query.eq('image_url', imageUrl);
-}
-if (createdAtFrom != null && createdAtTo != null) {
-    final startOfDayFrom =
-        DateTime(createdAtFrom.year, createdAtFrom.month, createdAtFrom.day)
-            .toUtc();
-    final startOfDayTo =
-        DateTime(createdAtTo.year, createdAtTo.month, createdAtTo.day)
-            .toUtc()
-            .add(const Duration(days: 1));
-    query = query
-        .gte('created_at', startOfDayFrom.toIso8601String())
-        .lt('created_at', startOfDayTo.toIso8601String());
-  }
-if (updatedAtFrom != null && updatedAtTo != null) {
-    final startOfDayFrom =
-        DateTime(updatedAtFrom.year, updatedAtFrom.month, updatedAtFrom.day)
-            .toUtc();
-    final startOfDayTo =
-        DateTime(updatedAtTo.year, updatedAtTo.month, updatedAtTo.day)
-            .toUtc()
-            .add(const Duration(days: 1));
-    query = query
-        .gte('updated_at', startOfDayFrom.toIso8601String())
-        .lt('updated_at', startOfDayTo.toIso8601String());
-  }
-    
+    if (idOperatorAndValue != null) {
+      query = query.eqo('id', idOperatorAndValue);
+    }
+    if (name != null) {
+      query = query.eq('name', name);
+    }
+    if (description != null) {
+      query = query.eq('description', description);
+    }
+    if (imageUrl != null) {
+      query = query.eq('image_url', imageUrl);
+    }
+    if (createdAtFrom != null && createdAtTo != null) {
+      final startOfDayFrom =
+          DateTime(createdAtFrom.year, createdAtFrom.month, createdAtFrom.day)
+              .toUtc();
+      final startOfDayTo =
+          DateTime(createdAtTo.year, createdAtTo.month, createdAtTo.day)
+              .toUtc()
+              .add(const Duration(days: 1));
+      query = query
+          .gte('created_at', startOfDayFrom.toIso8601String())
+          .lt('created_at', startOfDayTo.toIso8601String());
+    }
+    if (updatedAtFrom != null && updatedAtTo != null) {
+      final startOfDayFrom =
+          DateTime(updatedAtFrom.year, updatedAtFrom.month, updatedAtFrom.day)
+              .toUtc();
+      final startOfDayTo =
+          DateTime(updatedAtTo.year, updatedAtTo.month, updatedAtTo.day)
+              .toUtc()
+              .add(const Duration(days: 1));
+      query = query
+          .gte('updated_at', startOfDayFrom.toIso8601String())
+          .lt('updated_at', startOfDayTo.toIso8601String());
+    }
+
     return query
         .order('id', ascending: false)
         .range((page - 1) * limit, page * limit)
@@ -194,20 +202,24 @@ if (updatedAtFrom != null && updatedAtTo != null) {
     final response = await client
         .from('tool')
         .select(
-  """
+          """
   *
   """,
-    )
-        .eq('id', id).exec();
+        )
+        .eq('id', id)
+        .exec();
     if (response == null) return null;
     if (response.isEmpty) return null;
     return Tool.fromJson(response.first);
   }
 
-  Future<Tool?> create({int? id, String? name,
-String? description,
-String? imageUrl,
-DateTime? createdAt,}) async {
+  Future<Tool?> create({
+    int? id,
+    String? name,
+    String? description,
+    String? imageUrl,
+    DateTime? createdAt,
+  }) async {
     try {
       var value = {
         'name': name,
@@ -216,13 +228,9 @@ DateTime? createdAt,}) async {
         'created_at': createdAt?.yMdkkmmss,
       };
       value.removeWhere((key, value) => value == null);
-      
-      var values = await client
-          .from('tool')
-          .insert([value])
-          .select()
-          .exec();
-      
+
+      var values = await client.from('tool').insert([value]).select().exec();
+
       if (values == null) return null;
       if (values.isEmpty) return null;
 
@@ -232,28 +240,27 @@ DateTime? createdAt,}) async {
     }
   }
 
-  Future<void> update({required int id,
-String? name,
-String? description,
-String? imageUrl,
-DateTime? updatedAt,}) async {
+  Future<void> update({
+    required int id,
+    String? name,
+    String? description,
+    String? imageUrl,
+    DateTime? updatedAt,
+  }) async {
     try {
       //@BEFORE_UPDATE
       var current = await get(id);
       if (current == null) return null;
 
-      var value = { 
+      var value = {
         'name': name ?? current.name,
-'description': description ?? current.description,
-'image_url': imageUrl ?? current.imageUrl,
-        'updated_at':( updatedAt ?? DateTime.now()).yMdkkmmss, 
+        'description': description ?? current.description,
+        'image_url': imageUrl ?? current.imageUrl,
+        'updated_at': (updatedAt ?? DateTime.now()).yMdkkmmss,
       };
       value.removeWhere((key, value) => value == null);
-      
-      await client
-          .from('tool')
-          .update(value)
-          .eq('id', id).exec();
+
+      await client.from('tool').update(value).eq('id', id).exec();
     } on Exception catch (err) {
       throw Exception(err);
     }
@@ -261,11 +268,7 @@ DateTime? updatedAt,}) async {
 
   Future<void> delete(int id) async {
     try {
-      await client
-          .from('tool')
-          .delete()
-          .eq('id', id)
-          .exec();
+      await client.from('tool').delete().eq('id', id).exec();
     } on Exception catch (err) {
       throw Exception(err);
     }
@@ -273,13 +276,10 @@ DateTime? updatedAt,}) async {
 
   Future<void> deleteAll() async {
     try {
-      await client
-          .from('tool')
-          .delete().neq('id', -1)
-          .exec();;
+      await client.from('tool').delete().neq('id', -1).exec();
+      ;
     } on Exception catch (err) {
       throw Exception(err);
     }
   }
-
 }

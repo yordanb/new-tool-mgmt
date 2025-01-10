@@ -7,10 +7,17 @@ class ToolLocalDataSourceImpl implements ToolLocalDataSource {
     required this.prefs,
   });
 
-  Future<int> count({int? id,
-String? idOperatorAndValue, String? name, String? description, String? imageUrl, DateTime? createdAtFrom,
-DateTime? createdAtTo, DateTime? updatedAtFrom,
-DateTime? updatedAtTo,}) async {
+  Future<int> count({
+    int? id,
+    String? idOperatorAndValue,
+    String? name,
+    String? description,
+    String? imageUrl,
+    DateTime? createdAtFrom,
+    DateTime? createdAtTo,
+    DateTime? updatedAtFrom,
+    DateTime? updatedAtTo,
+  }) async {
     final jsonList = await prefs.getString('tool') ?? "[]";
     final values = jsonDecode(jsonList);
     return values.length;
@@ -18,9 +25,14 @@ DateTime? updatedAtTo,}) async {
 
   Future<List<Tool>> getAll({
     int? id,
-String? idOperatorAndValue, String? name, String? description, String? imageUrl, DateTime? createdAtFrom,
-DateTime? createdAtTo, DateTime? updatedAtFrom,
-DateTime? updatedAtTo,
+    String? idOperatorAndValue,
+    String? name,
+    String? description,
+    String? imageUrl,
+    DateTime? createdAtFrom,
+    DateTime? createdAtTo,
+    DateTime? updatedAtFrom,
+    DateTime? updatedAtTo,
     int limit = 10,
     int page = 1,
   }) async {
@@ -43,16 +55,19 @@ DateTime? updatedAtTo,
     return modelValues[index];
   }
 
-  Future<Tool?> create({int? id, String? name,
-String? description,
-String? imageUrl,
-DateTime? createdAt,}) async {
+  Future<Tool?> create({
+    int? id,
+    String? name,
+    String? description,
+    String? imageUrl,
+    DateTime? createdAt,
+  }) async {
     final modelValues = await getAll();
     final newModel = Tool(
       id: id,
-      name:name,
-description:description,
-imageUrl:imageUrl,
+      name: name,
+      description: description,
+      imageUrl: imageUrl,
       createdAt: createdAt ?? DateTime.now(),
     );
     modelValues.add(newModel);
@@ -61,11 +76,13 @@ imageUrl:imageUrl,
     return newModel;
   }
 
-  Future<void> update({required int id,
-String? name,
-String? description,
-String? imageUrl,
-DateTime? updatedAt,}) async {
+  Future<void> update({
+    required int id,
+    String? name,
+    String? description,
+    String? imageUrl,
+    DateTime? updatedAt,
+  }) async {
     final modelValues = await getAll();
     var index = modelValues.indexWhere((element) => element.id == id);
     if (index == -1) {
@@ -73,9 +90,9 @@ DateTime? updatedAt,}) async {
     }
     modelValues[index] = modelValues[index].copyWith(
       id: id,
-      name:name,
-description:description,
-imageUrl:imageUrl,
+      name: name,
+      description: description,
+      imageUrl: imageUrl,
       updatedAt: DateTime.now(),
     );
 
@@ -103,8 +120,7 @@ imageUrl:imageUrl,
   }) async {
     printg("createQueue: $queueAction");
 
-    String jsonList =
-        await prefs.getString('tool_queued_tasks') ?? "[]";
+    String jsonList = await prefs.getString('tool_queued_tasks') ?? "[]";
     List values = jsonDecode(jsonList);
     values.add({
       "id": const Uuid().v4(),
@@ -112,29 +128,24 @@ imageUrl:imageUrl,
       "data": data.toJson(),
       "created_at": DateTime.now().toString(),
     });
-    await prefs.setString(
-        'tool_queued_tasks', jsonEncode(values));
+    await prefs.setString('tool_queued_tasks', jsonEncode(values));
   }
 
   Future<List> getQueuedTasks() async {
-    String jsonList =
-        await prefs.getString('tool_queued_tasks') ?? "[]";
+    String jsonList = await prefs.getString('tool_queued_tasks') ?? "[]";
     List values = jsonDecode(jsonList);
     return values;
   }
 
   Future<void> deleteQueuedTask(String id) async {
-    String jsonList =
-        await prefs.getString('tool_queued_tasks') ?? "[]";
+    String jsonList = await prefs.getString('tool_queued_tasks') ?? "[]";
     List values = jsonDecode(jsonList);
     values.removeWhere((element) => element['id'] == id);
-    await prefs.setString(
-        'tool_queued_tasks', jsonEncode(values));
+    await prefs.setString('tool_queued_tasks', jsonEncode(values));
   }
 
   Future<bool> isRunningQueuedTask() async {
-    bool isRunning =
-        await prefs.getBool('tool_queued_tasks_running') ?? false;
+    bool isRunning = await prefs.getBool('tool_queued_tasks_running') ?? false;
     return isRunning;
   }
 
@@ -145,5 +156,4 @@ imageUrl:imageUrl,
   Future<void> stopQueue() async {
     await prefs.setBool('tool_queued_tasks_running', false);
   }
-
 }

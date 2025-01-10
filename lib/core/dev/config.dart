@@ -5,5 +5,3 @@ class AppDevConfig {
 }
 
 final appDevConfig = AppDevConfig();
-
-

@@ -1,6 +1,6 @@
 import 'package:hyper_supabase/core.dart';
 
-abstract class ToolFormCubit  extends Cubit<ToolFormState> {
+abstract class ToolFormCubit extends Cubit<ToolFormState> {
   ToolFormCubit(ToolFormState state) : super(state);
 
   void initState({
@@ -18,4 +18,3 @@ abstract class ToolFormCubit  extends Cubit<ToolFormState> {
   Future<void> update();
   Future<void> refresh();
 }
-  

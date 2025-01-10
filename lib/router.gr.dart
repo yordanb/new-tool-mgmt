@@ -3,17 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:hyper_supabase/core.dart';
 
-      
 /// generated route for
 /// [LoginView]
 
 class LoginRouteArgs {
   final Key? key;
-  
 
   const LoginRouteArgs({
     this.key,
-    
   });
 
   @override
@@ -22,17 +19,14 @@ class LoginRouteArgs {
   }
 }
 
-class LoginRoute
-    extends PageRouteInfo<LoginRouteArgs> {
+class LoginRoute extends PageRouteInfo<LoginRouteArgs> {
   LoginRoute({
     Key? key,
-    
     List<PageRouteInfo>? children,
   }) : super(
           LoginRoute.name,
           args: LoginRouteArgs(
             key: key,
-             
           ),
           rawPathParams: {},
           initialChildren: children,
@@ -44,11 +38,9 @@ class LoginRoute
     name,
     builder: (data) {
       final pathParams = data.inheritedPathParams;
-      final args = data.argsAs<LoginRouteArgs>(
-          orElse: () => LoginRouteArgs());
+      final args = data.argsAs<LoginRouteArgs>(orElse: () => LoginRouteArgs());
       return LoginView(
         key: args.key,
-        
       );
     },
   );
@@ -59,11 +51,9 @@ class LoginRoute
 
 class RegisterRouteArgs {
   final Key? key;
-  
 
   const RegisterRouteArgs({
     this.key,
-    
   });
 
   @override
@@ -72,17 +62,14 @@ class RegisterRouteArgs {
   }
 }
 
-class RegisterRoute
-    extends PageRouteInfo<RegisterRouteArgs> {
+class RegisterRoute extends PageRouteInfo<RegisterRouteArgs> {
   RegisterRoute({
     Key? key,
-    
     List<PageRouteInfo>? children,
   }) : super(
           RegisterRoute.name,
           args: RegisterRouteArgs(
             key: key,
-             
           ),
           rawPathParams: {},
           initialChildren: children,
@@ -94,11 +81,10 @@ class RegisterRoute
     name,
     builder: (data) {
       final pathParams = data.inheritedPathParams;
-      final args = data.argsAs<RegisterRouteArgs>(
-          orElse: () => RegisterRouteArgs());
+      final args =
+          data.argsAs<RegisterRouteArgs>(orElse: () => RegisterRouteArgs());
       return RegisterView(
         key: args.key,
-        
       );
     },
   );
@@ -109,11 +95,9 @@ class RegisterRoute
 
 class ResetPasswordRouteArgs {
   final Key? key;
-  
 
   const ResetPasswordRouteArgs({
     this.key,
-    
   });
 
   @override
@@ -122,17 +106,14 @@ class ResetPasswordRouteArgs {
   }
 }
 
-class ResetPasswordRoute
-    extends PageRouteInfo<ResetPasswordRouteArgs> {
+class ResetPasswordRoute extends PageRouteInfo<ResetPasswordRouteArgs> {
   ResetPasswordRoute({
     Key? key,
-    
     List<PageRouteInfo>? children,
   }) : super(
           ResetPasswordRoute.name,
           args: ResetPasswordRouteArgs(
             key: key,
-             
           ),
           rawPathParams: {},
           initialChildren: children,
@@ -148,7 +129,6 @@ class ResetPasswordRoute
           orElse: () => ResetPasswordRouteArgs());
       return ResetPasswordView(
         key: args.key,
-        
       );
     },
   );
@@ -159,11 +139,9 @@ class ResetPasswordRoute
 
 class DevDashboardRouteArgs {
   final Key? key;
-  
 
   const DevDashboardRouteArgs({
     this.key,
-    
   });
 
   @override
@@ -172,17 +150,14 @@ class DevDashboardRouteArgs {
   }
 }
 
-class DevDashboardRoute
-    extends PageRouteInfo<DevDashboardRouteArgs> {
+class DevDashboardRoute extends PageRouteInfo<DevDashboardRouteArgs> {
   DevDashboardRoute({
     Key? key,
-    
     List<PageRouteInfo>? children,
   }) : super(
           DevDashboardRoute.name,
           args: DevDashboardRouteArgs(
             key: key,
-             
           ),
           rawPathParams: {},
           initialChildren: children,
@@ -198,7 +173,6 @@ class DevDashboardRoute
           orElse: () => DevDashboardRouteArgs());
       return DevDashboardView(
         key: args.key,
-        
       );
     },
   );
@@ -222,8 +196,7 @@ class EditProfileRouteArgs {
   }
 }
 
-class EditProfileRoute
-    extends PageRouteInfo<EditProfileRouteArgs> {
+class EditProfileRoute extends PageRouteInfo<EditProfileRouteArgs> {
   EditProfileRoute({
     Key? key,
     int? id,
@@ -232,9 +205,11 @@ class EditProfileRoute
           EditProfileRoute.name,
           args: EditProfileRouteArgs(
             key: key,
-            id: id, 
+            id: id,
           ),
-          rawPathParams: {'id': id,},
+          rawPathParams: {
+            'id': id,
+          },
           initialChildren: children,
         );
 
@@ -245,7 +220,9 @@ class EditProfileRoute
     builder: (data) {
       final pathParams = data.inheritedPathParams;
       final args = data.argsAs<EditProfileRouteArgs>(
-          orElse: () => EditProfileRouteArgs(id: pathParams.optInt('id'),));
+          orElse: () => EditProfileRouteArgs(
+                id: pathParams.optInt('id'),
+              ));
       return EditProfileView(
         key: args.key,
         id: args.id,
@@ -259,11 +236,9 @@ class EditProfileRoute
 
 class MainNavigationRouteArgs {
   final Key? key;
-  
 
   const MainNavigationRouteArgs({
     this.key,
-    
   });
 
   @override
@@ -272,17 +247,14 @@ class MainNavigationRouteArgs {
   }
 }
 
-class MainNavigationRoute
-    extends PageRouteInfo<MainNavigationRouteArgs> {
+class MainNavigationRoute extends PageRouteInfo<MainNavigationRouteArgs> {
   MainNavigationRoute({
     Key? key,
-    
     List<PageRouteInfo>? children,
   }) : super(
           MainNavigationRoute.name,
           args: MainNavigationRouteArgs(
             key: key,
-             
           ),
           rawPathParams: {},
           initialChildren: children,
@@ -298,7 +270,6 @@ class MainNavigationRoute
           orElse: () => MainNavigationRouteArgs());
       return MainNavigationView(
         key: args.key,
-        
       );
     },
   );
@@ -309,11 +280,9 @@ class MainNavigationRoute
 
 class ProfileRouteArgs {
   final Key? key;
-  
 
   const ProfileRouteArgs({
     this.key,
-    
   });
 
   @override
@@ -322,17 +291,14 @@ class ProfileRouteArgs {
   }
 }
 
-class ProfileRoute
-    extends PageRouteInfo<ProfileRouteArgs> {
+class ProfileRoute extends PageRouteInfo<ProfileRouteArgs> {
   ProfileRoute({
     Key? key,
-    
     List<PageRouteInfo>? children,
   }) : super(
           ProfileRoute.name,
           args: ProfileRouteArgs(
             key: key,
-             
           ),
           rawPathParams: {},
           initialChildren: children,
@@ -344,11 +310,10 @@ class ProfileRoute
     name,
     builder: (data) {
       final pathParams = data.inheritedPathParams;
-      final args = data.argsAs<ProfileRouteArgs>(
-          orElse: () => ProfileRouteArgs());
+      final args =
+          data.argsAs<ProfileRouteArgs>(orElse: () => ProfileRouteArgs());
       return ProfileView(
         key: args.key,
-        
       );
     },
   );
@@ -359,11 +324,9 @@ class ProfileRoute
 
 class SettingRouteArgs {
   final Key? key;
-  
 
   const SettingRouteArgs({
     this.key,
-    
   });
 
   @override
@@ -372,17 +335,14 @@ class SettingRouteArgs {
   }
 }
 
-class SettingRoute
-    extends PageRouteInfo<SettingRouteArgs> {
+class SettingRoute extends PageRouteInfo<SettingRouteArgs> {
   SettingRoute({
     Key? key,
-    
     List<PageRouteInfo>? children,
   }) : super(
           SettingRoute.name,
           args: SettingRouteArgs(
             key: key,
-             
           ),
           rawPathParams: {},
           initialChildren: children,
@@ -394,11 +354,10 @@ class SettingRoute
     name,
     builder: (data) {
       final pathParams = data.inheritedPathParams;
-      final args = data.argsAs<SettingRouteArgs>(
-          orElse: () => SettingRouteArgs());
+      final args =
+          data.argsAs<SettingRouteArgs>(orElse: () => SettingRouteArgs());
       return SettingView(
         key: args.key,
-        
       );
     },
   );
@@ -432,9 +391,11 @@ class ApplicationConfigFormRoute
           ApplicationConfigFormRoute.name,
           args: ApplicationConfigFormRouteArgs(
             key: key,
-            id: id, 
+            id: id,
           ),
-          rawPathParams: {'id': id,},
+          rawPathParams: {
+            'id': id,
+          },
           initialChildren: children,
         );
 
@@ -445,7 +406,9 @@ class ApplicationConfigFormRoute
     builder: (data) {
       final pathParams = data.inheritedPathParams;
       final args = data.argsAs<ApplicationConfigFormRouteArgs>(
-          orElse: () => ApplicationConfigFormRouteArgs(id: pathParams.optInt('id'),));
+          orElse: () => ApplicationConfigFormRouteArgs(
+                id: pathParams.optInt('id'),
+              ));
       return ApplicationConfigFormView(
         key: args.key,
         id: args.id,
@@ -459,11 +422,9 @@ class ApplicationConfigFormRoute
 
 class ApplicationConfigListRouteArgs {
   final Key? key;
-  
 
   const ApplicationConfigListRouteArgs({
     this.key,
-    
   });
 
   @override
@@ -476,13 +437,11 @@ class ApplicationConfigListRoute
     extends PageRouteInfo<ApplicationConfigListRouteArgs> {
   ApplicationConfigListRoute({
     Key? key,
-    
     List<PageRouteInfo>? children,
   }) : super(
           ApplicationConfigListRoute.name,
           args: ApplicationConfigListRouteArgs(
             key: key,
-             
           ),
           rawPathParams: {},
           initialChildren: children,
@@ -498,7 +457,6 @@ class ApplicationConfigListRoute
           orElse: () => ApplicationConfigListRouteArgs());
       return ApplicationConfigListView(
         key: args.key,
-        
       );
     },
   );
@@ -532,9 +490,11 @@ class LoanTransactionFormRoute
           LoanTransactionFormRoute.name,
           args: LoanTransactionFormRouteArgs(
             key: key,
-            id: id, 
+            id: id,
           ),
-          rawPathParams: {'id': id,},
+          rawPathParams: {
+            'id': id,
+          },
           initialChildren: children,
         );
 
@@ -545,7 +505,9 @@ class LoanTransactionFormRoute
     builder: (data) {
       final pathParams = data.inheritedPathParams;
       final args = data.argsAs<LoanTransactionFormRouteArgs>(
-          orElse: () => LoanTransactionFormRouteArgs(id: pathParams.optInt('id'),));
+          orElse: () => LoanTransactionFormRouteArgs(
+                id: pathParams.optInt('id'),
+              ));
       return LoanTransactionFormView(
         key: args.key,
         id: args.id,
@@ -559,11 +521,9 @@ class LoanTransactionFormRoute
 
 class LoanTransactionListRouteArgs {
   final Key? key;
-  
 
   const LoanTransactionListRouteArgs({
     this.key,
-    
   });
 
   @override
@@ -576,13 +536,11 @@ class LoanTransactionListRoute
     extends PageRouteInfo<LoanTransactionListRouteArgs> {
   LoanTransactionListRoute({
     Key? key,
-    
     List<PageRouteInfo>? children,
   }) : super(
           LoanTransactionListRoute.name,
           args: LoanTransactionListRouteArgs(
             key: key,
-             
           ),
           rawPathParams: {},
           initialChildren: children,
@@ -598,7 +556,6 @@ class LoanTransactionListRoute
           orElse: () => LoanTransactionListRouteArgs());
       return LoanTransactionListView(
         key: args.key,
-        
       );
     },
   );
@@ -632,9 +589,11 @@ class LoanTransactionItemFormRoute
           LoanTransactionItemFormRoute.name,
           args: LoanTransactionItemFormRouteArgs(
             key: key,
-            id: id, 
+            id: id,
           ),
-          rawPathParams: {'id': id,},
+          rawPathParams: {
+            'id': id,
+          },
           initialChildren: children,
         );
 
@@ -645,7 +604,9 @@ class LoanTransactionItemFormRoute
     builder: (data) {
       final pathParams = data.inheritedPathParams;
       final args = data.argsAs<LoanTransactionItemFormRouteArgs>(
-          orElse: () => LoanTransactionItemFormRouteArgs(id: pathParams.optInt('id'),));
+          orElse: () => LoanTransactionItemFormRouteArgs(
+                id: pathParams.optInt('id'),
+              ));
       return LoanTransactionItemFormView(
         key: args.key,
         id: args.id,
@@ -659,11 +620,9 @@ class LoanTransactionItemFormRoute
 
 class LoanTransactionItemListRouteArgs {
   final Key? key;
-  
 
   const LoanTransactionItemListRouteArgs({
     this.key,
-    
   });
 
   @override
@@ -676,13 +635,11 @@ class LoanTransactionItemListRoute
     extends PageRouteInfo<LoanTransactionItemListRouteArgs> {
   LoanTransactionItemListRoute({
     Key? key,
-    
     List<PageRouteInfo>? children,
   }) : super(
           LoanTransactionItemListRoute.name,
           args: LoanTransactionItemListRouteArgs(
             key: key,
-             
           ),
           rawPathParams: {},
           initialChildren: children,
@@ -698,7 +655,6 @@ class LoanTransactionItemListRoute
           orElse: () => LoanTransactionItemListRouteArgs());
       return LoanTransactionItemListView(
         key: args.key,
-        
       );
     },
   );
@@ -722,8 +678,7 @@ class ToolFormRouteArgs {
   }
 }
 
-class ToolFormRoute
-    extends PageRouteInfo<ToolFormRouteArgs> {
+class ToolFormRoute extends PageRouteInfo<ToolFormRouteArgs> {
   ToolFormRoute({
     Key? key,
     int? id,
@@ -732,9 +687,11 @@ class ToolFormRoute
           ToolFormRoute.name,
           args: ToolFormRouteArgs(
             key: key,
-            id: id, 
+            id: id,
           ),
-          rawPathParams: {'id': id,},
+          rawPathParams: {
+            'id': id,
+          },
           initialChildren: children,
         );
 
@@ -745,7 +702,9 @@ class ToolFormRoute
     builder: (data) {
       final pathParams = data.inheritedPathParams;
       final args = data.argsAs<ToolFormRouteArgs>(
-          orElse: () => ToolFormRouteArgs(id: pathParams.optInt('id'),));
+          orElse: () => ToolFormRouteArgs(
+                id: pathParams.optInt('id'),
+              ));
       return ToolFormView(
         key: args.key,
         id: args.id,
@@ -759,11 +718,9 @@ class ToolFormRoute
 
 class ToolListRouteArgs {
   final Key? key;
-  
 
   const ToolListRouteArgs({
     this.key,
-    
   });
 
   @override
@@ -772,17 +729,14 @@ class ToolListRouteArgs {
   }
 }
 
-class ToolListRoute
-    extends PageRouteInfo<ToolListRouteArgs> {
+class ToolListRoute extends PageRouteInfo<ToolListRouteArgs> {
   ToolListRoute({
     Key? key,
-    
     List<PageRouteInfo>? children,
   }) : super(
           ToolListRoute.name,
           args: ToolListRouteArgs(
             key: key,
-             
           ),
           rawPathParams: {},
           initialChildren: children,
@@ -794,11 +748,10 @@ class ToolListRoute
     name,
     builder: (data) {
       final pathParams = data.inheritedPathParams;
-      final args = data.argsAs<ToolListRouteArgs>(
-          orElse: () => ToolListRouteArgs());
+      final args =
+          data.argsAs<ToolListRouteArgs>(orElse: () => ToolListRouteArgs());
       return ToolListView(
         key: args.key,
-        
       );
     },
   );
@@ -822,8 +775,7 @@ class UserProfileFormRouteArgs {
   }
 }
 
-class UserProfileFormRoute
-    extends PageRouteInfo<UserProfileFormRouteArgs> {
+class UserProfileFormRoute extends PageRouteInfo<UserProfileFormRouteArgs> {
   UserProfileFormRoute({
     Key? key,
     int? id,
@@ -832,9 +784,11 @@ class UserProfileFormRoute
           UserProfileFormRoute.name,
           args: UserProfileFormRouteArgs(
             key: key,
-            id: id, 
+            id: id,
           ),
-          rawPathParams: {'id': id,},
+          rawPathParams: {
+            'id': id,
+          },
           initialChildren: children,
         );
 
@@ -845,7 +799,9 @@ class UserProfileFormRoute
     builder: (data) {
       final pathParams = data.inheritedPathParams;
       final args = data.argsAs<UserProfileFormRouteArgs>(
-          orElse: () => UserProfileFormRouteArgs(id: pathParams.optInt('id'),));
+          orElse: () => UserProfileFormRouteArgs(
+                id: pathParams.optInt('id'),
+              ));
       return UserProfileFormView(
         key: args.key,
         id: args.id,
@@ -859,11 +815,9 @@ class UserProfileFormRoute
 
 class UserProfileListRouteArgs {
   final Key? key;
-  
 
   const UserProfileListRouteArgs({
     this.key,
-    
   });
 
   @override
@@ -872,17 +826,14 @@ class UserProfileListRouteArgs {
   }
 }
 
-class UserProfileListRoute
-    extends PageRouteInfo<UserProfileListRouteArgs> {
+class UserProfileListRoute extends PageRouteInfo<UserProfileListRouteArgs> {
   UserProfileListRoute({
     Key? key,
-    
     List<PageRouteInfo>? children,
   }) : super(
           UserProfileListRoute.name,
           args: UserProfileListRouteArgs(
             key: key,
-             
           ),
           rawPathParams: {},
           initialChildren: children,
@@ -898,7 +849,6 @@ class UserProfileListRoute
           orElse: () => UserProfileListRouteArgs());
       return UserProfileListView(
         key: args.key,
-        
       );
     },
   );

@@ -2,7 +2,7 @@ import 'package:hyper_supabase/core.dart';
 
 class DevDashboardCubitImpl extends Cubit<DevDashboardState>
     implements DevDashboardCubit {
-      LogoutAuthUseCase logoutAuthUseCase;
+  LogoutAuthUseCase logoutAuthUseCase;
   DevDashboardCubitImpl({
     required this.logoutAuthUseCase,
   }) : super(DevDashboardState());

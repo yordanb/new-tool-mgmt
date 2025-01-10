@@ -1,7 +1,9 @@
 import 'package:hyper_supabase/core.dart';
 
-abstract class LoanTransactionItemFormCubit  extends Cubit<LoanTransactionItemFormState> {
-  LoanTransactionItemFormCubit(LoanTransactionItemFormState state) : super(state);
+abstract class LoanTransactionItemFormCubit
+    extends Cubit<LoanTransactionItemFormState> {
+  LoanTransactionItemFormCubit(LoanTransactionItemFormState state)
+      : super(state);
 
   void initState({
     Function? init,
@@ -18,4 +20,3 @@ abstract class LoanTransactionItemFormCubit  extends Cubit<LoanTransactionItemFo
   Future<void> update();
   Future<void> refresh();
 }
-  

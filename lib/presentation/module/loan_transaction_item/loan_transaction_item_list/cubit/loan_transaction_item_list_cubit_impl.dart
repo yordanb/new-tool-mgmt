@@ -1,6 +1,8 @@
 import 'package:hyper_supabase/core.dart';
 
-class LoanTransactionItemListCubitImpl extends Cubit<LoanTransactionItemListState> implements LoanTransactionItemListCubit {
+class LoanTransactionItemListCubitImpl
+    extends Cubit<LoanTransactionItemListState>
+    implements LoanTransactionItemListCubit {
   final GetCurrentAppSessionUseCase getCurrentAppSessionUseCase;
   final GetAllLoanTransactionItemUseCase getAllLoanTransactionItemUseCase;
   final DeleteLoanTransactionItemUseCase deleteLoanTransactionItemUseCase;
@@ -15,8 +17,8 @@ class LoanTransactionItemListCubitImpl extends Cubit<LoanTransactionItemListStat
 
   @override
   void initState({
-      Function? init,
-    }) {
+    Function? init,
+  }) {
     //initState event
     emit(LoanTransactionItemListState());
     init?.call();
@@ -33,7 +35,6 @@ class LoanTransactionItemListCubitImpl extends Cubit<LoanTransactionItemListStat
     //ready event
   }
 
-  
   void initializeData() async {
     state.fullViewState = FullViewState.loading;
     emit(state.copyWith());
@@ -45,7 +46,6 @@ class LoanTransactionItemListCubitImpl extends Cubit<LoanTransactionItemListStat
     emit(state.copyWith());
   }
 
-
   Future getData() async {
     printg("[Pagination] Load more.. ${state.page}");
     if (state.page == 0) {
@@ -55,19 +55,20 @@ class LoanTransactionItemListCubitImpl extends Cubit<LoanTransactionItemListStat
     final newItems = await getAllLoanTransactionItemUseCase.call(
       //::FILTER_SNAPSHOT_STATE_PARAMS
       id: state.id,
-loanTransactionId: state.loanTransactionId,
-toolId: state.toolId,
-qty: state.qty,
-memo: state.memo,
-status: state.status,
-idOperatorAndValue: state.idOperatorAndValue,
-loanTransactionIdOperatorAndValue: state.loanTransactionIdOperatorAndValue,
-toolIdOperatorAndValue: state.toolIdOperatorAndValue,
-qtyOperatorAndValue: state.qtyOperatorAndValue,
-createdAtFrom: state.createdAtFrom,
-createdAtTo: state.createdAtTo,
-updatedAtFrom: state.updatedAtFrom,
-updatedAtTo: state.updatedAtTo,
+      loanTransactionId: state.loanTransactionId,
+      toolId: state.toolId,
+      qty: state.qty,
+      memo: state.memo,
+      status: state.status,
+      idOperatorAndValue: state.idOperatorAndValue,
+      loanTransactionIdOperatorAndValue:
+          state.loanTransactionIdOperatorAndValue,
+      toolIdOperatorAndValue: state.toolIdOperatorAndValue,
+      qtyOperatorAndValue: state.qtyOperatorAndValue,
+      createdAtFrom: state.createdAtFrom,
+      createdAtTo: state.createdAtTo,
+      updatedAtFrom: state.updatedAtFrom,
+      updatedAtTo: state.updatedAtTo,
       page: state.page,
       limit: state.limit,
     );
@@ -82,7 +83,6 @@ updatedAtTo: state.updatedAtTo,
       ...newItems,
     ];
   }
-
 
   Future<void> delete(int id) async {
     try {
@@ -120,21 +120,21 @@ updatedAtTo: state.updatedAtTo,
   bool get isFilterMode {
     List values = [
       //state.id,
-state.loanTransactionId,
-state.toolId,
-state.qty,
-state.memo,
-state.status,
-state.createdAt,
-state.updatedAt,
-state.idOperatorAndValue,
-state.loanTransactionIdOperatorAndValue,
-state.toolIdOperatorAndValue,
-state.qtyOperatorAndValue,
-state.createdAtFrom,
-state.createdAtTo,
-state.updatedAtFrom,
-state.updatedAtTo,
+      state.loanTransactionId,
+      state.toolId,
+      state.qty,
+      state.memo,
+      state.status,
+      state.createdAt,
+      state.updatedAt,
+      state.idOperatorAndValue,
+      state.loanTransactionIdOperatorAndValue,
+      state.toolIdOperatorAndValue,
+      state.qtyOperatorAndValue,
+      state.createdAtFrom,
+      state.createdAtTo,
+      state.updatedAtFrom,
+      state.updatedAtTo,
     ];
     return values.indexWhere((i) =>
             (i != null && i != "") ||
@@ -145,21 +145,21 @@ state.updatedAtTo,
 
   void resetFilter() {
     //state.id = null;
-state.loanTransactionId = null;
-state.toolId = null;
-state.qty = null;
-state.memo = null;
-state.status = null;
-state.createdAt = null;
-state.updatedAt = null;
-state.idOperatorAndValue = null;
-state.loanTransactionIdOperatorAndValue = null;
-state.toolIdOperatorAndValue = null;
-state.qtyOperatorAndValue = null;
-state.createdAtFrom = null;
-state.createdAtTo = null;
-state.updatedAtFrom = null;
-state.updatedAtTo = null;
+    state.loanTransactionId = null;
+    state.toolId = null;
+    state.qty = null;
+    state.memo = null;
+    state.status = null;
+    state.createdAt = null;
+    state.updatedAt = null;
+    state.idOperatorAndValue = null;
+    state.loanTransactionIdOperatorAndValue = null;
+    state.toolIdOperatorAndValue = null;
+    state.qtyOperatorAndValue = null;
+    state.createdAtFrom = null;
+    state.createdAtTo = null;
+    state.updatedAtFrom = null;
+    state.updatedAtTo = null;
     reload();
   }
 
@@ -200,4 +200,3 @@ state.updatedAtTo = null;
     emit(state.copyWith());
   }
 }
-  

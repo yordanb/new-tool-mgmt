@@ -22,12 +22,11 @@ class LoginState {
 
   factory LoginState.fromJson(Map<String, dynamic> json) {
     return LoginState(
-      email: json['email'],
-      password: json['password'],
-      viewState: json['view_state'],
-      fullViewState: json['full_view_state'],
-      isLoggedIn: json['is_logged_in']
-    );
+        email: json['email'],
+        password: json['password'],
+        viewState: json['view_state'],
+        fullViewState: json['full_view_state'],
+        isLoggedIn: json['is_logged_in']);
   }
 
   Map<String, dynamic> toJson() {
@@ -41,19 +40,17 @@ class LoginState {
   }
 
   //@copyWith
-  LoginState copyWith({
-     String? email,
-     String? password,
-     ViewState? viewState,
-     FullViewState? fullViewState,
-     bool? isLoggedIn
-  }) {
+  LoginState copyWith(
+      {String? email,
+      String? password,
+      ViewState? viewState,
+      FullViewState? fullViewState,
+      bool? isLoggedIn}) {
     return LoginState(
-      email: email ?? this.email,
-      password: password ?? this.password,
-      viewState: viewState ?? this.viewState,
-      fullViewState: fullViewState ?? this.fullViewState,
-      isLoggedIn: isLoggedIn ?? this.isLoggedIn
-    );
+        email: email ?? this.email,
+        password: password ?? this.password,
+        viewState: viewState ?? this.viewState,
+        fullViewState: fullViewState ?? this.fullViewState,
+        isLoggedIn: isLoggedIn ?? this.isLoggedIn);
   }
 }

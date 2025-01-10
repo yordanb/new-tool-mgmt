@@ -24,13 +24,12 @@ class Tool {
 
   factory Tool.fromJson(Map<String, dynamic> json) {
     return Tool(
-      id: json['id'],
-      name: json['name'],
-      description: json['description'],
-      imageUrl: json['image_url'],
-      createdAt: DateTime.tryParse(json['created_at'].toString()),
-      updatedAt: DateTime.tryParse(json['updated_at'].toString())
-    );
+        id: json['id'],
+        name: json['name'],
+        description: json['description'],
+        imageUrl: json['image_url'],
+        createdAt: DateTime.tryParse(json['created_at'].toString()),
+        updatedAt: DateTime.tryParse(json['updated_at'].toString()));
   }
 
   Map<String, dynamic> toJson() {
@@ -45,21 +44,19 @@ class Tool {
   }
 
   //@copyWith
-  Tool copyWith({
-     int? id,
-     String? name,
-     String? description,
-     String? imageUrl,
-     DateTime? createdAt,
-     DateTime? updatedAt
-  }) {
+  Tool copyWith(
+      {int? id,
+      String? name,
+      String? description,
+      String? imageUrl,
+      DateTime? createdAt,
+      DateTime? updatedAt}) {
     return Tool(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      description: description ?? this.description,
-      imageUrl: imageUrl ?? this.imageUrl,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt
-    );
+        id: id ?? this.id,
+        name: name ?? this.name,
+        description: description ?? this.description,
+        imageUrl: imageUrl ?? this.imageUrl,
+        createdAt: createdAt ?? this.createdAt,
+        updatedAt: updatedAt ?? this.updatedAt);
   }
 }

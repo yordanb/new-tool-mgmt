@@ -135,8 +135,6 @@ class _MainViewState extends State<MainView> {
                               const SizedBox(
                                 width: 12.0,
                               ),
-
-                              
                               InkWell(
                                 onTap: () {
                                   Navigator.push(

@@ -7,7 +7,7 @@ class SyncronizeAppPrinterUseCaseImpl implements SyncronizeAppPrinterUseCase {
   SyncronizeAppPrinterUseCaseImpl({
     required this.repository,
   });
-  
+
   Future<void> call({
     bool forceSyncronize = false,
   }) async {

@@ -7,14 +7,11 @@ class GetApplicationConfigUseCaseImpl implements GetApplicationConfigUseCase {
   GetApplicationConfigUseCaseImpl({
     required this.repository,
   });
-  
-  Future<ApplicationConfigEntity?> call({
-    required int id
-  }) async {
+
+  Future<ApplicationConfigEntity?> call({required int id}) async {
     try {
       return await repository.get(id);
-    }
-    on Exception catch (err) {
+    } on Exception catch (err) {
       throw Exception(err);
     }
   }

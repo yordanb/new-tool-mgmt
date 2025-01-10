@@ -46,24 +46,23 @@ class ToolFormState {
 
   factory ToolFormState.fromJson(Map<String, dynamic> json) {
     return ToolFormState(
-      fullViewState: json['full_view_state'],
-      viewState: json['view_state'],
-      isEditMode: json['is_edit_mode'],
-      isCreateMode: json['is_create_mode'],
-      session: AppSessionEntity.fromJson(json['session']),
-      current: ToolEntity.fromJson(json['current']),
-      id: json['id'],
-      name: json['name'],
-      description: json['description'],
-      imageUrl: json['image_url'],
-      createdAt: DateTime.tryParse(json['created_at'].toString()),
-      updatedAt: DateTime.tryParse(json['updated_at'].toString()),
-      idOperatorAndValue: json['id_operator_and_value'],
-      createdAtFrom: DateTime.tryParse(json['created_at_from'].toString()),
-      createdAtTo: DateTime.tryParse(json['created_at_to'].toString()),
-      updatedAtFrom: DateTime.tryParse(json['updated_at_from'].toString()),
-      updatedAtTo: DateTime.tryParse(json['updated_at_to'].toString())
-    );
+        fullViewState: json['full_view_state'],
+        viewState: json['view_state'],
+        isEditMode: json['is_edit_mode'],
+        isCreateMode: json['is_create_mode'],
+        session: AppSessionEntity.fromJson(json['session'] ?? {}),
+        current: ToolEntity.fromJson(json['current'] ?? {}),
+        id: json['id'],
+        name: json['name'],
+        description: json['description'],
+        imageUrl: json['image_url'],
+        createdAt: DateTime.tryParse(json['created_at'].toString()),
+        updatedAt: DateTime.tryParse(json['updated_at'].toString()),
+        idOperatorAndValue: json['id_operator_and_value'],
+        createdAtFrom: DateTime.tryParse(json['created_at_from'].toString()),
+        createdAtTo: DateTime.tryParse(json['created_at_to'].toString()),
+        updatedAtFrom: DateTime.tryParse(json['updated_at_from'].toString()),
+        updatedAtTo: DateTime.tryParse(json['updated_at_to'].toString()));
   }
 
   Map<String, dynamic> toJson() {
@@ -89,43 +88,41 @@ class ToolFormState {
   }
 
   //@copyWith
-  ToolFormState copyWith({
-     FullViewState? fullViewState,
-     ViewState? viewState,
-     bool? isEditMode,
-     bool? isCreateMode,
-     AppSessionEntity? session,
-     ToolEntity? current,
-     int? id,
-     String? name,
-     String? description,
-     String? imageUrl,
-     DateTime? createdAt,
-     DateTime? updatedAt,
-     String? idOperatorAndValue,
-     DateTime? createdAtFrom,
-     DateTime? createdAtTo,
-     DateTime? updatedAtFrom,
-     DateTime? updatedAtTo
-  }) {
+  ToolFormState copyWith(
+      {FullViewState? fullViewState,
+      ViewState? viewState,
+      bool? isEditMode,
+      bool? isCreateMode,
+      AppSessionEntity? session,
+      ToolEntity? current,
+      int? id,
+      String? name,
+      String? description,
+      String? imageUrl,
+      DateTime? createdAt,
+      DateTime? updatedAt,
+      String? idOperatorAndValue,
+      DateTime? createdAtFrom,
+      DateTime? createdAtTo,
+      DateTime? updatedAtFrom,
+      DateTime? updatedAtTo}) {
     return ToolFormState(
-      fullViewState: fullViewState ?? this.fullViewState,
-      viewState: viewState ?? this.viewState,
-      isEditMode: isEditMode ?? this.isEditMode,
-      isCreateMode: isCreateMode ?? this.isCreateMode,
-      session: session ?? this.session,
-      current: current ?? this.current,
-      id: id ?? this.id,
-      name: name ?? this.name,
-      description: description ?? this.description,
-      imageUrl: imageUrl ?? this.imageUrl,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
-      idOperatorAndValue: idOperatorAndValue ?? this.idOperatorAndValue,
-      createdAtFrom: createdAtFrom ?? this.createdAtFrom,
-      createdAtTo: createdAtTo ?? this.createdAtTo,
-      updatedAtFrom: updatedAtFrom ?? this.updatedAtFrom,
-      updatedAtTo: updatedAtTo ?? this.updatedAtTo
-    );
+        fullViewState: fullViewState ?? this.fullViewState,
+        viewState: viewState ?? this.viewState,
+        isEditMode: isEditMode ?? this.isEditMode,
+        isCreateMode: isCreateMode ?? this.isCreateMode,
+        session: session ?? this.session,
+        current: current ?? this.current,
+        id: id ?? this.id,
+        name: name ?? this.name,
+        description: description ?? this.description,
+        imageUrl: imageUrl ?? this.imageUrl,
+        createdAt: createdAt ?? this.createdAt,
+        updatedAt: updatedAt ?? this.updatedAt,
+        idOperatorAndValue: idOperatorAndValue ?? this.idOperatorAndValue,
+        createdAtFrom: createdAtFrom ?? this.createdAtFrom,
+        createdAtTo: createdAtTo ?? this.createdAtTo,
+        updatedAtFrom: updatedAtFrom ?? this.updatedAtFrom,
+        updatedAtTo: updatedAtTo ?? this.updatedAtTo);
   }
 }

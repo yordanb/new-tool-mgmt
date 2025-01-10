@@ -29,7 +29,7 @@ class AppRouter extends RootStackRouter {
 
     var appRoutes = [
       /// BEGINING OF ROUTES
-      
+
       AutoRoute(
         path: "/login",
         page: LoginRoute.page,

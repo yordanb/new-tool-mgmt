@@ -46,23 +46,19 @@ class _MainNavigationViewState extends State<MainNavigationView> {
           }
 
           List<MainNavigationItem> items = [
-            
-            
-            
-            
             //@ warehouse_app
-            
-              MainNavigationItem(
-                icon: MdiIcons.toolbox,
-                title: "Tools",
-                widget: const ToolListView(),
-              ),
-            
-              MainNavigationItem(
-                icon: Icons.transfer_within_a_station_outlined,
-                title: "Loan Transactions",
-                widget: const LoanTransactionListView(),
-              ),
+
+            MainNavigationItem(
+              icon: MdiIcons.toolbox,
+              title: "Tools",
+              widget: const ToolListView(),
+            ),
+
+            MainNavigationItem(
+              icon: Icons.transfer_within_a_station_outlined,
+              title: "Loan Transactions",
+              widget: const LoanTransactionListView(),
+            ),
             //:@ warehouse_app
             // MainNavigationItem(
             //   icon: Icons.person,

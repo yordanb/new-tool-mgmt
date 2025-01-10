@@ -16,26 +16,18 @@ class DevDashboardState {
 
   factory DevDashboardState.fromJson(Map<String, dynamic> json) {
     return DevDashboardState(
-      viewState: json['view_state'],
-      fullViewState: json['full_view_state']
-    );
+        viewState: json['view_state'], fullViewState: json['full_view_state']);
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'view_state': viewState,
-      'full_view_state': fullViewState
-    };
+    return {'view_state': viewState, 'full_view_state': fullViewState};
   }
 
   //@copyWith
-  DevDashboardState copyWith({
-     ViewState? viewState,
-     FullViewState? fullViewState
-  }) {
+  DevDashboardState copyWith(
+      {ViewState? viewState, FullViewState? fullViewState}) {
     return DevDashboardState(
-      viewState: viewState ?? this.viewState,
-      fullViewState: fullViewState ?? this.fullViewState
-    );
+        viewState: viewState ?? this.viewState,
+        fullViewState: fullViewState ?? this.fullViewState);
   }
 }

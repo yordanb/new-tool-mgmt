@@ -7,7 +7,7 @@ class DeleteLoanTransactionUseCaseImpl implements DeleteLoanTransactionUseCase {
   DeleteLoanTransactionUseCaseImpl({
     required this.repository,
   });
-  
+
   Future<void> call(int id) async {
     try {
       await repository.delete(

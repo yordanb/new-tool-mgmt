@@ -9,8 +9,7 @@ extension AppSessionExtension on AppSession {
 extension AppSessionListExtension on List<AppSession> {
   List<AppSessionEntity> toEntityList() {
     return this
-        .map((model) =>
-            AppSessionEntity.fromJson(model.toJson().cleanJson()))
+        .map((model) => AppSessionEntity.fromJson(model.toJson().cleanJson()))
         .toList();
   }
 

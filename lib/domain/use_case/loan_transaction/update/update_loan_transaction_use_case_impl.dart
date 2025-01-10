@@ -7,16 +7,19 @@ class UpdateLoanTransactionUseCaseImpl implements UpdateLoanTransactionUseCase {
   UpdateLoanTransactionUseCaseImpl({
     required this.repository,
   });
-  
+
   Future<void> call({
     required int id,
-String? status,
-int? userProfileId,
-DateTime? updatedAt,
+    String? status,
+    int? userProfileId,
+    DateTime? updatedAt,
   }) async {
     try {
       await repository.update(
-        id: id,status: status,userProfileId: userProfileId,updatedAt: updatedAt,
+        id: id,
+        status: status,
+        userProfileId: userProfileId,
+        updatedAt: updatedAt,
       );
     } on Exception catch (err) {
       throw Exception(err);

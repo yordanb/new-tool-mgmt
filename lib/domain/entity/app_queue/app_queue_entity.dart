@@ -13,30 +13,30 @@ class AppQueueEntity {
   UserProfileEntity? userProfile;
   //:@declaration
 
-  AppQueueEntity({
-    //@constructor
-    this.id,
-    this.userProfileId,
-    this.action,
-    this.actionData,
-    this.appMode,
-    this.createdAt,
-    this.updatedAt,
-    this.userProfile
-    //:@constructor
-  });
+  AppQueueEntity(
+      {
+      //@constructor
+      this.id,
+      this.userProfileId,
+      this.action,
+      this.actionData,
+      this.appMode,
+      this.createdAt,
+      this.updatedAt,
+      this.userProfile
+      //:@constructor
+      });
 
   factory AppQueueEntity.fromJson(Map<String, dynamic> json) {
     return AppQueueEntity(
-      id: json['id'],
-      userProfileId: json['user_profile_id'],
-      action: json['action'],
-      actionData: json['action_data'],
-      appMode: json['app_mode'],
-      createdAt: DateTime.tryParse(json['created_at'].toString()),
-      updatedAt: DateTime.tryParse(json['updated_at'].toString()),
-      userProfile: UserProfileEntity.fromJson(json['user_profile'])
-    );
+        id: json['id'],
+        userProfileId: json['user_profile_id'],
+        action: json['action'],
+        actionData: json['action_data'],
+        appMode: json['app_mode'],
+        createdAt: DateTime.tryParse(json['created_at'].toString()),
+        updatedAt: DateTime.tryParse(json['updated_at'].toString()),
+        userProfile: UserProfileEntity.fromJson(json['user_profile'] ?? {}));
   }
 
   Map<String, dynamic> toJson() {
@@ -53,25 +53,23 @@ class AppQueueEntity {
   }
 
   //@copyWith
-  AppQueueEntity copyWith({
-     int? id,
-     int? userProfileId,
-     String? action,
-     String? actionData,
-     String? appMode,
-     DateTime? createdAt,
-     DateTime? updatedAt,
-     UserProfileEntity? userProfile
-  }) {
+  AppQueueEntity copyWith(
+      {int? id,
+      int? userProfileId,
+      String? action,
+      String? actionData,
+      String? appMode,
+      DateTime? createdAt,
+      DateTime? updatedAt,
+      UserProfileEntity? userProfile}) {
     return AppQueueEntity(
-      id: id ?? this.id,
-      userProfileId: userProfileId ?? this.userProfileId,
-      action: action ?? this.action,
-      actionData: actionData ?? this.actionData,
-      appMode: appMode ?? this.appMode,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
-      userProfile: userProfile ?? this.userProfile
-    );
+        id: id ?? this.id,
+        userProfileId: userProfileId ?? this.userProfileId,
+        action: action ?? this.action,
+        actionData: actionData ?? this.actionData,
+        appMode: appMode ?? this.appMode,
+        createdAt: createdAt ?? this.createdAt,
+        updatedAt: updatedAt ?? this.updatedAt,
+        userProfile: userProfile ?? this.userProfile);
   }
 }

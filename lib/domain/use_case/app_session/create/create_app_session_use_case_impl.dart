@@ -7,16 +7,19 @@ class CreateAppSessionUseCaseImpl implements CreateAppSessionUseCase {
   CreateAppSessionUseCaseImpl({
     required this.repository,
   });
-  
+
   Future<AppSessionEntity?> call({
     int? userProfileId,
-String? role,
-String? email,
-DateTime? createdAt,
+    String? role,
+    String? email,
+    DateTime? createdAt,
   }) async {
     try {
       final response = await repository.create(
-        userProfileId: userProfileId,role: role,email: email,createdAt: createdAt,
+        userProfileId: userProfileId,
+        role: role,
+        email: email,
+        createdAt: createdAt,
       );
       return response;
     } on Exception catch (err) {

@@ -26,14 +26,13 @@ class ApplicationConfigEntity {
 
   factory ApplicationConfigEntity.fromJson(Map<String, dynamic> json) {
     return ApplicationConfigEntity(
-      id: json['id'],
-      appMode: json['app_mode'],
-      companyName: json['company_name'],
-      address: json['address'],
-      phoneNumber: json['phone_number'],
-      createdAt: DateTime.tryParse(json['created_at'].toString()),
-      updatedAt: DateTime.tryParse(json['updated_at'].toString())
-    );
+        id: json['id'],
+        appMode: json['app_mode'],
+        companyName: json['company_name'],
+        address: json['address'],
+        phoneNumber: json['phone_number'],
+        createdAt: DateTime.tryParse(json['created_at'].toString()),
+        updatedAt: DateTime.tryParse(json['updated_at'].toString()));
   }
 
   Map<String, dynamic> toJson() {
@@ -49,23 +48,21 @@ class ApplicationConfigEntity {
   }
 
   //@copyWith
-  ApplicationConfigEntity copyWith({
-     int? id,
-     String? appMode,
-     String? companyName,
-     String? address,
-     String? phoneNumber,
-     DateTime? createdAt,
-     DateTime? updatedAt
-  }) {
+  ApplicationConfigEntity copyWith(
+      {int? id,
+      String? appMode,
+      String? companyName,
+      String? address,
+      String? phoneNumber,
+      DateTime? createdAt,
+      DateTime? updatedAt}) {
     return ApplicationConfigEntity(
-      id: id ?? this.id,
-      appMode: appMode ?? this.appMode,
-      companyName: companyName ?? this.companyName,
-      address: address ?? this.address,
-      phoneNumber: phoneNumber ?? this.phoneNumber,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt
-    );
+        id: id ?? this.id,
+        appMode: appMode ?? this.appMode,
+        companyName: companyName ?? this.companyName,
+        address: address ?? this.address,
+        phoneNumber: phoneNumber ?? this.phoneNumber,
+        createdAt: createdAt ?? this.createdAt,
+        updatedAt: updatedAt ?? this.updatedAt);
   }
 }

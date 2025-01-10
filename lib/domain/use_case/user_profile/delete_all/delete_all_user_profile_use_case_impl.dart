@@ -7,7 +7,7 @@ class DeleteAllUserProfileUseCaseImpl implements DeleteAllUserProfileUseCase {
   DeleteAllUserProfileUseCaseImpl({
     required this.repository,
   });
-  
+
   Future<void> call() async {
     try {
       await repository.deleteAll();

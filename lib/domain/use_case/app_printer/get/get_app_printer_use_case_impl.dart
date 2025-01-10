@@ -7,14 +7,11 @@ class GetAppPrinterUseCaseImpl implements GetAppPrinterUseCase {
   GetAppPrinterUseCaseImpl({
     required this.repository,
   });
-  
-  Future<AppPrinterEntity?> call({
-    required int id
-  }) async {
+
+  Future<AppPrinterEntity?> call({required int id}) async {
     try {
       return await repository.get(id);
-    }
-    on Exception catch (err) {
+    } on Exception catch (err) {
       throw Exception(err);
     }
   }

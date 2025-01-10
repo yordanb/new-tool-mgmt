@@ -16,26 +16,17 @@ class SettingState {
 
   factory SettingState.fromJson(Map<String, dynamic> json) {
     return SettingState(
-      viewState: json['view_state'],
-      fullViewState: json['full_view_state']
-    );
+        viewState: json['view_state'], fullViewState: json['full_view_state']);
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'view_state': viewState,
-      'full_view_state': fullViewState
-    };
+    return {'view_state': viewState, 'full_view_state': fullViewState};
   }
 
   //@copyWith
-  SettingState copyWith({
-     ViewState? viewState,
-     FullViewState? fullViewState
-  }) {
+  SettingState copyWith({ViewState? viewState, FullViewState? fullViewState}) {
     return SettingState(
-      viewState: viewState ?? this.viewState,
-      fullViewState: fullViewState ?? this.fullViewState
-    );
+        viewState: viewState ?? this.viewState,
+        fullViewState: fullViewState ?? this.fullViewState);
   }
 }

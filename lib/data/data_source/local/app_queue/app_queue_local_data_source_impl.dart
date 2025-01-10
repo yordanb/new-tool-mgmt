@@ -7,11 +7,19 @@ class AppQueueLocalDataSourceImpl implements AppQueueLocalDataSource {
     required this.prefs,
   });
 
-  Future<int> count({int? id,
-String? idOperatorAndValue, int? userProfileId,
-String? userProfileIdOperatorAndValue, String? action, String? actionData, String? appMode, DateTime? createdAtFrom,
-DateTime? createdAtTo, DateTime? updatedAtFrom,
-DateTime? updatedAtTo,}) async {
+  Future<int> count({
+    int? id,
+    String? idOperatorAndValue,
+    int? userProfileId,
+    String? userProfileIdOperatorAndValue,
+    String? action,
+    String? actionData,
+    String? appMode,
+    DateTime? createdAtFrom,
+    DateTime? createdAtTo,
+    DateTime? updatedAtFrom,
+    DateTime? updatedAtTo,
+  }) async {
     final jsonList = await prefs.getString('app_queue') ?? "[]";
     final values = jsonDecode(jsonList);
     return values.length;
@@ -19,10 +27,16 @@ DateTime? updatedAtTo,}) async {
 
   Future<List<AppQueue>> getAll({
     int? id,
-String? idOperatorAndValue, int? userProfileId,
-String? userProfileIdOperatorAndValue, String? action, String? actionData, String? appMode, DateTime? createdAtFrom,
-DateTime? createdAtTo, DateTime? updatedAtFrom,
-DateTime? updatedAtTo,
+    String? idOperatorAndValue,
+    int? userProfileId,
+    String? userProfileIdOperatorAndValue,
+    String? action,
+    String? actionData,
+    String? appMode,
+    DateTime? createdAtFrom,
+    DateTime? createdAtTo,
+    DateTime? updatedAtFrom,
+    DateTime? updatedAtTo,
     int limit = 10,
     int page = 1,
   }) async {
@@ -45,18 +59,21 @@ DateTime? updatedAtTo,
     return modelValues[index];
   }
 
-  Future<AppQueue?> create({int? id, int? userProfileId,
-String? action,
-String? actionData,
-String? appMode,
-DateTime? createdAt,}) async {
+  Future<AppQueue?> create({
+    int? id,
+    int? userProfileId,
+    String? action,
+    String? actionData,
+    String? appMode,
+    DateTime? createdAt,
+  }) async {
     final modelValues = await getAll();
     final newModel = AppQueue(
       id: id,
-      userProfileId:userProfileId,
-action:action,
-actionData:actionData,
-appMode:appMode,
+      userProfileId: userProfileId,
+      action: action,
+      actionData: actionData,
+      appMode: appMode,
       createdAt: createdAt ?? DateTime.now(),
     );
     modelValues.add(newModel);
@@ -65,12 +82,14 @@ appMode:appMode,
     return newModel;
   }
 
-  Future<void> update({required int id,
-int? userProfileId,
-String? action,
-String? actionData,
-String? appMode,
-DateTime? updatedAt,}) async {
+  Future<void> update({
+    required int id,
+    int? userProfileId,
+    String? action,
+    String? actionData,
+    String? appMode,
+    DateTime? updatedAt,
+  }) async {
     final modelValues = await getAll();
     var index = modelValues.indexWhere((element) => element.id == id);
     if (index == -1) {
@@ -78,10 +97,10 @@ DateTime? updatedAt,}) async {
     }
     modelValues[index] = modelValues[index].copyWith(
       id: id,
-      userProfileId:userProfileId,
-action:action,
-actionData:actionData,
-appMode:appMode,
+      userProfileId: userProfileId,
+      action: action,
+      actionData: actionData,
+      appMode: appMode,
       updatedAt: DateTime.now(),
     );
 
@@ -109,8 +128,7 @@ appMode:appMode,
   }) async {
     printg("createQueue: $queueAction");
 
-    String jsonList =
-        await prefs.getString('app_queue_queued_tasks') ?? "[]";
+    String jsonList = await prefs.getString('app_queue_queued_tasks') ?? "[]";
     List values = jsonDecode(jsonList);
     values.add({
       "id": const Uuid().v4(),
@@ -118,24 +136,20 @@ appMode:appMode,
       "data": data.toJson(),
       "created_at": DateTime.now().toString(),
     });
-    await prefs.setString(
-        'app_queue_queued_tasks', jsonEncode(values));
+    await prefs.setString('app_queue_queued_tasks', jsonEncode(values));
   }
 
   Future<List> getQueuedTasks() async {
-    String jsonList =
-        await prefs.getString('app_queue_queued_tasks') ?? "[]";
+    String jsonList = await prefs.getString('app_queue_queued_tasks') ?? "[]";
     List values = jsonDecode(jsonList);
     return values;
   }
 
   Future<void> deleteQueuedTask(String id) async {
-    String jsonList =
-        await prefs.getString('app_queue_queued_tasks') ?? "[]";
+    String jsonList = await prefs.getString('app_queue_queued_tasks') ?? "[]";
     List values = jsonDecode(jsonList);
     values.removeWhere((element) => element['id'] == id);
-    await prefs.setString(
-        'app_queue_queued_tasks', jsonEncode(values));
+    await prefs.setString('app_queue_queued_tasks', jsonEncode(values));
   }
 
   Future<bool> isRunningQueuedTask() async {
@@ -151,5 +165,4 @@ appMode:appMode,
   Future<void> stopQueue() async {
     await prefs.setBool('app_queue_queued_tasks_running', false);
   }
-
 }

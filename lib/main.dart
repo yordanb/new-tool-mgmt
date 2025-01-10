@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 void main([List? args]) async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
-  
 
   // SharedPreferences prefs = await SharedPreferences.getInstance();
   // await prefs.clear();
