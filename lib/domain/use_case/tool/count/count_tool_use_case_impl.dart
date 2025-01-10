@@ -7,16 +7,28 @@ class CountToolUseCaseImpl implements CountToolUseCase {
   CountToolUseCaseImpl({
     required this.repository,
   });
-  
-  Future<int> call({int? id,
-String? idOperatorAndValue, String? name, String? description, String? imageUrl, DateTime? createdAtFrom,
-DateTime? createdAtTo, DateTime? updatedAtFrom,
-DateTime? updatedAtTo,}) async {
+
+  Future<int> call({
+    int? id,
+    String? idOperatorAndValue,
+    String? name,
+    String? description,
+    String? imageUrl,
+    DateTime? createdAtFrom,
+    DateTime? createdAtTo,
+    DateTime? updatedAtFrom,
+    DateTime? updatedAtTo,
+  }) async {
     return await repository.count(
       id: id,
-idOperatorAndValue: idOperatorAndValue, name: name, description: description, imageUrl: imageUrl, createdAtFrom: createdAtFrom,
-createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
-updatedAtTo: updatedAtTo,
+      idOperatorAndValue: idOperatorAndValue,
+      name: name,
+      description: description,
+      imageUrl: imageUrl,
+      createdAtFrom: createdAtFrom,
+      createdAtTo: createdAtTo,
+      updatedAtFrom: updatedAtFrom,
+      updatedAtTo: updatedAtTo,
     );
   }
 }

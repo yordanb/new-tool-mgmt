@@ -43,14 +43,13 @@ class _ToolFormViewState extends State<ToolFormView> {
       listeners: const [
         ToolFormListener(),
       ],
-      child: BlocSelector<ToolFormCubit, ToolFormState,
-          FullViewState>(
+      child: BlocSelector<ToolFormCubit, ToolFormState, FullViewState>(
         selector: (state) => state.fullViewState,
         builder: (context, _) {
           if (cubit.state.fullViewState == FullViewState.loading) {
             return const Center(child: CircularProgressIndicator());
           }
-          
+
           return Scaffold(
             appBar: AppBar(
               title: const Text("ToolForm"),
@@ -62,33 +61,31 @@ class _ToolFormViewState extends State<ToolFormView> {
               formKey: formKey,
               children: [
                 //::FORM
-QTextField(
-  label: "Name",
-  validator: Validator.required ,
-  value: cubit.state.name,
-  
-  
-  onChanged: (value) {
-    cubit.state.name = value;
-  },
-),
-QMemoField(
-  label: "Description",
-  validator: Validator.required,
-  value: cubit.state.description,
-  onChanged: (value) {
-    cubit.state.description = value;
-  },
-),
-QImagePicker(
-  label: "Image Url",
-  validator: Validator.required,
-  extensions: ['png', 'jpg'],
-  value: cubit.state.imageUrl,
-  onChanged: (value) {
-    cubit.state.imageUrl = value;
-  },
-),
+                QTextField(
+                  label: "Name",
+                  validator: Validator.required,
+                  value: cubit.state.name,
+                  onChanged: (value) {
+                    cubit.state.name = value;
+                  },
+                ),
+                QMemoField(
+                  label: "Description",
+                  validator: Validator.required,
+                  value: cubit.state.description,
+                  onChanged: (value) {
+                    cubit.state.description = value;
+                  },
+                ),
+                QImagePicker(
+                  label: "Image Url",
+                  validator: Validator.required,
+                  extensions: ['png', 'jpg'],
+                  value: cubit.state.imageUrl,
+                  onChanged: (value) {
+                    cubit.state.imageUrl = value;
+                  },
+                ),
                 //@BOTTOM_FORM
               ],
             ),
@@ -96,14 +93,13 @@ QImagePicker(
               label: "Save",
               onPressed: () {
                 bool isNotValid = formKey.currentState!.validate() == false;
-                if(isNotValid) {
+                if (isNotValid) {
                   return;
                 }
 
-                if(state.isCreateMode) {
+                if (state.isCreateMode) {
                   cubit.create();
-                }
-                else if(state.isEditMode) {
+                } else if (state.isEditMode) {
                   cubit.update();
                 }
               },
@@ -114,5 +110,3 @@ QImagePicker(
     );
   }
 }
-  
-  

@@ -7,7 +7,7 @@ class SyncronizeUserProfileUseCaseImpl implements SyncronizeUserProfileUseCase {
   SyncronizeUserProfileUseCaseImpl({
     required this.repository,
   });
-  
+
   Future<void> call({
     bool forceSyncronize = false,
   }) async {

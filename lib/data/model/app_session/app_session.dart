@@ -12,28 +12,34 @@ class AppSession {
   UserProfile? userProfile;
   //:@declaration
 
-  AppSession({
-    //@constructor
-    this.id,
-    this.userProfileId,
-    this.role,
-    this.email,
-    this.createdAt,
-    this.updatedAt,
-    this.userProfile
-    //:@constructor
-  });
+  AppSession(
+      {
+      //@constructor
+      this.id,
+      this.userProfileId,
+      this.role,
+      this.email,
+      this.createdAt,
+      this.updatedAt,
+      this.userProfile
+      //:@constructor
+      });
 
   factory AppSession.fromJson(Map<String, dynamic> json) {
     return AppSession(
-      id: json['id'],
-      userProfileId: json['user_profile_id'],
-      role: json['role'],
-      email: json['email'],
-      createdAt: json['created_at'] == null ? null : DateTime.tryParse(json['created_at'].toString()),
-      updatedAt: json['updated_at'] == null ? null : DateTime.tryParse(json['updated_at'].toString()),
-      userProfile: UserProfile.fromJson(json['user_profile'])
-    );
+        id: json['id'],
+        userProfileId: json['user_profile_id'],
+        role: json['role'],
+        email: json['email'],
+        createdAt: json['created_at'] == null
+            ? null
+            : DateTime.tryParse(json['created_at'].toString()),
+        updatedAt: json['updated_at'] == null
+            ? null
+            : DateTime.tryParse(json['updated_at'].toString()),
+        userProfile: json['user_profile'] == null
+            ? null
+            : UserProfile.fromJson(json['user_profile']));
   }
 
   Map<String, dynamic> toJson() {
@@ -49,23 +55,21 @@ class AppSession {
   }
 
   //@copyWith
-  AppSession copyWith({
-     int? id,
-     int? userProfileId,
-     String? role,
-     String? email,
-     DateTime? createdAt,
-     DateTime? updatedAt,
-     UserProfile? userProfile
-  }) {
+  AppSession copyWith(
+      {int? id,
+      int? userProfileId,
+      String? role,
+      String? email,
+      DateTime? createdAt,
+      DateTime? updatedAt,
+      UserProfile? userProfile}) {
     return AppSession(
-      id: id ?? this.id,
-      userProfileId: userProfileId ?? this.userProfileId,
-      role: role ?? this.role,
-      email: email ?? this.email,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
-      userProfile: userProfile ?? this.userProfile
-    );
+        id: id ?? this.id,
+        userProfileId: userProfileId ?? this.userProfileId,
+        role: role ?? this.role,
+        email: email ?? this.email,
+        createdAt: createdAt ?? this.createdAt,
+        updatedAt: updatedAt ?? this.updatedAt,
+        userProfile: userProfile ?? this.userProfile);
   }
 }

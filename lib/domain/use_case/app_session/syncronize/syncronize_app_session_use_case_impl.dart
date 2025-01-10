@@ -7,7 +7,7 @@ class SyncronizeAppSessionUseCaseImpl implements SyncronizeAppSessionUseCase {
   SyncronizeAppSessionUseCaseImpl({
     required this.repository,
   });
-  
+
   Future<void> call({
     bool forceSyncronize = false,
   }) async {

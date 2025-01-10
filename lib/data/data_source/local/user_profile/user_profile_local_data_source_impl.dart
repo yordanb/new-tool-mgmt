@@ -7,10 +7,23 @@ class UserProfileLocalDataSourceImpl implements UserProfileLocalDataSource {
     required this.prefs,
   });
 
-  Future<int> count({int? id,
-String? idOperatorAndValue, String? imageUrl, String? userProfileName, String? gender, String? email, String? mobileNumber, String? fcmToken, String? password, String? role, bool? isActive, DateTime? createdAtFrom,
-DateTime? createdAtTo, DateTime? updatedAtFrom,
-DateTime? updatedAtTo,}) async {
+  Future<int> count({
+    int? id,
+    String? idOperatorAndValue,
+    String? imageUrl,
+    String? userProfileName,
+    String? gender,
+    String? email,
+    String? mobileNumber,
+    String? fcmToken,
+    String? password,
+    String? role,
+    bool? isActive,
+    DateTime? createdAtFrom,
+    DateTime? createdAtTo,
+    DateTime? updatedAtFrom,
+    DateTime? updatedAtTo,
+  }) async {
     final jsonList = await prefs.getString('user_profile') ?? "[]";
     final values = jsonDecode(jsonList);
     return values.length;
@@ -18,9 +31,20 @@ DateTime? updatedAtTo,}) async {
 
   Future<List<UserProfile>> getAll({
     int? id,
-String? idOperatorAndValue, String? imageUrl, String? userProfileName, String? gender, String? email, String? mobileNumber, String? fcmToken, String? password, String? role, bool? isActive, DateTime? createdAtFrom,
-DateTime? createdAtTo, DateTime? updatedAtFrom,
-DateTime? updatedAtTo,
+    String? idOperatorAndValue,
+    String? imageUrl,
+    String? userProfileName,
+    String? gender,
+    String? email,
+    String? mobileNumber,
+    String? fcmToken,
+    String? password,
+    String? role,
+    bool? isActive,
+    DateTime? createdAtFrom,
+    DateTime? createdAtTo,
+    DateTime? updatedAtFrom,
+    DateTime? updatedAtTo,
     int limit = 10,
     int page = 1,
   }) async {
@@ -43,28 +67,31 @@ DateTime? updatedAtTo,
     return modelValues[index];
   }
 
-  Future<UserProfile?> create({int? id, String? imageUrl,
-String? userProfileName,
-String? gender,
-String? email,
-String? mobileNumber,
-String? fcmToken,
-String? password,
-String? role,
-bool? isActive,
-DateTime? createdAt,}) async {
+  Future<UserProfile?> create({
+    int? id,
+    String? imageUrl,
+    String? userProfileName,
+    String? gender,
+    String? email,
+    String? mobileNumber,
+    String? fcmToken,
+    String? password,
+    String? role,
+    bool? isActive,
+    DateTime? createdAt,
+  }) async {
     final modelValues = await getAll();
     final newModel = UserProfile(
       id: id,
-      imageUrl:imageUrl,
-userProfileName:userProfileName,
-gender:gender,
-email:email,
-mobileNumber:mobileNumber,
-fcmToken:fcmToken,
-password:password,
-role:role,
-isActive:isActive,
+      imageUrl: imageUrl,
+      userProfileName: userProfileName,
+      gender: gender,
+      email: email,
+      mobileNumber: mobileNumber,
+      fcmToken: fcmToken,
+      password: password,
+      role: role,
+      isActive: isActive,
       createdAt: createdAt ?? DateTime.now(),
     );
     modelValues.add(newModel);
@@ -73,17 +100,19 @@ isActive:isActive,
     return newModel;
   }
 
-  Future<void> update({required int id,
-String? imageUrl,
-String? userProfileName,
-String? gender,
-String? email,
-String? mobileNumber,
-String? fcmToken,
-String? password,
-String? role,
-bool? isActive,
-DateTime? updatedAt,}) async {
+  Future<void> update({
+    required int id,
+    String? imageUrl,
+    String? userProfileName,
+    String? gender,
+    String? email,
+    String? mobileNumber,
+    String? fcmToken,
+    String? password,
+    String? role,
+    bool? isActive,
+    DateTime? updatedAt,
+  }) async {
     final modelValues = await getAll();
     var index = modelValues.indexWhere((element) => element.id == id);
     if (index == -1) {
@@ -91,15 +120,15 @@ DateTime? updatedAt,}) async {
     }
     modelValues[index] = modelValues[index].copyWith(
       id: id,
-      imageUrl:imageUrl,
-userProfileName:userProfileName,
-gender:gender,
-email:email,
-mobileNumber:mobileNumber,
-fcmToken:fcmToken,
-password:password,
-role:role,
-isActive:isActive,
+      imageUrl: imageUrl,
+      userProfileName: userProfileName,
+      gender: gender,
+      email: email,
+      mobileNumber: mobileNumber,
+      fcmToken: fcmToken,
+      password: password,
+      role: role,
+      isActive: isActive,
       updatedAt: DateTime.now(),
     );
 
@@ -136,8 +165,7 @@ isActive:isActive,
       "data": data.toJson(),
       "created_at": DateTime.now().toString(),
     });
-    await prefs.setString(
-        'user_profile_queued_tasks', jsonEncode(values));
+    await prefs.setString('user_profile_queued_tasks', jsonEncode(values));
   }
 
   Future<List> getQueuedTasks() async {
@@ -152,8 +180,7 @@ isActive:isActive,
         await prefs.getString('user_profile_queued_tasks') ?? "[]";
     List values = jsonDecode(jsonList);
     values.removeWhere((element) => element['id'] == id);
-    await prefs.setString(
-        'user_profile_queued_tasks', jsonEncode(values));
+    await prefs.setString('user_profile_queued_tasks', jsonEncode(values));
   }
 
   Future<bool> isRunningQueuedTask() async {
@@ -169,5 +196,4 @@ isActive:isActive,
   Future<void> stopQueue() async {
     await prefs.setBool('user_profile_queued_tasks_running', false);
   }
-
 }

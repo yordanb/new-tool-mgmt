@@ -1,6 +1,8 @@
 import 'package:hyper_supabase/core.dart';
 
-class LoanTransactionItemFormCubitImpl extends Cubit<LoanTransactionItemFormState> implements LoanTransactionItemFormCubit {
+class LoanTransactionItemFormCubitImpl
+    extends Cubit<LoanTransactionItemFormState>
+    implements LoanTransactionItemFormCubit {
   final GetCurrentAppSessionUseCase getCurrentAppSessionUseCase;
   final GetLoanTransactionItemUseCase getLoanTransactionItemUseCase;
   final CreateLoanTransactionItemUseCase createLoanTransactionItemUseCase;
@@ -17,8 +19,8 @@ class LoanTransactionItemFormCubitImpl extends Cubit<LoanTransactionItemFormStat
 
   @override
   void initState({
-      Function? init,
-    }) {
+    Function? init,
+  }) {
     //initState event
     emit(LoanTransactionItemFormState());
     init?.call();
@@ -45,8 +47,7 @@ class LoanTransactionItemFormCubitImpl extends Cubit<LoanTransactionItemFormStat
 
     if (state.isEditMode) {
       await getData();
-    }
-    else {
+    } else {
       if (appDevConfig.enableRandomData) await initialRandomValues();
     }
 
@@ -56,7 +57,7 @@ class LoanTransactionItemFormCubitImpl extends Cubit<LoanTransactionItemFormStat
 
   Future<void> getData() async {
     if (state.isEditMode == false) return;
-      
+
     state.fullViewState = FullViewState.loading;
     emit(state.copyWith());
 
@@ -64,18 +65,18 @@ class LoanTransactionItemFormCubitImpl extends Cubit<LoanTransactionItemFormStat
       id: state.id!,
     );
 
-      if (state.current == null) {
+    if (state.current == null) {
       state.fullViewState = FullViewState.error;
       emit(state.copyWith());
       return;
     }
 
     state.loanTransactionId = state.current!.loanTransactionId;
-state.toolId = state.current!.toolId;
-state.qty = state.current!.qty;
-state.memo = state.current!.memo;
-state.status = state.current!.status;
-state.createdAt = state.current!.createdAt;
+    state.toolId = state.current!.toolId;
+    state.qty = state.current!.qty;
+    state.memo = state.current!.memo;
+    state.status = state.current!.status;
+    state.createdAt = state.current!.createdAt;
 
     state.fullViewState = FullViewState.ready;
     emit(state.copyWith());
@@ -83,12 +84,12 @@ state.createdAt = state.current!.createdAt;
 
   Future<void> initialRandomValues() async {
     state.loanTransactionId = await r.randomId('loan_transaction');
-state.toolId = await r.randomId('tool');
-state.qty = 1;
-state.memo = r.randomWords();
-state.status = r.firstValueFromList(["Borrowed", "Returned", "Damaged", "Lost"]);
-state.createdAt = DateTime.now();
-
+    state.toolId = await r.randomId('tool');
+    state.qty = 1;
+    state.memo = r.randomWords();
+    state.status =
+        r.firstValueFromList(["Borrowed", "Returned", "Damaged", "Lost"]);
+    state.createdAt = DateTime.now();
   }
 
   Future<void> create() async {
@@ -99,13 +100,13 @@ state.createdAt = DateTime.now();
       await createLoanTransactionItemUseCase.call(
         //@BEGIN_FORM_CREATE_VALUES
         loanTransactionId: state.loanTransactionId,
-toolId: state.toolId,
-qty: state.qty,
-memo: state.memo,
-status: state.status,
+        toolId: state.toolId,
+        qty: state.qty,
+        memo: state.memo,
+        status: state.status,
         //@END_FORM_CREATE_VALUES
       );
-      
+
       state.viewState = ViewState.success;
       emit(state.copyWith());
     } on Exception catch (_) {
@@ -123,13 +124,13 @@ status: state.status,
         //@BEGIN_FORM_UPDATE_VALUES
         id: state.id!,
         loanTransactionId: state.loanTransactionId,
-toolId: state.toolId,
-qty: state.qty,
-memo: state.memo,
-status: state.status,
+        toolId: state.toolId,
+        qty: state.qty,
+        memo: state.memo,
+        status: state.status,
         //@END_FORM_CREATE_VALUES
       );
-      
+
       state.viewState = ViewState.success;
       emit(state.copyWith());
     } on Exception catch (_) {
@@ -148,4 +149,3 @@ status: state.status,
     emit(state.copyWith());
   }
 }
-  

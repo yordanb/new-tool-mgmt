@@ -22,12 +22,15 @@ class AppBluetooth {
 
   factory AppBluetooth.fromJson(Map<String, dynamic> json) {
     return AppBluetooth(
-      id: json['id'],
-      deviceName: json['device_name'],
-      deviceAddress: json['device_address'],
-      createdAt: json['created_at'] == null ? null : DateTime.tryParse(json['created_at'].toString()),
-      updatedAt: json['updated_at'] == null ? null : DateTime.tryParse(json['updated_at'].toString())
-    );
+        id: json['id'],
+        deviceName: json['device_name'],
+        deviceAddress: json['device_address'],
+        createdAt: json['created_at'] == null
+            ? null
+            : DateTime.tryParse(json['created_at'].toString()),
+        updatedAt: json['updated_at'] == null
+            ? null
+            : DateTime.tryParse(json['updated_at'].toString()));
   }
 
   Map<String, dynamic> toJson() {
@@ -41,19 +44,17 @@ class AppBluetooth {
   }
 
   //@copyWith
-  AppBluetooth copyWith({
-     int? id,
-     String? deviceName,
-     String? deviceAddress,
-     DateTime? createdAt,
-     DateTime? updatedAt
-  }) {
+  AppBluetooth copyWith(
+      {int? id,
+      String? deviceName,
+      String? deviceAddress,
+      DateTime? createdAt,
+      DateTime? updatedAt}) {
     return AppBluetooth(
-      id: id ?? this.id,
-      deviceName: deviceName ?? this.deviceName,
-      deviceAddress: deviceAddress ?? this.deviceAddress,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt
-    );
+        id: id ?? this.id,
+        deviceName: deviceName ?? this.deviceName,
+        deviceAddress: deviceAddress ?? this.deviceAddress,
+        createdAt: createdAt ?? this.createdAt,
+        updatedAt: updatedAt ?? this.updatedAt);
   }
 }

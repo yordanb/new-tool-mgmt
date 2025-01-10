@@ -7,7 +7,7 @@ class SyncronizeAppQueueUseCaseImpl implements SyncronizeAppQueueUseCase {
   SyncronizeAppQueueUseCaseImpl({
     required this.repository,
   });
-  
+
   Future<void> call({
     bool forceSyncronize = false,
   }) async {

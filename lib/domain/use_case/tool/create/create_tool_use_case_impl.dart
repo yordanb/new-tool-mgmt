@@ -7,16 +7,19 @@ class CreateToolUseCaseImpl implements CreateToolUseCase {
   CreateToolUseCaseImpl({
     required this.repository,
   });
-  
+
   Future<ToolEntity?> call({
     String? name,
-String? description,
-String? imageUrl,
-DateTime? createdAt,
+    String? description,
+    String? imageUrl,
+    DateTime? createdAt,
   }) async {
     try {
       final response = await repository.create(
-        name: name,description: description,imageUrl: imageUrl,createdAt: createdAt,
+        name: name,
+        description: description,
+        imageUrl: imageUrl,
+        createdAt: createdAt,
       );
       return response;
     } on Exception catch (err) {

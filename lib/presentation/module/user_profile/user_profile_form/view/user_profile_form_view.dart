@@ -50,7 +50,7 @@ class _UserProfileFormViewState extends State<UserProfileFormView> {
           if (cubit.state.fullViewState == FullViewState.loading) {
             return const Center(child: CircularProgressIndicator());
           }
-          
+
           return Scaffold(
             appBar: AppBar(
               title: const Text("UserProfileForm"),
@@ -62,83 +62,83 @@ class _UserProfileFormViewState extends State<UserProfileFormView> {
               formKey: formKey,
               children: [
                 //::FORM
-QImagePicker(
-  label: "Image Url",
-  validator: Validator.required,
-  extensions: ['png', 'jpg'],
-  value: cubit.state.imageUrl,
-  onChanged: (value) {
-    cubit.state.imageUrl = value;
-  },
-),
-QTextField(
-  label: "User Profile Name",
-  validator: Validator.required ,
-  value: cubit.state.userProfileName,
-  
-  
-  onChanged: (value) {
-    cubit.state.userProfileName = value;
-  },
-),
-QDropdownField(
-  label: "Gender",
-  validator: Validator.required,
-  items: [{"label":"Male","value":"Male"},{"label":"Female","value":"Female"}],
-  value: cubit.state.gender,
-  onChanged: (value, label) {
-    cubit.state.gender = value;
-  },
-),
-QTextField(
-  label: "Email",
-  enabled: state.isCreateMode,
-  validator: Validator.email ,
-  value: cubit.state.email,
-  
-  
-  onChanged: (value) {
-    cubit.state.email = value;
-  },
-),
-QTextField(
-  label: "Mobile Number",
-  validator: Validator.required ,
-  value: cubit.state.mobileNumber,
-  
-  
-  onChanged: (value) {
-    cubit.state.mobileNumber = value;
-  },
-),
-QDropdownField(
-  label: "Role",
-  validator: Validator.required,
-  items: [{"label":"Admin","value":"Admin"},{"label":"User","value":"User"}],
-  value: cubit.state.role,
-  onChanged: (value, label) {
-    cubit.state.role = value;
-  },
-),
-if(state.session!.isAdmin)
-QDropdownField(
-  label: "Is Active",
-  validator: Validator.required,
-  items: [
-    {
-      "label": "Yes",
-      "value": true,
-    },
-    {
-      "label": "No",
-      "value": false,
-    }
-  ],
-  value: cubit.state.isActive,
-  onChanged: (value, label) {
-    cubit.state.isActive = value;
-  },
-),
+                QImagePicker(
+                  label: "Image Url",
+                  validator: Validator.required,
+                  extensions: ['png', 'jpg'],
+                  value: cubit.state.imageUrl,
+                  onChanged: (value) {
+                    cubit.state.imageUrl = value;
+                  },
+                ),
+                QTextField(
+                  label: "User Profile Name",
+                  validator: Validator.required,
+                  value: cubit.state.userProfileName,
+                  onChanged: (value) {
+                    cubit.state.userProfileName = value;
+                  },
+                ),
+                QDropdownField(
+                  label: "Gender",
+                  validator: Validator.required,
+                  items: [
+                    {"label": "Male", "value": "Male"},
+                    {"label": "Female", "value": "Female"}
+                  ],
+                  value: cubit.state.gender,
+                  onChanged: (value, label) {
+                    cubit.state.gender = value;
+                  },
+                ),
+                QTextField(
+                  label: "Email",
+                  enabled: state.isCreateMode,
+                  validator: Validator.email,
+                  value: cubit.state.email,
+                  onChanged: (value) {
+                    cubit.state.email = value;
+                  },
+                ),
+                QTextField(
+                  label: "Mobile Number",
+                  validator: Validator.required,
+                  value: cubit.state.mobileNumber,
+                  onChanged: (value) {
+                    cubit.state.mobileNumber = value;
+                  },
+                ),
+                QDropdownField(
+                  label: "Role",
+                  validator: Validator.required,
+                  items: [
+                    {"label": "Admin", "value": "Admin"},
+                    {"label": "User", "value": "User"}
+                  ],
+                  value: cubit.state.role,
+                  onChanged: (value, label) {
+                    cubit.state.role = value;
+                  },
+                ),
+                if (state.session!.isAdmin)
+                  QDropdownField(
+                    label: "Is Active",
+                    validator: Validator.required,
+                    items: [
+                      {
+                        "label": "Yes",
+                        "value": true,
+                      },
+                      {
+                        "label": "No",
+                        "value": false,
+                      }
+                    ],
+                    value: cubit.state.isActive,
+                    onChanged: (value, label) {
+                      cubit.state.isActive = value;
+                    },
+                  ),
                 //@BOTTOM_FORM
               ],
             ),
@@ -146,14 +146,13 @@ QDropdownField(
               label: "Save",
               onPressed: () {
                 bool isNotValid = formKey.currentState!.validate() == false;
-                if(isNotValid) {
+                if (isNotValid) {
                   return;
                 }
 
-                if(state.isCreateMode) {
+                if (state.isCreateMode) {
                   cubit.create();
-                }
-                else if(state.isEditMode) {
+                } else if (state.isEditMode) {
                   cubit.update();
                 }
               },
@@ -164,5 +163,3 @@ QDropdownField(
     );
   }
 }
-  
-  

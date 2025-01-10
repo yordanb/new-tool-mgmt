@@ -7,7 +7,7 @@ class DeleteAllAppBluetoothUseCaseImpl implements DeleteAllAppBluetoothUseCase {
   DeleteAllAppBluetoothUseCaseImpl({
     required this.repository,
   });
-  
+
   Future<void> call() async {
     try {
       await repository.deleteAll();

@@ -7,14 +7,11 @@ class GetAppBluetoothUseCaseImpl implements GetAppBluetoothUseCase {
   GetAppBluetoothUseCaseImpl({
     required this.repository,
   });
-  
-  Future<AppBluetoothEntity?> call({
-    required int id
-  }) async {
+
+  Future<AppBluetoothEntity?> call({required int id}) async {
     try {
       return await repository.get(id);
-    }
-    on Exception catch (err) {
+    } on Exception catch (err) {
       throw Exception(err);
     }
   }

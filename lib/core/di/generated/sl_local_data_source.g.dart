@@ -2,64 +2,63 @@
 import 'package:hyper_supabase/core.dart';
 
 void configureLocalDataSourceDependencies() async {
-      
   sl.registerLazySingleton<ApplicationConfigLocalDataSource>(
     () => ApplicationConfigLocalDataSourceImpl(
-    prefs: sl(),
+      prefs: sl(),
     ),
   );
 
   sl.registerLazySingleton<AppBluetoothLocalDataSource>(
     () => AppBluetoothLocalDataSourceImpl(
-    prefs: sl(),
+      prefs: sl(),
     ),
   );
 
   sl.registerLazySingleton<AppPrinterLocalDataSource>(
     () => AppPrinterLocalDataSourceImpl(
-    prefs: sl(),
+      prefs: sl(),
     ),
   );
 
   sl.registerLazySingleton<AppQueueLocalDataSource>(
     () => AppQueueLocalDataSourceImpl(
-    prefs: sl(),
+      prefs: sl(),
     ),
   );
 
   sl.registerLazySingleton<AppSessionLocalDataSource>(
     () => AppSessionLocalDataSourceImpl(
-    prefs: sl(),
+      prefs: sl(),
     ),
   );
 
   sl.registerLazySingleton<AuthLocalDataSource>(
     () => AuthLocalDataSourceImpl(
-    prefs: sl(),
+      prefs: sl(),
     ),
   );
 
   sl.registerLazySingleton<LoanTransactionLocalDataSource>(
     () => LoanTransactionLocalDataSourceImpl(
-    prefs: sl(),
+      prefs: sl(),
     ),
   );
 
   sl.registerLazySingleton<LoanTransactionItemLocalDataSource>(
     () => LoanTransactionItemLocalDataSourceImpl(
-    prefs: sl(),
+      prefs: sl(),
     ),
   );
 
   sl.registerLazySingleton<ToolLocalDataSource>(
     () => ToolLocalDataSourceImpl(
-    prefs: sl(),
+      prefs: sl(),
     ),
   );
 
   sl.registerLazySingleton<UserProfileLocalDataSource>(
     () => UserProfileLocalDataSourceImpl(
-    prefs: sl(),
+      prefs: sl(),
     ),
   );
 }

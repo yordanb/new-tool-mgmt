@@ -1,6 +1,7 @@
 import 'package:hyper_supabase/core.dart';
 
-class UserProfileFormCubitImpl extends Cubit<UserProfileFormState> implements UserProfileFormCubit {
+class UserProfileFormCubitImpl extends Cubit<UserProfileFormState>
+    implements UserProfileFormCubit {
   final GetCurrentAppSessionUseCase getCurrentAppSessionUseCase;
   final GetUserProfileUseCase getUserProfileUseCase;
   final CreateUserProfileUseCase createUserProfileUseCase;
@@ -17,8 +18,8 @@ class UserProfileFormCubitImpl extends Cubit<UserProfileFormState> implements Us
 
   @override
   void initState({
-      Function? init,
-    }) {
+    Function? init,
+  }) {
     //initState event
     emit(UserProfileFormState());
     init?.call();
@@ -45,8 +46,7 @@ class UserProfileFormCubitImpl extends Cubit<UserProfileFormState> implements Us
 
     if (state.isEditMode) {
       await getData();
-    }
-    else {
+    } else {
       if (appDevConfig.enableRandomData) await initialRandomValues();
     }
 
@@ -56,7 +56,7 @@ class UserProfileFormCubitImpl extends Cubit<UserProfileFormState> implements Us
 
   Future<void> getData() async {
     if (state.isEditMode == false) return;
-      
+
     state.fullViewState = FullViewState.loading;
     emit(state.copyWith());
 
@@ -64,22 +64,22 @@ class UserProfileFormCubitImpl extends Cubit<UserProfileFormState> implements Us
       id: state.id!,
     );
 
-      if (state.current == null) {
+    if (state.current == null) {
       state.fullViewState = FullViewState.error;
       emit(state.copyWith());
       return;
     }
 
     state.imageUrl = state.current!.imageUrl;
-state.userProfileName = state.current!.userProfileName;
-state.gender = state.current!.gender;
-state.email = state.current!.email;
-state.mobileNumber = state.current!.mobileNumber;
-state.fcmToken = state.current!.fcmToken;
-state.password = state.current!.password;
-state.role = state.current!.role;
-state.isActive = state.current!.isActive;
-state.createdAt = state.current!.createdAt;
+    state.userProfileName = state.current!.userProfileName;
+    state.gender = state.current!.gender;
+    state.email = state.current!.email;
+    state.mobileNumber = state.current!.mobileNumber;
+    state.fcmToken = state.current!.fcmToken;
+    state.password = state.current!.password;
+    state.role = state.current!.role;
+    state.isActive = state.current!.isActive;
+    state.createdAt = state.current!.createdAt;
 
     state.fullViewState = FullViewState.ready;
     emit(state.copyWith());
@@ -87,16 +87,15 @@ state.createdAt = state.current!.createdAt;
 
   Future<void> initialRandomValues() async {
     state.imageUrl = r.randomImageUrl();
-state.userProfileName = r.randomName();
-state.gender = r.firstValueFromList(["Male", "Female"]);
-state.email = r.randomEmail();
-state.mobileNumber = r.randomPhone();
-state.fcmToken = r.randomWords();
-state.password = r.randomPassword();
-state.role = r.firstValueFromList(["Admin", "User"]);
-state.isActive = r.randomBoolean();
-state.createdAt = DateTime.now();
-
+    state.userProfileName = r.randomName();
+    state.gender = r.firstValueFromList(["Male", "Female"]);
+    state.email = r.randomEmail();
+    state.mobileNumber = r.randomPhone();
+    state.fcmToken = r.randomWords();
+    state.password = r.randomPassword();
+    state.role = r.firstValueFromList(["Admin", "User"]);
+    state.isActive = r.randomBoolean();
+    state.createdAt = DateTime.now();
   }
 
   Future<void> create() async {
@@ -107,17 +106,17 @@ state.createdAt = DateTime.now();
       await createUserProfileUseCase.call(
         //@BEGIN_FORM_CREATE_VALUES
         imageUrl: state.imageUrl,
-userProfileName: state.userProfileName,
-gender: state.gender,
-email: state.email,
-mobileNumber: state.mobileNumber,
-fcmToken: state.fcmToken,
-password: state.password,
-role: state.role,
-isActive: state.isActive,
+        userProfileName: state.userProfileName,
+        gender: state.gender,
+        email: state.email,
+        mobileNumber: state.mobileNumber,
+        fcmToken: state.fcmToken,
+        password: state.password,
+        role: state.role,
+        isActive: state.isActive,
         //@END_FORM_CREATE_VALUES
       );
-      
+
       state.viewState = ViewState.success;
       emit(state.copyWith());
     } on Exception catch (_) {
@@ -135,17 +134,17 @@ isActive: state.isActive,
         //@BEGIN_FORM_UPDATE_VALUES
         id: state.id!,
         imageUrl: state.imageUrl,
-userProfileName: state.userProfileName,
-gender: state.gender,
-email: state.email,
-mobileNumber: state.mobileNumber,
-fcmToken: state.fcmToken,
-password: state.password,
-role: state.role,
-isActive: state.isActive,
+        userProfileName: state.userProfileName,
+        gender: state.gender,
+        email: state.email,
+        mobileNumber: state.mobileNumber,
+        fcmToken: state.fcmToken,
+        password: state.password,
+        role: state.role,
+        isActive: state.isActive,
         //@END_FORM_CREATE_VALUES
       );
-      
+
       state.viewState = ViewState.success;
       emit(state.copyWith());
     } on Exception catch (_) {
@@ -164,4 +163,3 @@ isActive: state.isActive,
     emit(state.copyWith());
   }
 }
-  

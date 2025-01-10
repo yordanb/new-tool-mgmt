@@ -20,11 +20,14 @@ class AppPrinter {
 
   factory AppPrinter.fromJson(Map<String, dynamic> json) {
     return AppPrinter(
-      id: json['id'],
-      message: json['message'],
-      createdAt: json['created_at'] == null ? null : DateTime.tryParse(json['created_at'].toString()),
-      updatedAt: json['updated_at'] == null ? null : DateTime.tryParse(json['updated_at'].toString())
-    );
+        id: json['id'],
+        message: json['message'],
+        createdAt: json['created_at'] == null
+            ? null
+            : DateTime.tryParse(json['created_at'].toString()),
+        updatedAt: json['updated_at'] == null
+            ? null
+            : DateTime.tryParse(json['updated_at'].toString()));
   }
 
   Map<String, dynamic> toJson() {
@@ -37,17 +40,12 @@ class AppPrinter {
   }
 
   //@copyWith
-  AppPrinter copyWith({
-     int? id,
-     String? message,
-     DateTime? createdAt,
-     DateTime? updatedAt
-  }) {
+  AppPrinter copyWith(
+      {int? id, String? message, DateTime? createdAt, DateTime? updatedAt}) {
     return AppPrinter(
-      id: id ?? this.id,
-      message: message ?? this.message,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt
-    );
+        id: id ?? this.id,
+        message: message ?? this.message,
+        createdAt: createdAt ?? this.createdAt,
+        updatedAt: updatedAt ?? this.updatedAt);
   }
 }

@@ -7,17 +7,21 @@ class UpdateAppSessionUseCaseImpl implements UpdateAppSessionUseCase {
   UpdateAppSessionUseCaseImpl({
     required this.repository,
   });
-  
+
   Future<void> call({
     required int id,
-int? userProfileId,
-String? role,
-String? email,
-DateTime? updatedAt,
+    int? userProfileId,
+    String? role,
+    String? email,
+    DateTime? updatedAt,
   }) async {
     try {
       await repository.update(
-        id: id,userProfileId: userProfileId,role: role,email: email,updatedAt: updatedAt,
+        id: id,
+        userProfileId: userProfileId,
+        role: role,
+        email: email,
+        updatedAt: updatedAt,
       );
     } on Exception catch (err) {
       throw Exception(err);

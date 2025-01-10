@@ -7,14 +7,11 @@ class GetAppQueueUseCaseImpl implements GetAppQueueUseCase {
   GetAppQueueUseCaseImpl({
     required this.repository,
   });
-  
-  Future<AppQueueEntity?> call({
-    required int id
-  }) async {
+
+  Future<AppQueueEntity?> call({required int id}) async {
     try {
       return await repository.get(id);
-    }
-    on Exception catch (err) {
+    } on Exception catch (err) {
       throw Exception(err);
     }
   }

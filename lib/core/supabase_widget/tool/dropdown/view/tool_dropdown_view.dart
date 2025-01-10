@@ -35,8 +35,7 @@ class ToolDropdownField extends StatelessWidget {
           }).toList(),
           value: value,
           onChanged: (value, label) {
-             var mapValue =
-                items.firstWhere((element) => element.id == value);
+            var mapValue = items.firstWhere((element) => element.id == value);
             onChanged(
               value,
               label,

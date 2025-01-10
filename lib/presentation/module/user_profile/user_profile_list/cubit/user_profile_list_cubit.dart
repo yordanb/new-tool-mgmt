@@ -1,20 +1,18 @@
 import 'package:hyper_supabase/core.dart';
 
-abstract class UserProfileListCubit  extends Cubit<UserProfileListState> {
+abstract class UserProfileListCubit extends Cubit<UserProfileListState> {
   UserProfileListCubit(UserProfileListState state) : super(state);
 
   void initState({
-      Function? init,
-    });
+    Function? init,
+  });
 
   void dispose();
   void ready();
 
-  
   void initializeData();
 
-
-  Future getData() ;
+  Future getData();
 
   Future<void> delete(int id);
 
@@ -32,4 +30,3 @@ abstract class UserProfileListCubit  extends Cubit<UserProfileListState> {
 
   void reload();
 }
-  

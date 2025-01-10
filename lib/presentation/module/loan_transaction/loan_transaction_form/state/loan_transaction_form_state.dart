@@ -54,36 +54,52 @@ class LoanTransactionFormState {
 
   factory LoanTransactionFormState.fromJson(Map<String, dynamic> json) {
     return LoanTransactionFormState(
-      fullViewState: json['full_view_state'],
-      viewState: json['view_state'],
-      isEditMode: json['is_edit_mode'],
-      isCreateMode: json['is_create_mode'],
-      session: AppSessionEntity.fromJson(json['session']),
-      current: LoanTransactionEntity.fromJson(json['current']),
-      id: json['id'],
-      status: json['status'],
-      userProfileId: json['user_profile_id'],
-      createdAt: json['created_at'] == null ? null : DateTime.tryParse(json['created_at'].toString()),
-      updatedAt: json['updated_at'] == null ? null : DateTime.tryParse(json['updated_at'].toString()),
-      idOperatorAndValue: json['id_operator_and_value'],
-      userProfileIdOperatorAndValue: json['user_profile_id_operator_and_value'],
-      createdAtFrom: json['created_at_from'] == null ? null : DateTime.tryParse(json['created_at_from'].toString()),
-      createdAtTo: json['created_at_to'] == null ? null : DateTime.tryParse(json['created_at_to'].toString()),
-      updatedAtFrom: json['updated_at_from'] == null ? null : DateTime.tryParse(json['updated_at_from'].toString()),
-      updatedAtTo: json['updated_at_to'] == null ? null : DateTime.tryParse(json['updated_at_to'].toString()),
-      tools: List<ToolEntity>.from(
-            ( (json['tools'] ) as List).map(
-              (model) => ToolEntity.fromJson(model),
-            ),
+        fullViewState: json['full_view_state'],
+        viewState: json['view_state'],
+        isEditMode: json['is_edit_mode'],
+        isCreateMode: json['is_create_mode'],
+        session: json['session'] == null
+            ? null
+            : AppSessionEntity.fromJson(json['session']),
+        current: json['current'] == null
+            ? null
+            : LoanTransactionEntity.fromJson(json['current']),
+        id: json['id'],
+        status: json['status'],
+        userProfileId: json['user_profile_id'],
+        createdAt: json['created_at'] == null
+            ? null
+            : DateTime.tryParse(json['created_at'].toString()),
+        updatedAt: json['updated_at'] == null
+            ? null
+            : DateTime.tryParse(json['updated_at'].toString()),
+        idOperatorAndValue: json['id_operator_and_value'],
+        userProfileIdOperatorAndValue:
+            json['user_profile_id_operator_and_value'],
+        createdAtFrom: json['created_at_from'] == null
+            ? null
+            : DateTime.tryParse(json['created_at_from'].toString()),
+        createdAtTo: json['created_at_to'] == null
+            ? null
+            : DateTime.tryParse(json['created_at_to'].toString()),
+        updatedAtFrom: json['updated_at_from'] == null
+            ? null
+            : DateTime.tryParse(json['updated_at_from'].toString()),
+        updatedAtTo: json['updated_at_to'] == null
+            ? null
+            : DateTime.tryParse(json['updated_at_to'].toString()),
+        tools: List<ToolEntity>.from(
+          ((json['tools']) as List).map(
+            (model) => ToolEntity.fromJson(model),
           ),
-      loanTransactionItems: List<LoanTransactionItemEntity>.from(
-            ( (json['loan_transaction_items'] ) as List).map(
-              (model) => LoanTransactionItemEntity.fromJson(model),
-            ),
+        ),
+        loanTransactionItems: List<LoanTransactionItemEntity>.from(
+          ((json['loan_transaction_items']) as List).map(
+            (model) => LoanTransactionItemEntity.fromJson(model),
           ),
-      tabFilter: json['tab_filter'],
-      search: json['search']
-    );
+        ),
+        tabFilter: json['tab_filter'],
+        search: json['search']);
   }
 
   Map<String, dynamic> toJson() {
@@ -113,51 +129,50 @@ class LoanTransactionFormState {
   }
 
   //@copyWith
-  LoanTransactionFormState copyWith({
-     FullViewState? fullViewState,
-     ViewState? viewState,
-     bool? isEditMode,
-     bool? isCreateMode,
-     AppSessionEntity? session,
-     LoanTransactionEntity? current,
-     int? id,
-     String? status,
-     int? userProfileId,
-     DateTime? createdAt,
-     DateTime? updatedAt,
-     String? idOperatorAndValue,
-     String? userProfileIdOperatorAndValue,
-     DateTime? createdAtFrom,
-     DateTime? createdAtTo,
-     DateTime? updatedAtFrom,
-     DateTime? updatedAtTo,
-     List<ToolEntity>? tools,
-     List<LoanTransactionItemEntity>? loanTransactionItems,
-     String? tabFilter,
-     String? search
-  }) {
+  LoanTransactionFormState copyWith(
+      {FullViewState? fullViewState,
+      ViewState? viewState,
+      bool? isEditMode,
+      bool? isCreateMode,
+      AppSessionEntity? session,
+      LoanTransactionEntity? current,
+      int? id,
+      String? status,
+      int? userProfileId,
+      DateTime? createdAt,
+      DateTime? updatedAt,
+      String? idOperatorAndValue,
+      String? userProfileIdOperatorAndValue,
+      DateTime? createdAtFrom,
+      DateTime? createdAtTo,
+      DateTime? updatedAtFrom,
+      DateTime? updatedAtTo,
+      List<ToolEntity>? tools,
+      List<LoanTransactionItemEntity>? loanTransactionItems,
+      String? tabFilter,
+      String? search}) {
     return LoanTransactionFormState(
-      fullViewState: fullViewState ?? this.fullViewState,
-      viewState: viewState ?? this.viewState,
-      isEditMode: isEditMode ?? this.isEditMode,
-      isCreateMode: isCreateMode ?? this.isCreateMode,
-      session: session ?? this.session,
-      current: current ?? this.current,
-      id: id ?? this.id,
-      status: status ?? this.status,
-      userProfileId: userProfileId ?? this.userProfileId,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
-      idOperatorAndValue: idOperatorAndValue ?? this.idOperatorAndValue,
-      userProfileIdOperatorAndValue: userProfileIdOperatorAndValue ?? this.userProfileIdOperatorAndValue,
-      createdAtFrom: createdAtFrom ?? this.createdAtFrom,
-      createdAtTo: createdAtTo ?? this.createdAtTo,
-      updatedAtFrom: updatedAtFrom ?? this.updatedAtFrom,
-      updatedAtTo: updatedAtTo ?? this.updatedAtTo,
-      tools: tools ?? this.tools,
-      loanTransactionItems: loanTransactionItems ?? this.loanTransactionItems,
-      tabFilter: tabFilter ?? this.tabFilter,
-      search: search ?? this.search
-    );
+        fullViewState: fullViewState ?? this.fullViewState,
+        viewState: viewState ?? this.viewState,
+        isEditMode: isEditMode ?? this.isEditMode,
+        isCreateMode: isCreateMode ?? this.isCreateMode,
+        session: session ?? this.session,
+        current: current ?? this.current,
+        id: id ?? this.id,
+        status: status ?? this.status,
+        userProfileId: userProfileId ?? this.userProfileId,
+        createdAt: createdAt ?? this.createdAt,
+        updatedAt: updatedAt ?? this.updatedAt,
+        idOperatorAndValue: idOperatorAndValue ?? this.idOperatorAndValue,
+        userProfileIdOperatorAndValue:
+            userProfileIdOperatorAndValue ?? this.userProfileIdOperatorAndValue,
+        createdAtFrom: createdAtFrom ?? this.createdAtFrom,
+        createdAtTo: createdAtTo ?? this.createdAtTo,
+        updatedAtFrom: updatedAtFrom ?? this.updatedAtFrom,
+        updatedAtTo: updatedAtTo ?? this.updatedAtTo,
+        tools: tools ?? this.tools,
+        loanTransactionItems: loanTransactionItems ?? this.loanTransactionItems,
+        tabFilter: tabFilter ?? this.tabFilter,
+        search: search ?? this.search);
   }
 }

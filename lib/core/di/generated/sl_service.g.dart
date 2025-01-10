@@ -2,22 +2,15 @@
 import 'package:hyper_supabase/core.dart';
 
 void configureServiceDependencies() async {
-      
   sl.registerLazySingleton<AppBluetoothService>(
-    () => AppBluetoothServiceImpl(
-    
-    ),
+    () => AppBluetoothServiceImpl(),
   );
 
   sl.registerLazySingleton<NotificationService>(
-    () => NotificationServiceImpl(
-    
-    ),
+    () => NotificationServiceImpl(),
   );
 
   sl.registerLazySingleton<PermissionService>(
-    () => PermissionServiceImpl(
-    
-    ),
+    () => PermissionServiceImpl(),
   );
 }

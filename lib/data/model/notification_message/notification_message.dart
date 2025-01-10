@@ -15,27 +15,16 @@ class NotificationMessage {
   });
 
   factory NotificationMessage.fromJson(Map<String, dynamic> json) {
-    return NotificationMessage(
-      title: json['title'],
-      body: json['body']
-    );
+    return NotificationMessage(title: json['title'], body: json['body']);
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'title': title,
-      'body': body
-    };
+    return {'title': title, 'body': body};
   }
 
   //@copyWith
-  NotificationMessage copyWith({
-     String? title,
-     String? body
-  }) {
+  NotificationMessage copyWith({String? title, String? body}) {
     return NotificationMessage(
-      title: title ?? this.title,
-      body: body ?? this.body
-    );
+        title: title ?? this.title, body: body ?? this.body);
   }
 }

@@ -2,167 +2,162 @@
 import 'package:hyper_supabase/core.dart';
 
 void configureCubitDependencies() async {
-      
   sl.registerLazySingleton<LoginCubit>(
     () => LoginCubitImpl(
-    loginUseCase: sl(),
-registerUseCase: sl(),
-checkLoginStatusUseCase: sl(),
+      loginUseCase: sl(),
+      registerUseCase: sl(),
+      checkLoginStatusUseCase: sl(),
     ),
   );
 
   sl.registerLazySingleton<RegisterCubit>(
     () => RegisterCubitImpl(
-    registerUseCase: sl(),
+      registerUseCase: sl(),
     ),
   );
 
   sl.registerLazySingleton<ResetPasswordCubit>(
-    () => ResetPasswordCubitImpl(
-    
-    ),
+    () => ResetPasswordCubitImpl(),
   );
 
   sl.registerLazySingleton<DevDashboardCubit>(
     () => DevDashboardCubitImpl(
-    logoutAuthUseCase: sl(),
+      logoutAuthUseCase: sl(),
     ),
   );
 
   sl.registerLazySingleton<EditProfileCubit>(
     () => EditProfileCubitImpl(
-    getCurrentAppSessionUseCase: sl(),
-getUserProfileUseCase: sl(),
-createUserProfileUseCase: sl(),
-updateUserProfileUseCase: sl(),
-r: sl(),
+      getCurrentAppSessionUseCase: sl(),
+      getUserProfileUseCase: sl(),
+      createUserProfileUseCase: sl(),
+      updateUserProfileUseCase: sl(),
+      r: sl(),
     ),
   );
 
   sl.registerLazySingleton<MainCubit>(
     () => MainCubitImpl(
-    configManager: sl(),
+      configManager: sl(),
     ),
   );
 
   sl.registerLazySingleton<MainNavigationCubit>(
     () => MainNavigationCubitImpl(
-    getCurrentAppSessionUseCase: sl(),
+      getCurrentAppSessionUseCase: sl(),
     ),
   );
 
   sl.registerLazySingleton<ProfileCubit>(
     () => ProfileCubitImpl(
-    getCurrentAppSessionUseCase: sl(),
-getUserProfileUseCase: sl(),
-logoutUseCase: sl(),
+      getCurrentAppSessionUseCase: sl(),
+      getUserProfileUseCase: sl(),
+      logoutUseCase: sl(),
     ),
   );
 
   sl.registerLazySingleton<SettingCubit>(
-    () => SettingCubitImpl(
-    
-    ),
+    () => SettingCubitImpl(),
   );
 
   sl.registerLazySingleton<ApplicationConfigFormCubit>(
     () => ApplicationConfigFormCubitImpl(
-    getCurrentAppSessionUseCase: sl(),
-getApplicationConfigUseCase: sl(),
-createApplicationConfigUseCase: sl(),
-updateApplicationConfigUseCase: sl(),
-r: sl(),
+      getCurrentAppSessionUseCase: sl(),
+      getApplicationConfigUseCase: sl(),
+      createApplicationConfigUseCase: sl(),
+      updateApplicationConfigUseCase: sl(),
+      r: sl(),
     ),
   );
 
   sl.registerLazySingleton<ApplicationConfigListCubit>(
     () => ApplicationConfigListCubitImpl(
-    getCurrentAppSessionUseCase: sl(),
-getAllApplicationConfigUseCase: sl(),
-deleteApplicationConfigUseCase: sl(),
-deleteAllApplicationConfigUseCase: sl(),
+      getCurrentAppSessionUseCase: sl(),
+      getAllApplicationConfigUseCase: sl(),
+      deleteApplicationConfigUseCase: sl(),
+      deleteAllApplicationConfigUseCase: sl(),
     ),
   );
 
   sl.registerLazySingleton<LoanTransactionFormCubit>(
     () => LoanTransactionFormCubitImpl(
-    getCurrentAppSessionUseCase: sl(),
-getLoanTransactionUseCase: sl(),
-createLoanTransactionUseCase: sl(),
-updateLoanTransactionUseCase: sl(),
-getAllToolUseCase: sl(),
-createLoanTransactionItemUseCase: sl(),
-updateLoanTransactionItemUseCase: sl(),
-getAllLoanTransactionItemUseCase: sl(),
-getLoanTransactionItemUseCase: sl(),
-deleteLoanTransactionItemUseCase: sl(),
-r: sl(),
+      getCurrentAppSessionUseCase: sl(),
+      getLoanTransactionUseCase: sl(),
+      createLoanTransactionUseCase: sl(),
+      updateLoanTransactionUseCase: sl(),
+      getAllToolUseCase: sl(),
+      createLoanTransactionItemUseCase: sl(),
+      updateLoanTransactionItemUseCase: sl(),
+      getAllLoanTransactionItemUseCase: sl(),
+      getLoanTransactionItemUseCase: sl(),
+      deleteLoanTransactionItemUseCase: sl(),
+      r: sl(),
     ),
   );
 
   sl.registerLazySingleton<LoanTransactionListCubit>(
     () => LoanTransactionListCubitImpl(
-    getCurrentAppSessionUseCase: sl(),
-getAllLoanTransactionUseCase: sl(),
-deleteLoanTransactionUseCase: sl(),
-deleteAllLoanTransactionUseCase: sl(),
+      getCurrentAppSessionUseCase: sl(),
+      getAllLoanTransactionUseCase: sl(),
+      deleteLoanTransactionUseCase: sl(),
+      deleteAllLoanTransactionUseCase: sl(),
     ),
   );
 
   sl.registerLazySingleton<LoanTransactionItemFormCubit>(
     () => LoanTransactionItemFormCubitImpl(
-    getCurrentAppSessionUseCase: sl(),
-getLoanTransactionItemUseCase: sl(),
-createLoanTransactionItemUseCase: sl(),
-updateLoanTransactionItemUseCase: sl(),
-r: sl(),
+      getCurrentAppSessionUseCase: sl(),
+      getLoanTransactionItemUseCase: sl(),
+      createLoanTransactionItemUseCase: sl(),
+      updateLoanTransactionItemUseCase: sl(),
+      r: sl(),
     ),
   );
 
   sl.registerLazySingleton<LoanTransactionItemListCubit>(
     () => LoanTransactionItemListCubitImpl(
-    getCurrentAppSessionUseCase: sl(),
-getAllLoanTransactionItemUseCase: sl(),
-deleteLoanTransactionItemUseCase: sl(),
-deleteAllLoanTransactionItemUseCase: sl(),
+      getCurrentAppSessionUseCase: sl(),
+      getAllLoanTransactionItemUseCase: sl(),
+      deleteLoanTransactionItemUseCase: sl(),
+      deleteAllLoanTransactionItemUseCase: sl(),
     ),
   );
 
   sl.registerLazySingleton<ToolFormCubit>(
     () => ToolFormCubitImpl(
-    getCurrentAppSessionUseCase: sl(),
-getToolUseCase: sl(),
-createToolUseCase: sl(),
-updateToolUseCase: sl(),
-r: sl(),
+      getCurrentAppSessionUseCase: sl(),
+      getToolUseCase: sl(),
+      createToolUseCase: sl(),
+      updateToolUseCase: sl(),
+      r: sl(),
     ),
   );
 
   sl.registerLazySingleton<ToolListCubit>(
     () => ToolListCubitImpl(
-    getCurrentAppSessionUseCase: sl(),
-getAllToolUseCase: sl(),
-deleteToolUseCase: sl(),
-deleteAllToolUseCase: sl(),
+      getCurrentAppSessionUseCase: sl(),
+      getAllToolUseCase: sl(),
+      deleteToolUseCase: sl(),
+      deleteAllToolUseCase: sl(),
     ),
   );
 
   sl.registerLazySingleton<UserProfileFormCubit>(
     () => UserProfileFormCubitImpl(
-    getCurrentAppSessionUseCase: sl(),
-getUserProfileUseCase: sl(),
-createUserProfileUseCase: sl(),
-updateUserProfileUseCase: sl(),
-r: sl(),
+      getCurrentAppSessionUseCase: sl(),
+      getUserProfileUseCase: sl(),
+      createUserProfileUseCase: sl(),
+      updateUserProfileUseCase: sl(),
+      r: sl(),
     ),
   );
 
   sl.registerLazySingleton<UserProfileListCubit>(
     () => UserProfileListCubitImpl(
-    getCurrentAppSessionUseCase: sl(),
-getAllUserProfileUseCase: sl(),
-deleteUserProfileUseCase: sl(),
-deleteAllUserProfileUseCase: sl(),
+      getCurrentAppSessionUseCase: sl(),
+      getAllUserProfileUseCase: sl(),
+      deleteUserProfileUseCase: sl(),
+      deleteAllUserProfileUseCase: sl(),
     ),
   );
 }

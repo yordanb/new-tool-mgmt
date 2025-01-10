@@ -10,7 +10,8 @@ class ApplicationConfigFormView extends StatefulWidget {
   });
 
   @override
-  State<ApplicationConfigFormView> createState() => _ApplicationConfigFormViewState();
+  State<ApplicationConfigFormView> createState() =>
+      _ApplicationConfigFormViewState();
 }
 
 class _ApplicationConfigFormViewState extends State<ApplicationConfigFormView> {
@@ -43,14 +44,14 @@ class _ApplicationConfigFormViewState extends State<ApplicationConfigFormView> {
       listeners: const [
         ApplicationConfigFormListener(),
       ],
-      child: BlocSelector<ApplicationConfigFormCubit, ApplicationConfigFormState,
-          FullViewState>(
+      child: BlocSelector<ApplicationConfigFormCubit,
+          ApplicationConfigFormState, FullViewState>(
         selector: (state) => state.fullViewState,
         builder: (context, _) {
           if (cubit.state.fullViewState == FullViewState.loading) {
             return const Center(child: CircularProgressIndicator());
           }
-          
+
           return Scaffold(
             appBar: AppBar(
               title: const Text("ApplicationConfigForm"),
@@ -62,45 +63,43 @@ class _ApplicationConfigFormViewState extends State<ApplicationConfigFormView> {
               formKey: formKey,
               children: [
                 //::FORM
-QDropdownField(
-  label: "App Mode",
-  validator: Validator.required,
-  items: [{"label":"Production","value":"Production"},{"label":"Development","value":"Development"},{"label":"Maintenance","value":"Maintenance"}],
-  value: cubit.state.appMode,
-  onChanged: (value, label) {
-    cubit.state.appMode = value;
-  },
-),
-QTextField(
-  label: "Company Name",
-  validator: Validator.required ,
-  value: cubit.state.companyName,
-  
-  
-  onChanged: (value) {
-    cubit.state.companyName = value;
-  },
-),
-QTextField(
-  label: "Address",
-  validator: Validator.required ,
-  value: cubit.state.address,
-  
-  
-  onChanged: (value) {
-    cubit.state.address = value;
-  },
-),
-QTextField(
-  label: "Phone Number",
-  validator: Validator.required ,
-  value: cubit.state.phoneNumber,
-  
-  
-  onChanged: (value) {
-    cubit.state.phoneNumber = value;
-  },
-),
+                QDropdownField(
+                  label: "App Mode",
+                  validator: Validator.required,
+                  items: [
+                    {"label": "Production", "value": "Production"},
+                    {"label": "Development", "value": "Development"},
+                    {"label": "Maintenance", "value": "Maintenance"}
+                  ],
+                  value: cubit.state.appMode,
+                  onChanged: (value, label) {
+                    cubit.state.appMode = value;
+                  },
+                ),
+                QTextField(
+                  label: "Company Name",
+                  validator: Validator.required,
+                  value: cubit.state.companyName,
+                  onChanged: (value) {
+                    cubit.state.companyName = value;
+                  },
+                ),
+                QTextField(
+                  label: "Address",
+                  validator: Validator.required,
+                  value: cubit.state.address,
+                  onChanged: (value) {
+                    cubit.state.address = value;
+                  },
+                ),
+                QTextField(
+                  label: "Phone Number",
+                  validator: Validator.required,
+                  value: cubit.state.phoneNumber,
+                  onChanged: (value) {
+                    cubit.state.phoneNumber = value;
+                  },
+                ),
                 //@BOTTOM_FORM
               ],
             ),
@@ -108,14 +107,13 @@ QTextField(
               label: "Save",
               onPressed: () {
                 bool isNotValid = formKey.currentState!.validate() == false;
-                if(isNotValid) {
+                if (isNotValid) {
                   return;
                 }
 
-                if(state.isCreateMode) {
+                if (state.isCreateMode) {
                   cubit.create();
-                }
-                else if(state.isEditMode) {
+                } else if (state.isEditMode) {
                   cubit.update();
                 }
               },
@@ -126,5 +124,3 @@ QTextField(
     );
   }
 }
-  
-  

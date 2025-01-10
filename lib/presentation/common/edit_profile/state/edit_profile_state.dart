@@ -54,28 +54,43 @@ class EditProfileState {
 
   factory EditProfileState.fromJson(Map<String, dynamic> json) {
     return EditProfileState(
-      fullViewState: json['full_view_state'],
-      viewState: json['view_state'],
-      isEditMode: json['is_edit_mode'],
-      isCreateMode: json['is_create_mode'],
-      session: AppSessionEntity.fromJson(json['session']),
-      current: UserProfileEntity.fromJson(json['current']),
-      id: json['id'],
-      imageUrl: json['image_url'],
-      userProfileName: json['user_profile_name'],
-      gender: json['gender'],
-      email: json['email'],
-      password: json['password'],
-      role: json['role'],
-      isActive: json['is_active'],
-      createdAt: json['created_at'] == null ? null : DateTime.tryParse(json['created_at'].toString()),
-      updatedAt: json['updated_at'] == null ? null : DateTime.tryParse(json['updated_at'].toString()),
-      idOperatorAndValue: json['id_operator_and_value'],
-      createdAtFrom: json['created_at_from'] == null ? null : DateTime.tryParse(json['created_at_from'].toString()),
-      createdAtTo: json['created_at_to'] == null ? null : DateTime.tryParse(json['created_at_to'].toString()),
-      updatedAtFrom: json['updated_at_from'] == null ? null : DateTime.tryParse(json['updated_at_from'].toString()),
-      updatedAtTo: json['updated_at_to'] == null ? null : DateTime.tryParse(json['updated_at_to'].toString())
-    );
+        fullViewState: json['full_view_state'],
+        viewState: json['view_state'],
+        isEditMode: json['is_edit_mode'],
+        isCreateMode: json['is_create_mode'],
+        session: json['session'] == null
+            ? null
+            : AppSessionEntity.fromJson(json['session']),
+        current: json['current'] == null
+            ? null
+            : UserProfileEntity.fromJson(json['current']),
+        id: json['id'],
+        imageUrl: json['image_url'],
+        userProfileName: json['user_profile_name'],
+        gender: json['gender'],
+        email: json['email'],
+        password: json['password'],
+        role: json['role'],
+        isActive: json['is_active'],
+        createdAt: json['created_at'] == null
+            ? null
+            : DateTime.tryParse(json['created_at'].toString()),
+        updatedAt: json['updated_at'] == null
+            ? null
+            : DateTime.tryParse(json['updated_at'].toString()),
+        idOperatorAndValue: json['id_operator_and_value'],
+        createdAtFrom: json['created_at_from'] == null
+            ? null
+            : DateTime.tryParse(json['created_at_from'].toString()),
+        createdAtTo: json['created_at_to'] == null
+            ? null
+            : DateTime.tryParse(json['created_at_to'].toString()),
+        updatedAtFrom: json['updated_at_from'] == null
+            ? null
+            : DateTime.tryParse(json['updated_at_from'].toString()),
+        updatedAtTo: json['updated_at_to'] == null
+            ? null
+            : DateTime.tryParse(json['updated_at_to'].toString()));
   }
 
   Map<String, dynamic> toJson() {
@@ -105,51 +120,49 @@ class EditProfileState {
   }
 
   //@copyWith
-  EditProfileState copyWith({
-     FullViewState? fullViewState,
-     ViewState? viewState,
-     bool? isEditMode,
-     bool? isCreateMode,
-     AppSessionEntity? session,
-     UserProfileEntity? current,
-     int? id,
-     String? imageUrl,
-     String? userProfileName,
-     String? gender,
-     String? email,
-     String? password,
-     String? role,
-     bool? isActive,
-     DateTime? createdAt,
-     DateTime? updatedAt,
-     String? idOperatorAndValue,
-     DateTime? createdAtFrom,
-     DateTime? createdAtTo,
-     DateTime? updatedAtFrom,
-     DateTime? updatedAtTo
-  }) {
+  EditProfileState copyWith(
+      {FullViewState? fullViewState,
+      ViewState? viewState,
+      bool? isEditMode,
+      bool? isCreateMode,
+      AppSessionEntity? session,
+      UserProfileEntity? current,
+      int? id,
+      String? imageUrl,
+      String? userProfileName,
+      String? gender,
+      String? email,
+      String? password,
+      String? role,
+      bool? isActive,
+      DateTime? createdAt,
+      DateTime? updatedAt,
+      String? idOperatorAndValue,
+      DateTime? createdAtFrom,
+      DateTime? createdAtTo,
+      DateTime? updatedAtFrom,
+      DateTime? updatedAtTo}) {
     return EditProfileState(
-      fullViewState: fullViewState ?? this.fullViewState,
-      viewState: viewState ?? this.viewState,
-      isEditMode: isEditMode ?? this.isEditMode,
-      isCreateMode: isCreateMode ?? this.isCreateMode,
-      session: session ?? this.session,
-      current: current ?? this.current,
-      id: id ?? this.id,
-      imageUrl: imageUrl ?? this.imageUrl,
-      userProfileName: userProfileName ?? this.userProfileName,
-      gender: gender ?? this.gender,
-      email: email ?? this.email,
-      password: password ?? this.password,
-      role: role ?? this.role,
-      isActive: isActive ?? this.isActive,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
-      idOperatorAndValue: idOperatorAndValue ?? this.idOperatorAndValue,
-      createdAtFrom: createdAtFrom ?? this.createdAtFrom,
-      createdAtTo: createdAtTo ?? this.createdAtTo,
-      updatedAtFrom: updatedAtFrom ?? this.updatedAtFrom,
-      updatedAtTo: updatedAtTo ?? this.updatedAtTo
-    );
+        fullViewState: fullViewState ?? this.fullViewState,
+        viewState: viewState ?? this.viewState,
+        isEditMode: isEditMode ?? this.isEditMode,
+        isCreateMode: isCreateMode ?? this.isCreateMode,
+        session: session ?? this.session,
+        current: current ?? this.current,
+        id: id ?? this.id,
+        imageUrl: imageUrl ?? this.imageUrl,
+        userProfileName: userProfileName ?? this.userProfileName,
+        gender: gender ?? this.gender,
+        email: email ?? this.email,
+        password: password ?? this.password,
+        role: role ?? this.role,
+        isActive: isActive ?? this.isActive,
+        createdAt: createdAt ?? this.createdAt,
+        updatedAt: updatedAt ?? this.updatedAt,
+        idOperatorAndValue: idOperatorAndValue ?? this.idOperatorAndValue,
+        createdAtFrom: createdAtFrom ?? this.createdAtFrom,
+        createdAtTo: createdAtTo ?? this.createdAtTo,
+        updatedAtFrom: updatedAtFrom ?? this.updatedAtFrom,
+        updatedAtTo: updatedAtTo ?? this.updatedAtTo);
   }
 }

@@ -2,15 +2,15 @@ import 'package:hyper_supabase/core.dart';
 import 'package:flutter/material.dart';
 
 class ApplicationConfigFormListener extends SingleChildStatelessWidget {
-    const ApplicationConfigFormListener({
-        super.key,
-        super.child,
-    });
-    
-    @override
-    Widget buildWithChild(BuildContext context, Widget? child) {
+  const ApplicationConfigFormListener({
+    super.key,
+    super.child,
+  });
+
+  @override
+  Widget buildWithChild(BuildContext context, Widget? child) {
     return BlocListener<ApplicationConfigFormCubit, ApplicationConfigFormState>(
-        listener: (context, state) {
+      listener: (context, state) {
         AppLocalizations lang = AppLocalizations.of(context)!;
 
         if (state.viewState == ViewState.idle) {
@@ -19,29 +19,29 @@ class ApplicationConfigFormListener extends SingleChildStatelessWidget {
         }
 
         if (state.viewState == ViewState.success) {
-            hideLoading();
-            snackSuccess(message: lang.defaultSuccess);
-            pop();
-            return;
+          hideLoading();
+          snackSuccess(message: lang.defaultSuccess);
+          pop();
+          return;
         }
 
         if (state.viewState == ViewState.error) {
-            hideLoading();
-            snackError(message: lang.defaultError);
-            return;
+          hideLoading();
+          snackError(message: lang.defaultError);
+          return;
         }
 
         if (state.viewState == ViewState.loading) {
-            showLoading();
-            return;
+          showLoading();
+          return;
         }
 
         if (state.viewState == ViewState.hideLoading) {
-            hideLoading();
-            return;
+          hideLoading();
+          return;
         }
-        },
-        child: child,
+      },
+      child: child,
     );
-    }
+  }
 }
