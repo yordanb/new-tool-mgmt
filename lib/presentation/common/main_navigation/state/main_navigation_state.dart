@@ -23,7 +23,7 @@ class MainNavigationState {
       selectedIndex: json['selected_index'],
       viewState: json['view_state'],
       fullViewState: json['full_view_state'],
-      session: AppSessionEntity.fromJson(json['session']  ?? {})
+      session: json['session']
     );
   }
 

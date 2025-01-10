@@ -53,8 +53,12 @@ class LoanTransactionListState {
       listViewItemState: json['list_view_item_state'],
       page: json['page'],
       limit: json['limit'],
-      session: AppSessionEntity.fromJson(json['session']  ?? {}),
-      items: List<LoanTransactionEntity>.from((json['items'] ).map((model) => LoanTransactionEntity.fromJson(model))),
+      session: json['session'],
+      items: List<LoanTransactionEntity>.from(
+            ( (json['items'] ) as List).map(
+              (model) => LoanTransactionEntity.fromJson(model),
+            ),
+          ),
       id: json['id'],
       status: json['status'],
       userProfileId: json['user_profile_id'],

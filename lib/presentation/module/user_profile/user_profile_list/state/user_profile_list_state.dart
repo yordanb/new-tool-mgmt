@@ -65,8 +65,12 @@ class UserProfileListState {
       listViewItemState: json['list_view_item_state'],
       page: json['page'],
       limit: json['limit'],
-      session: AppSessionEntity.fromJson(json['session']  ?? {}),
-      items: List<UserProfileEntity>.from((json['items'] ).map((model) => UserProfileEntity.fromJson(model))),
+      session: json['session'],
+      items: List<UserProfileEntity>.from(
+            ( (json['items'] ) as List).map(
+              (model) => UserProfileEntity.fromJson(model),
+            ),
+          ),
       id: json['id'],
       imageUrl: json['image_url'],
       userProfileName: json['user_profile_name'],

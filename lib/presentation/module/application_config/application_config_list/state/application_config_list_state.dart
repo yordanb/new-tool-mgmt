@@ -55,8 +55,12 @@ class ApplicationConfigListState {
       listViewItemState: json['list_view_item_state'],
       page: json['page'],
       limit: json['limit'],
-      session: AppSessionEntity.fromJson(json['session']  ?? {}),
-      items: List<ApplicationConfigEntity>.from((json['items'] ).map((model) => ApplicationConfigEntity.fromJson(model))),
+      session: json['session'],
+      items: List<ApplicationConfigEntity>.from(
+            ( (json['items'] ) as List).map(
+              (model) => ApplicationConfigEntity.fromJson(model),
+            ),
+          ),
       id: json['id'],
       appMode: json['app_mode'],
       companyName: json['company_name'],

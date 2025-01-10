@@ -40,8 +40,8 @@ class LoanTransactionItem {
       status: json['status'],
       createdAt: DateTime.tryParse(json['created_at'].toString()),
       updatedAt: DateTime.tryParse(json['updated_at'].toString()),
-      loanTransaction: LoanTransaction.fromJson(json['loan_transaction']  ?? {}),
-      tool: Tool.fromJson(json['tool']  ?? {})
+      loanTransaction: json['loan_transaction'],
+      tool: json['tool']
     );
   }
 

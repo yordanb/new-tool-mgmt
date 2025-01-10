@@ -32,7 +32,7 @@ class AppSessionEntity {
       email: json['email'],
       createdAt: DateTime.tryParse(json['created_at'].toString()),
       updatedAt: DateTime.tryParse(json['updated_at'].toString()),
-      userProfile: UserProfileEntity.fromJson(json['user_profile']  ?? {})
+      userProfile: json['user_profile']
     );
   }
 

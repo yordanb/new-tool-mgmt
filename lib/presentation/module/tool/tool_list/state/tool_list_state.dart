@@ -53,8 +53,12 @@ class ToolListState {
       listViewItemState: json['list_view_item_state'],
       page: json['page'],
       limit: json['limit'],
-      session: AppSessionEntity.fromJson(json['session']  ?? {}),
-      items: List<ToolEntity>.from((json['items'] ).map((model) => ToolEntity.fromJson(model))),
+      session: json['session'],
+      items: List<ToolEntity>.from(
+            ( (json['items'] ) as List).map(
+              (model) => ToolEntity.fromJson(model),
+            ),
+          ),
       id: json['id'],
       name: json['name'],
       description: json['description'],
