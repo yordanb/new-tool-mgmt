@@ -37,7 +37,7 @@ class ToolSelectorField extends StatelessWidget {
             onChanged(index, value, label, item);
           },
         );
-      },
+      },  
     );
   }
 }

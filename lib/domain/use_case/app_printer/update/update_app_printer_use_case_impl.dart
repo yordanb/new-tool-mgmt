@@ -7,17 +7,15 @@ class UpdateAppPrinterUseCaseImpl implements UpdateAppPrinterUseCase {
   UpdateAppPrinterUseCaseImpl({
     required this.repository,
   });
-
+  
   Future<void> call({
     required int id,
-    String? message,
-    DateTime? updatedAt,
+String? message,
+DateTime? updatedAt,
   }) async {
     try {
       await repository.update(
-        id: id,
-        message: message,
-        updatedAt: updatedAt,
+        id: id,message: message,updatedAt: updatedAt,
       );
     } on Exception catch (err) {
       throw Exception(err);

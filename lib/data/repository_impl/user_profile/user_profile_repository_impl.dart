@@ -10,82 +10,36 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
     required this.localDataSource,
     required this.networkManager,
   });
-
-  Future<int> count({
-    int? id,
-    String? idOperatorAndValue,
-    String? imageUrl,
-    String? userProfileName,
-    String? gender,
-    String? email,
-    String? mobileNumber,
-    String? fcmToken,
-    String? password,
-    String? role,
-    bool? isActive,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
-  }) async {
+  
+  Future<int> count({int? id,
+String? idOperatorAndValue, String? imageUrl, String? userProfileName, String? gender, String? email, String? mobileNumber, String? fcmToken, String? password, String? role, bool? isActive, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,}) async {
     //@ OFFLINE MODE HANDLER
     if (await networkManager.isOffline()) {
       printo("OfflineMode: UserProfileRepositoryImpl count");
       return await localDataSource.count(
         id: id,
-        idOperatorAndValue: idOperatorAndValue,
-        imageUrl: imageUrl,
-        userProfileName: userProfileName,
-        gender: gender,
-        email: email,
-        mobileNumber: mobileNumber,
-        fcmToken: fcmToken,
-        password: password,
-        role: role,
-        isActive: isActive,
-        createdAtFrom: createdAtFrom,
-        createdAtTo: createdAtTo,
-        updatedAtFrom: updatedAtFrom,
-        updatedAtTo: updatedAtTo,
+idOperatorAndValue: idOperatorAndValue, imageUrl: imageUrl, userProfileName: userProfileName, gender: gender, email: email, mobileNumber: mobileNumber, fcmToken: fcmToken, password: password, role: role, isActive: isActive, createdAtFrom: createdAtFrom,
+createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
+updatedAtTo: updatedAtTo,
       );
     }
     //:@ OFFLINE MODE HANDLER
 
     return await remoteDataSource.count(
       id: id,
-      idOperatorAndValue: idOperatorAndValue,
-      imageUrl: imageUrl,
-      userProfileName: userProfileName,
-      gender: gender,
-      email: email,
-      mobileNumber: mobileNumber,
-      fcmToken: fcmToken,
-      password: password,
-      role: role,
-      isActive: isActive,
-      createdAtFrom: createdAtFrom,
-      createdAtTo: createdAtTo,
-      updatedAtFrom: updatedAtFrom,
-      updatedAtTo: updatedAtTo,
+idOperatorAndValue: idOperatorAndValue, imageUrl: imageUrl, userProfileName: userProfileName, gender: gender, email: email, mobileNumber: mobileNumber, fcmToken: fcmToken, password: password, role: role, isActive: isActive, createdAtFrom: createdAtFrom,
+createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
+updatedAtTo: updatedAtTo,
     );
   }
 
   Future<List<UserProfileEntity>> getAll({
     int? id,
-    String? idOperatorAndValue,
-    String? imageUrl,
-    String? userProfileName,
-    String? gender,
-    String? email,
-    String? mobileNumber,
-    String? fcmToken,
-    String? password,
-    String? role,
-    bool? isActive,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
+String? idOperatorAndValue, String? imageUrl, String? userProfileName, String? gender, String? email, String? mobileNumber, String? fcmToken, String? password, String? role, bool? isActive, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,
     int limit = 10,
     int page = 1,
   }) async {
@@ -94,20 +48,9 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
       printo("OfflineMode: UserProfileRepositoryImpl getAll");
       final models = await localDataSource.getAll(
         id: id,
-        idOperatorAndValue: idOperatorAndValue,
-        imageUrl: imageUrl,
-        userProfileName: userProfileName,
-        gender: gender,
-        email: email,
-        mobileNumber: mobileNumber,
-        fcmToken: fcmToken,
-        password: password,
-        role: role,
-        isActive: isActive,
-        createdAtFrom: createdAtFrom,
-        createdAtTo: createdAtTo,
-        updatedAtFrom: updatedAtFrom,
-        updatedAtTo: updatedAtTo,
+idOperatorAndValue: idOperatorAndValue, imageUrl: imageUrl, userProfileName: userProfileName, gender: gender, email: email, mobileNumber: mobileNumber, fcmToken: fcmToken, password: password, role: role, isActive: isActive, createdAtFrom: createdAtFrom,
+createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
+updatedAtTo: updatedAtTo,
         limit: limit,
         page: page,
       );
@@ -118,20 +61,9 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
 
     final models = await remoteDataSource.getAll(
       id: id,
-      idOperatorAndValue: idOperatorAndValue,
-      imageUrl: imageUrl,
-      userProfileName: userProfileName,
-      gender: gender,
-      email: email,
-      mobileNumber: mobileNumber,
-      fcmToken: fcmToken,
-      password: password,
-      role: role,
-      isActive: isActive,
-      createdAtFrom: createdAtFrom,
-      createdAtTo: createdAtTo,
-      updatedAtFrom: updatedAtFrom,
-      updatedAtTo: updatedAtTo,
+idOperatorAndValue: idOperatorAndValue, imageUrl: imageUrl, userProfileName: userProfileName, gender: gender, email: email, mobileNumber: mobileNumber, fcmToken: fcmToken, password: password, role: role, isActive: isActive, createdAtFrom: createdAtFrom,
+createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
+updatedAtTo: updatedAtTo,
       limit: limit,
       page: page,
     );
@@ -141,20 +73,9 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
   //@ SNAPSHOT
   Stream<List<UserProfileEntity>> snapshot({
     int? id,
-    String? idOperatorAndValue,
-    String? imageUrl,
-    String? userProfileName,
-    String? gender,
-    String? email,
-    String? mobileNumber,
-    String? fcmToken,
-    String? password,
-    String? role,
-    bool? isActive,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
+String? idOperatorAndValue, String? imageUrl, String? userProfileName, String? gender, String? email, String? mobileNumber, String? fcmToken, String? password, String? role, bool? isActive, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,
     int limit = 10,
     int page = 1,
   }) async* {
@@ -163,20 +84,9 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
       print("OfflineMode: UserProfileRepositoryImpl snapshot");
       final localData = await localDataSource.getAll(
         id: id,
-        idOperatorAndValue: idOperatorAndValue,
-        imageUrl: imageUrl,
-        userProfileName: userProfileName,
-        gender: gender,
-        email: email,
-        mobileNumber: mobileNumber,
-        fcmToken: fcmToken,
-        password: password,
-        role: role,
-        isActive: isActive,
-        createdAtFrom: createdAtFrom,
-        createdAtTo: createdAtTo,
-        updatedAtFrom: updatedAtFrom,
-        updatedAtTo: updatedAtTo,
+idOperatorAndValue: idOperatorAndValue, imageUrl: imageUrl, userProfileName: userProfileName, gender: gender, email: email, mobileNumber: mobileNumber, fcmToken: fcmToken, password: password, role: role, isActive: isActive, createdAtFrom: createdAtFrom,
+createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
+updatedAtTo: updatedAtTo,
         limit: limit,
         page: page,
       );
@@ -186,48 +96,28 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
       // Online mode: Gunakan stream dari remoteDataSource
       var stream = remoteDataSource.snapshot(
         id: id,
-        idOperatorAndValue: idOperatorAndValue,
-        imageUrl: imageUrl,
-        userProfileName: userProfileName,
-        gender: gender,
-        email: email,
-        mobileNumber: mobileNumber,
-        fcmToken: fcmToken,
-        password: password,
-        role: role,
-        isActive: isActive,
-        createdAtFrom: createdAtFrom,
-        createdAtTo: createdAtTo,
-        updatedAtFrom: updatedAtFrom,
-        updatedAtTo: updatedAtTo,
+idOperatorAndValue: idOperatorAndValue, imageUrl: imageUrl, userProfileName: userProfileName, gender: gender, email: email, mobileNumber: mobileNumber, fcmToken: fcmToken, password: password, role: role, isActive: isActive, createdAtFrom: createdAtFrom,
+createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
+updatedAtTo: updatedAtTo,
         limit: limit,
         page: page,
       );
       List<UserProfile> models = [];
       await for (List<Map<String, dynamic>> datas in stream) {
-        for (var data in datas) {
-          models.add(UserProfile.fromJson(data));
-        }
-
-        await localDataSource.deleteAll();
-        for (var model in models) {
-          await localDataSource.create(
-            id: model.id!,
-            imageUrl: model.imageUrl,
-            userProfileName: model.userProfileName,
-            gender: model.gender,
-            email: model.email,
-            mobileNumber: model.mobileNumber,
-            fcmToken: model.fcmToken,
-            password: model.password,
-            role: model.role,
-            isActive: model.isActive,
-            createdAt: DateTime.now(),
-          );
-        }
-
-        yield models.toEntityList();
+      for (var data in datas) {
+        models.add(UserProfile.fromJson(data));
       }
+
+      await localDataSource.deleteAll();
+      for (var model in models) {
+        await localDataSource.create(
+          id: model.id!,
+          imageUrl: model.imageUrl,userProfileName: model.userProfileName,gender: model.gender,email: model.email,mobileNumber: model.mobileNumber,fcmToken: model.fcmToken,password: model.password,role: model.role,isActive: model.isActive,createdAt: DateTime.now(),
+        );
+      }
+      
+      yield models.toEntityList();
+    }
     }
   }
   //:@ SNAPSHOT
@@ -238,30 +128,31 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
       if (await networkManager.isOffline()) {
         printo("OfflineMode: UserProfileRepositoryImpl getByID $id");
         final model = await localDataSource.get(id);
-        if (model == null) return null;
+        if(model==null) return null;
         return model.toEntity();
       }
       //:@ OFFLINE MODE HANDLER
-
+      
       final model = await remoteDataSource.get(id);
       if (model == null) return null;
       return model.toEntity();
-    } on Exception catch (err) {
+    }
+    on Exception catch (err) {
       throw Exception(err);
     }
   }
 
   Future<UserProfileEntity?> create({
     String? imageUrl,
-    String? userProfileName,
-    String? gender,
-    String? email,
-    String? mobileNumber,
-    String? fcmToken,
-    String? password,
-    String? role,
-    bool? isActive,
-    DateTime? createdAt,
+String? userProfileName,
+String? gender,
+String? email,
+String? mobileNumber,
+String? fcmToken,
+String? password,
+String? role,
+bool? isActive,
+DateTime? createdAt,
   }) async {
     try {
       //@ OFFLINE MODE HANDLER
@@ -269,38 +160,21 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
         printo("OfflineMode: UserProfileRepositoryImpl create");
         final model = await localDataSource.create(
           id: -1,
-          imageUrl: imageUrl,
-          userProfileName: userProfileName,
-          gender: gender,
-          email: email,
-          mobileNumber: mobileNumber,
-          fcmToken: fcmToken,
-          password: password,
-          role: role,
-          isActive: isActive,
-          createdAt: createdAt,
+          imageUrl: imageUrl,userProfileName: userProfileName,gender: gender,email: email,mobileNumber: mobileNumber,fcmToken: fcmToken,password: password,role: role,isActive: isActive,createdAt: createdAt,
         );
 
         await localDataSource.createQueue(
           queueAction: QueueAction.create,
           data: model!,
         );
-
+        
         return model.toEntity();
       }
       //:@ OFFLINE MODE HANDLER
-
+      
       final model = await remoteDataSource.create(
-        imageUrl: imageUrl,
-        userProfileName: userProfileName,
-        gender: gender,
-        email: email,
-        mobileNumber: mobileNumber,
-        fcmToken: fcmToken,
-        password: password,
-        role: role,
-        isActive: isActive,
-        createdAt: createdAt,
+        
+        imageUrl: imageUrl,userProfileName: userProfileName,gender: gender,email: email,mobileNumber: mobileNumber,fcmToken: fcmToken,password: password,role: role,isActive: isActive,createdAt: createdAt,
       );
       return model!.toEntity();
     } on Exception catch (err) {
@@ -310,33 +184,23 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
 
   Future<void> update({
     required int id,
-    String? imageUrl,
-    String? userProfileName,
-    String? gender,
-    String? email,
-    String? mobileNumber,
-    String? fcmToken,
-    String? password,
-    String? role,
-    bool? isActive,
-    DateTime? updatedAt,
-  }) async {
+String? imageUrl,
+String? userProfileName,
+String? gender,
+String? email,
+String? mobileNumber,
+String? fcmToken,
+String? password,
+String? role,
+bool? isActive,
+DateTime? updatedAt,
+  }) async { 
     try {
       //@ OFFLINE MODE HANDLER
       if (await networkManager.isOffline()) {
         printo("OfflineMode: UserProfileRepositoryImpl update $id");
         await localDataSource.update(
-          id: id,
-          imageUrl: imageUrl,
-          userProfileName: userProfileName,
-          gender: gender,
-          email: email,
-          mobileNumber: mobileNumber,
-          fcmToken: fcmToken,
-          password: password,
-          role: role,
-          isActive: isActive,
-          updatedAt: updatedAt,
+          id: id,imageUrl: imageUrl,userProfileName: userProfileName,gender: gender,email: email,mobileNumber: mobileNumber,fcmToken: fcmToken,password: password,role: role,isActive: isActive,updatedAt: updatedAt,
         );
 
         var model = await localDataSource.get(id);
@@ -348,19 +212,9 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
         return;
       }
       //:@ OFFLINE MODE HANDLER
-
+      
       await remoteDataSource.update(
-        id: id,
-        imageUrl: imageUrl,
-        userProfileName: userProfileName,
-        gender: gender,
-        email: email,
-        mobileNumber: mobileNumber,
-        fcmToken: fcmToken,
-        password: password,
-        role: role,
-        isActive: isActive,
-        updatedAt: updatedAt,
+        id: id,imageUrl: imageUrl,userProfileName: userProfileName,gender: gender,email: email,mobileNumber: mobileNumber,fcmToken: fcmToken,password: password,role: role,isActive: isActive,updatedAt: updatedAt,
       );
     } on Exception catch (err) {
       throw Exception(err);
@@ -371,7 +225,7 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
     try {
       //@ OFFLINE MODE HANDLER
       if (await networkManager.isOffline()) {
-        printo("OfflineMode: UserProfileRepositoryImpl delete $id");
+         printo("OfflineMode: UserProfileRepositoryImpl delete $id");
 
         var model = await localDataSource.get(
           id,
@@ -385,11 +239,11 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
           queueAction: QueueAction.delete,
           data: model!,
         );
-
+        
         return;
       }
       //:@ OFFLINE MODE HANDLER
-
+      
       await remoteDataSource.delete(
         id,
       );
@@ -434,31 +288,12 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
         switch (action) {
           case 'create':
             await remoteDataSource.create(
-              imageUrl: data.imageUrl,
-              userProfileName: data.userProfileName,
-              gender: data.gender,
-              email: data.email,
-              mobileNumber: data.mobileNumber,
-              fcmToken: data.fcmToken,
-              password: data.password,
-              role: data.role,
-              isActive: data.isActive,
-              createdAt: data.createdAt,
+              imageUrl: data.imageUrl,userProfileName: data.userProfileName,gender: data.gender,email: data.email,mobileNumber: data.mobileNumber,fcmToken: data.fcmToken,password: data.password,role: data.role,isActive: data.isActive,createdAt: data.createdAt,
             );
             break;
           case 'update':
             await remoteDataSource.update(
-              id: data.id!,
-              imageUrl: data.imageUrl,
-              userProfileName: data.userProfileName,
-              gender: data.gender,
-              email: data.email,
-              mobileNumber: data.mobileNumber,
-              fcmToken: data.fcmToken,
-              password: data.password,
-              role: data.role,
-              isActive: data.isActive,
-              updatedAt: data.updatedAt,
+              id: data.id!,imageUrl: data.imageUrl,userProfileName: data.userProfileName,gender: data.gender,email: data.email,mobileNumber: data.mobileNumber,fcmToken: data.fcmToken,password: data.password,role: data.role,isActive: data.isActive,updatedAt: data.updatedAt,
             );
             break;
           case 'delete':

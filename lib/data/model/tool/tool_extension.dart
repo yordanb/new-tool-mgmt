@@ -9,7 +9,8 @@ extension ToolExtension on Tool {
 extension ToolListExtension on List<Tool> {
   List<ToolEntity> toEntityList() {
     return this
-        .map((model) => ToolEntity.fromJson(model.toJson().cleanJson()))
+        .map((model) =>
+            ToolEntity.fromJson(model.toJson().cleanJson()))
         .toList();
   }
 

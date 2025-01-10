@@ -2,16 +2,15 @@ import 'package:hyper_supabase/core.dart';
 import 'package:flutter/material.dart';
 
 class LoanTransactionItemFormListener extends SingleChildStatelessWidget {
-  const LoanTransactionItemFormListener({
-    super.key,
-    super.child,
-  });
-
-  @override
-  Widget buildWithChild(BuildContext context, Widget? child) {
-    return BlocListener<LoanTransactionItemFormCubit,
-        LoanTransactionItemFormState>(
-      listener: (context, state) {
+    const LoanTransactionItemFormListener({
+        super.key,
+        super.child,
+    });
+    
+    @override
+    Widget buildWithChild(BuildContext context, Widget? child) {
+    return BlocListener<LoanTransactionItemFormCubit, LoanTransactionItemFormState>(
+        listener: (context, state) {
         AppLocalizations lang = AppLocalizations.of(context)!;
 
         if (state.viewState == ViewState.idle) {
@@ -20,29 +19,29 @@ class LoanTransactionItemFormListener extends SingleChildStatelessWidget {
         }
 
         if (state.viewState == ViewState.success) {
-          hideLoading();
-          snackSuccess(message: lang.defaultSuccess);
-          pop();
-          return;
+            hideLoading();
+            snackSuccess(message: lang.defaultSuccess);
+            pop();
+            return;
         }
 
         if (state.viewState == ViewState.error) {
-          hideLoading();
-          snackError(message: lang.defaultError);
-          return;
+            hideLoading();
+            snackError(message: lang.defaultError);
+            return;
         }
 
         if (state.viewState == ViewState.loading) {
-          showLoading();
-          return;
+            showLoading();
+            return;
         }
 
         if (state.viewState == ViewState.hideLoading) {
-          hideLoading();
-          return;
+            hideLoading();
+            return;
         }
-      },
-      child: child,
+        },
+        child: child,
     );
-  }
+    }
 }

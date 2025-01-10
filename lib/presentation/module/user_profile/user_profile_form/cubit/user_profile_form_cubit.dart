@@ -1,6 +1,6 @@
 import 'package:hyper_supabase/core.dart';
 
-abstract class UserProfileFormCubit extends Cubit<UserProfileFormState> {
+abstract class UserProfileFormCubit  extends Cubit<UserProfileFormState> {
   UserProfileFormCubit(UserProfileFormState state) : super(state);
 
   void initState({
@@ -18,3 +18,4 @@ abstract class UserProfileFormCubit extends Cubit<UserProfileFormState> {
   Future<void> update();
   Future<void> refresh();
 }
+  

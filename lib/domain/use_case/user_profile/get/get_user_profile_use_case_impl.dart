@@ -7,11 +7,14 @@ class GetUserProfileUseCaseImpl implements GetUserProfileUseCase {
   GetUserProfileUseCaseImpl({
     required this.repository,
   });
-
-  Future<UserProfileEntity?> call({required int id}) async {
+  
+  Future<UserProfileEntity?> call({
+    required int id
+  }) async {
     try {
       return await repository.get(id);
-    } on Exception catch (err) {
+    }
+    on Exception catch (err) {
       throw Exception(err);
     }
   }

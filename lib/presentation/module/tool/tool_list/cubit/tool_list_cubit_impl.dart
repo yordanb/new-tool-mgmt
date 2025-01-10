@@ -15,8 +15,8 @@ class ToolListCubitImpl extends Cubit<ToolListState> implements ToolListCubit {
 
   @override
   void initState({
-    Function? init,
-  }) {
+      Function? init,
+    }) {
     //initState event
     emit(ToolListState());
     init?.call();
@@ -33,6 +33,7 @@ class ToolListCubitImpl extends Cubit<ToolListState> implements ToolListCubit {
     //ready event
   }
 
+  
   void initializeData() async {
     state.fullViewState = FullViewState.loading;
     emit(state.copyWith());
@@ -44,6 +45,7 @@ class ToolListCubitImpl extends Cubit<ToolListState> implements ToolListCubit {
     emit(state.copyWith());
   }
 
+
   Future getData() async {
     printg("[Pagination] Load more.. ${state.page}");
     if (state.page == 0) {
@@ -53,14 +55,14 @@ class ToolListCubitImpl extends Cubit<ToolListState> implements ToolListCubit {
     final newItems = await getAllToolUseCase.call(
       //::FILTER_SNAPSHOT_STATE_PARAMS
       id: state.id,
-      name: state.name,
-      description: state.description,
-      imageUrl: state.imageUrl,
-      idOperatorAndValue: state.idOperatorAndValue,
-      createdAtFrom: state.createdAtFrom,
-      createdAtTo: state.createdAtTo,
-      updatedAtFrom: state.updatedAtFrom,
-      updatedAtTo: state.updatedAtTo,
+name: state.name,
+description: state.description,
+imageUrl: state.imageUrl,
+idOperatorAndValue: state.idOperatorAndValue,
+createdAtFrom: state.createdAtFrom,
+createdAtTo: state.createdAtTo,
+updatedAtFrom: state.updatedAtFrom,
+updatedAtTo: state.updatedAtTo,
       page: state.page,
       limit: state.limit,
     );
@@ -75,6 +77,7 @@ class ToolListCubitImpl extends Cubit<ToolListState> implements ToolListCubit {
       ...newItems,
     ];
   }
+
 
   Future<void> delete(int id) async {
     try {
@@ -112,16 +115,16 @@ class ToolListCubitImpl extends Cubit<ToolListState> implements ToolListCubit {
   bool get isFilterMode {
     List values = [
       //state.id,
-      state.name,
-      state.description,
-      state.imageUrl,
-      state.createdAt,
-      state.updatedAt,
-      state.idOperatorAndValue,
-      state.createdAtFrom,
-      state.createdAtTo,
-      state.updatedAtFrom,
-      state.updatedAtTo,
+state.name,
+state.description,
+state.imageUrl,
+state.createdAt,
+state.updatedAt,
+state.idOperatorAndValue,
+state.createdAtFrom,
+state.createdAtTo,
+state.updatedAtFrom,
+state.updatedAtTo,
     ];
     return values.indexWhere((i) =>
             (i != null && i != "") ||
@@ -132,16 +135,16 @@ class ToolListCubitImpl extends Cubit<ToolListState> implements ToolListCubit {
 
   void resetFilter() {
     //state.id = null;
-    state.name = null;
-    state.description = null;
-    state.imageUrl = null;
-    state.createdAt = null;
-    state.updatedAt = null;
-    state.idOperatorAndValue = null;
-    state.createdAtFrom = null;
-    state.createdAtTo = null;
-    state.updatedAtFrom = null;
-    state.updatedAtTo = null;
+state.name = null;
+state.description = null;
+state.imageUrl = null;
+state.createdAt = null;
+state.updatedAt = null;
+state.idOperatorAndValue = null;
+state.createdAtFrom = null;
+state.createdAtTo = null;
+state.updatedAtFrom = null;
+state.updatedAtTo = null;
     reload();
   }
 
@@ -182,3 +185,4 @@ class ToolListCubitImpl extends Cubit<ToolListState> implements ToolListCubit {
     emit(state.copyWith());
   }
 }
+  

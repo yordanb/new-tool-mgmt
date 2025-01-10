@@ -2,5 +2,7 @@
 import 'package:hyper_supabase/core.dart';
 
 abstract class GetAppQueueUseCase {
-  Future<AppQueueEntity?> call({required int id});
+  Future<AppQueueEntity?> call({
+    required int id
+  });
 }

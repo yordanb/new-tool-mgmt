@@ -2,7 +2,7 @@
 import 'package:hyper_supabase/core.dart';
 
 abstract class SyncronizeLoanTransactionItemUseCase {
-  Future<void> call({
+   Future<void> call({
     bool forceSyncronize = false,
   });
 }

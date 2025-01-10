@@ -7,7 +7,7 @@ class DeleteToolUseCaseImpl implements DeleteToolUseCase {
   DeleteToolUseCaseImpl({
     required this.repository,
   });
-
+  
   Future<void> call(int id) async {
     try {
       await repository.delete(

@@ -30,7 +30,7 @@ class ToolListState {
     this.listViewItemState = ListViewItemState.ready,
     this.page = 1,
     this.limit = 10,
-    this.items = const [],
+    this.items = const[],
     this.session,
     this.id,
     this.name,
@@ -48,25 +48,25 @@ class ToolListState {
 
   factory ToolListState.fromJson(Map<String, dynamic> json) {
     return ToolListState(
-        fullViewState: json['full_view_state'],
-        viewState: json['view_state'],
-        listViewItemState: json['list_view_item_state'],
-        page: json['page'],
-        limit: json['limit'],
-        session: AppSessionEntity.fromJson(json['session'] ?? {}),
-        items: List<ToolEntity>.from(
-            (json['items']).map((model) => ToolEntity.fromJson(model))),
-        id: json['id'],
-        name: json['name'],
-        description: json['description'],
-        imageUrl: json['image_url'],
-        createdAt: DateTime.tryParse(json['created_at'].toString()),
-        updatedAt: DateTime.tryParse(json['updated_at'].toString()),
-        idOperatorAndValue: json['id_operator_and_value'],
-        createdAtFrom: DateTime.tryParse(json['created_at_from'].toString()),
-        createdAtTo: DateTime.tryParse(json['created_at_to'].toString()),
-        updatedAtFrom: DateTime.tryParse(json['updated_at_from'].toString()),
-        updatedAtTo: DateTime.tryParse(json['updated_at_to'].toString()));
+      fullViewState: json['full_view_state'],
+      viewState: json['view_state'],
+      listViewItemState: json['list_view_item_state'],
+      page: json['page'],
+      limit: json['limit'],
+      session: AppSessionEntity.fromJson(json['session']  ?? {}),
+      items: List<ToolEntity>.from((json['items'] ).map((model) => ToolEntity.fromJson(model))),
+      id: json['id'],
+      name: json['name'],
+      description: json['description'],
+      imageUrl: json['image_url'],
+      createdAt: DateTime.tryParse(json['created_at'].toString()),
+      updatedAt: DateTime.tryParse(json['updated_at'].toString()),
+      idOperatorAndValue: json['id_operator_and_value'],
+      createdAtFrom: DateTime.tryParse(json['created_at_from'].toString()),
+      createdAtTo: DateTime.tryParse(json['created_at_to'].toString()),
+      updatedAtFrom: DateTime.tryParse(json['updated_at_from'].toString()),
+      updatedAtTo: DateTime.tryParse(json['updated_at_to'].toString())
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -93,43 +93,45 @@ class ToolListState {
   }
 
   //@copyWith
-  ToolListState copyWith(
-      {FullViewState? fullViewState,
-      ViewState? viewState,
-      ListViewItemState? listViewItemState,
-      int? page,
-      int? limit,
-      AppSessionEntity? session,
-      List<ToolEntity>? items,
-      int? id,
-      String? name,
-      String? description,
-      String? imageUrl,
-      DateTime? createdAt,
-      DateTime? updatedAt,
-      String? idOperatorAndValue,
-      DateTime? createdAtFrom,
-      DateTime? createdAtTo,
-      DateTime? updatedAtFrom,
-      DateTime? updatedAtTo}) {
+  ToolListState copyWith({
+     FullViewState? fullViewState,
+     ViewState? viewState,
+     ListViewItemState? listViewItemState,
+     int? page,
+     int? limit,
+     AppSessionEntity? session,
+     List<ToolEntity>? items,
+     int? id,
+     String? name,
+     String? description,
+     String? imageUrl,
+     DateTime? createdAt,
+     DateTime? updatedAt,
+     String? idOperatorAndValue,
+     DateTime? createdAtFrom,
+     DateTime? createdAtTo,
+     DateTime? updatedAtFrom,
+     DateTime? updatedAtTo
+  }) {
     return ToolListState(
-        fullViewState: fullViewState ?? this.fullViewState,
-        viewState: viewState ?? this.viewState,
-        listViewItemState: listViewItemState ?? this.listViewItemState,
-        page: page ?? this.page,
-        limit: limit ?? this.limit,
-        session: session ?? this.session,
-        items: items ?? this.items,
-        id: id ?? this.id,
-        name: name ?? this.name,
-        description: description ?? this.description,
-        imageUrl: imageUrl ?? this.imageUrl,
-        createdAt: createdAt ?? this.createdAt,
-        updatedAt: updatedAt ?? this.updatedAt,
-        idOperatorAndValue: idOperatorAndValue ?? this.idOperatorAndValue,
-        createdAtFrom: createdAtFrom ?? this.createdAtFrom,
-        createdAtTo: createdAtTo ?? this.createdAtTo,
-        updatedAtFrom: updatedAtFrom ?? this.updatedAtFrom,
-        updatedAtTo: updatedAtTo ?? this.updatedAtTo);
+      fullViewState: fullViewState ?? this.fullViewState,
+      viewState: viewState ?? this.viewState,
+      listViewItemState: listViewItemState ?? this.listViewItemState,
+      page: page ?? this.page,
+      limit: limit ?? this.limit,
+      session: session ?? this.session,
+      items: items ?? this.items,
+      id: id ?? this.id,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      imageUrl: imageUrl ?? this.imageUrl,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      idOperatorAndValue: idOperatorAndValue ?? this.idOperatorAndValue,
+      createdAtFrom: createdAtFrom ?? this.createdAtFrom,
+      createdAtTo: createdAtTo ?? this.createdAtTo,
+      updatedAtFrom: updatedAtFrom ?? this.updatedAtFrom,
+      updatedAtTo: updatedAtTo ?? this.updatedAtTo
+    );
   }
 }

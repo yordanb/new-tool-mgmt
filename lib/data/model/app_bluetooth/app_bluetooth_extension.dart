@@ -9,7 +9,8 @@ extension AppBluetoothExtension on AppBluetooth {
 extension AppBluetoothListExtension on List<AppBluetooth> {
   List<AppBluetoothEntity> toEntityList() {
     return this
-        .map((model) => AppBluetoothEntity.fromJson(model.toJson().cleanJson()))
+        .map((model) =>
+            AppBluetoothEntity.fromJson(model.toJson().cleanJson()))
         .toList();
   }
 

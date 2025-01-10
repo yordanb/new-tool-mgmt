@@ -25,9 +25,9 @@ abstract class LoanTransactionFormCubit
   void removeItem(ToolEntity item);
   void updateStatus(ToolEntity item, String status);
   void updateMemo(ToolEntity item, String value);
-  double getQty(ToolEntity item);
+  int getQty(ToolEntity item);
   String getStatus(ToolEntity item);
   String getMemo(ToolEntity item);
   void updateSearch(String value);
-  void updateQty(ToolEntity item, double value);
+  void updateQty(ToolEntity item, int value);
 }

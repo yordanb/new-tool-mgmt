@@ -21,8 +21,7 @@ class ApplicationConfigDropdownField extends StatelessWidget {
       stream: sl<SnapshotApplicationConfigUseCase>().call(),
       shrinkWrap: true,
       itemsBuilder: (obj) {
-        List<ApplicationConfigEntity> items =
-            obj as List<ApplicationConfigEntity>;
+        List<ApplicationConfigEntity> items = obj as List<ApplicationConfigEntity>;
 
         return QDropdownField(
           label: label,
@@ -36,7 +35,8 @@ class ApplicationConfigDropdownField extends StatelessWidget {
           }).toList(),
           value: value,
           onChanged: (value, label) {
-            var mapValue = items.firstWhere((element) => element.id == value);
+             var mapValue =
+                items.firstWhere((element) => element.id == value);
             onChanged(
               value,
               label,

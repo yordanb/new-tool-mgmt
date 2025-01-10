@@ -9,7 +9,8 @@ extension AppQueueExtension on AppQueue {
 extension AppQueueListExtension on List<AppQueue> {
   List<AppQueueEntity> toEntityList() {
     return this
-        .map((model) => AppQueueEntity.fromJson(model.toJson().cleanJson()))
+        .map((model) =>
+            AppQueueEntity.fromJson(model.toJson().cleanJson()))
         .toList();
   }
 

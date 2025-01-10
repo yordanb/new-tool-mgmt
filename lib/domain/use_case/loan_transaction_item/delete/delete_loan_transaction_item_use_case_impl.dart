@@ -1,14 +1,13 @@
 // ignore: unused_import
 import 'package:hyper_supabase/core.dart';
 
-class DeleteLoanTransactionItemUseCaseImpl
-    implements DeleteLoanTransactionItemUseCase {
+class DeleteLoanTransactionItemUseCaseImpl implements DeleteLoanTransactionItemUseCase {
   final LoanTransactionItemRepository repository;
 
   DeleteLoanTransactionItemUseCaseImpl({
     required this.repository,
   });
-
+  
   Future<void> call(int id) async {
     try {
       await repository.delete(

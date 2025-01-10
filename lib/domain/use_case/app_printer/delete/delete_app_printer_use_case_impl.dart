@@ -7,7 +7,7 @@ class DeleteAppPrinterUseCaseImpl implements DeleteAppPrinterUseCase {
   DeleteAppPrinterUseCaseImpl({
     required this.repository,
   });
-
+  
   Future<void> call(int id) async {
     try {
       await repository.delete(

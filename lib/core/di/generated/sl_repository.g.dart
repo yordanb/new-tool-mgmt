@@ -2,86 +2,87 @@
 import 'package:hyper_supabase/core.dart';
 
 void configureRepositoryDependencies() async {
+      
   sl.registerLazySingleton<ApplicationConfigRepository>(
     () => ApplicationConfigRepositoryImpl(
-      remoteDataSource: sl(),
-      localDataSource: sl(),
-      networkManager: sl(),
+    remoteDataSource: sl(),
+localDataSource: sl(),
+networkManager: sl(),
     ),
   );
 
   sl.registerLazySingleton<AppBluetoothRepository>(
     () => AppBluetoothRepositoryImpl(
-      localDataSource: sl(),
+    localDataSource: sl(),
     ),
   );
 
   sl.registerLazySingleton<AppNotificationRepository>(
     () => AppNotificationRepositoryImpl(
-      notificationService: sl(),
+    notificationService: sl(),
     ),
   );
 
   sl.registerLazySingleton<AppPrinterRepository>(
     () => AppPrinterRepositoryImpl(
-      localDataSource: sl(),
+    localDataSource: sl(),
     ),
   );
 
   sl.registerLazySingleton<AppQueueRepository>(
     () => AppQueueRepositoryImpl(
-      localDataSource: sl(),
+    localDataSource: sl(),
     ),
   );
 
   sl.registerLazySingleton<AppSessionRepository>(
     () => AppSessionRepositoryImpl(
-      localDataSource: sl(),
+    localDataSource: sl(),
     ),
   );
 
   sl.registerLazySingleton<AuthRepository>(
     () => AuthRepositoryImpl(
-      authLocalDataSource: sl(),
-      remoteDataSource: sl(),
+    authLocalDataSource: sl(),
+remoteDataSource: sl(),
     ),
   );
 
   sl.registerLazySingleton<LoanTransactionRepository>(
     () => LoanTransactionRepositoryImpl(
-      remoteDataSource: sl(),
-      localDataSource: sl(),
-      networkManager: sl(),
+    remoteDataSource: sl(),
+localDataSource: sl(),
+networkManager: sl(),
     ),
   );
 
   sl.registerLazySingleton<LoanTransactionItemRepository>(
     () => LoanTransactionItemRepositoryImpl(
-      remoteDataSource: sl(),
-      localDataSource: sl(),
-      networkManager: sl(),
+    remoteDataSource: sl(),
+localDataSource: sl(),
+networkManager: sl(),
     ),
   );
 
   sl.registerLazySingleton<PermissionRepository>(
     () => PermissionRepositoryImpl(
-      permissionService: sl(),
+    permissionService: sl(),
     ),
   );
 
   sl.registerLazySingleton<ToolRepository>(
     () => ToolRepositoryImpl(
-      remoteDataSource: sl(),
-      localDataSource: sl(),
-      networkManager: sl(),
+    remoteDataSource: sl(),
+localDataSource: sl(),
+networkManager: sl(),
     ),
   );
 
   sl.registerLazySingleton<UserProfileRepository>(
     () => UserProfileRepositoryImpl(
-      remoteDataSource: sl(),
-      localDataSource: sl(),
-      networkManager: sl(),
+    remoteDataSource: sl(),
+localDataSource: sl(),
+networkManager: sl(),
     ),
   );
 }

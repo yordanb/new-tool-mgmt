@@ -196,7 +196,7 @@ class _LoanTransactionFormViewState extends State<LoanTransactionFormView> {
                                                             onChanged: (value) {
                                                               cubit.updateQty(
                                                                 tool,
-                                                                double.tryParse(
+                                                                int.tryParse(
                                                                         value) ??
                                                                     0,
                                                               );

@@ -17,8 +17,8 @@ class ToolFormCubitImpl extends Cubit<ToolFormState> implements ToolFormCubit {
 
   @override
   void initState({
-    Function? init,
-  }) {
+      Function? init,
+    }) {
     //initState event
     emit(ToolFormState());
     init?.call();
@@ -45,7 +45,8 @@ class ToolFormCubitImpl extends Cubit<ToolFormState> implements ToolFormCubit {
 
     if (state.isEditMode) {
       await getData();
-    } else {
+    }
+    else {
       if (appDevConfig.enableRandomData) await initialRandomValues();
     }
 
@@ -55,7 +56,7 @@ class ToolFormCubitImpl extends Cubit<ToolFormState> implements ToolFormCubit {
 
   Future<void> getData() async {
     if (state.isEditMode == false) return;
-
+      
     state.fullViewState = FullViewState.loading;
     emit(state.copyWith());
 
@@ -63,16 +64,16 @@ class ToolFormCubitImpl extends Cubit<ToolFormState> implements ToolFormCubit {
       id: state.id!,
     );
 
-    if (state.current == null) {
+      if (state.current == null) {
       state.fullViewState = FullViewState.error;
       emit(state.copyWith());
       return;
     }
 
     state.name = state.current!.name;
-    state.description = state.current!.description;
-    state.imageUrl = state.current!.imageUrl;
-    state.createdAt = state.current!.createdAt;
+state.description = state.current!.description;
+state.imageUrl = state.current!.imageUrl;
+state.createdAt = state.current!.createdAt;
 
     state.fullViewState = FullViewState.ready;
     emit(state.copyWith());
@@ -80,9 +81,10 @@ class ToolFormCubitImpl extends Cubit<ToolFormState> implements ToolFormCubit {
 
   Future<void> initialRandomValues() async {
     state.name = r.randomName();
-    state.description = r.randomDescription();
-    state.imageUrl = r.randomImageUrl();
-    state.createdAt = DateTime.now();
+state.description = r.randomDescription();
+state.imageUrl = r.randomImageUrl();
+state.createdAt = DateTime.now();
+
   }
 
   Future<void> create() async {
@@ -93,11 +95,11 @@ class ToolFormCubitImpl extends Cubit<ToolFormState> implements ToolFormCubit {
       await createToolUseCase.call(
         //@BEGIN_FORM_CREATE_VALUES
         name: state.name,
-        description: state.description,
-        imageUrl: state.imageUrl,
+description: state.description,
+imageUrl: state.imageUrl,
         //@END_FORM_CREATE_VALUES
       );
-
+      
       state.viewState = ViewState.success;
       emit(state.copyWith());
     } on Exception catch (_) {
@@ -115,11 +117,11 @@ class ToolFormCubitImpl extends Cubit<ToolFormState> implements ToolFormCubit {
         //@BEGIN_FORM_UPDATE_VALUES
         id: state.id!,
         name: state.name,
-        description: state.description,
-        imageUrl: state.imageUrl,
+description: state.description,
+imageUrl: state.imageUrl,
         //@END_FORM_CREATE_VALUES
       );
-
+      
       state.viewState = ViewState.success;
       emit(state.copyWith());
     } on Exception catch (_) {
@@ -138,3 +140,4 @@ class ToolFormCubitImpl extends Cubit<ToolFormState> implements ToolFormCubit {
     emit(state.copyWith());
   }
 }
+  

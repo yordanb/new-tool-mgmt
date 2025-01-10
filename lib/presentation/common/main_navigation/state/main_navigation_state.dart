@@ -20,10 +20,11 @@ class MainNavigationState {
 
   factory MainNavigationState.fromJson(Map<String, dynamic> json) {
     return MainNavigationState(
-        selectedIndex: json['selected_index'],
-        viewState: json['view_state'],
-        fullViewState: json['full_view_state'],
-        session: AppSessionEntity.fromJson(json['session'] ?? {}));
+      selectedIndex: json['selected_index'],
+      viewState: json['view_state'],
+      fullViewState: json['full_view_state'],
+      session: AppSessionEntity.fromJson(json['session']  ?? {})
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -36,15 +37,17 @@ class MainNavigationState {
   }
 
   //@copyWith
-  MainNavigationState copyWith(
-      {int? selectedIndex,
-      ViewState? viewState,
-      FullViewState? fullViewState,
-      AppSessionEntity? session}) {
+  MainNavigationState copyWith({
+     int? selectedIndex,
+     ViewState? viewState,
+     FullViewState? fullViewState,
+     AppSessionEntity? session
+  }) {
     return MainNavigationState(
-        selectedIndex: selectedIndex ?? this.selectedIndex,
-        viewState: viewState ?? this.viewState,
-        fullViewState: fullViewState ?? this.fullViewState,
-        session: session ?? this.session);
+      selectedIndex: selectedIndex ?? this.selectedIndex,
+      viewState: viewState ?? this.viewState,
+      fullViewState: fullViewState ?? this.fullViewState,
+      session: session ?? this.session
+    );
   }
 }

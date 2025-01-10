@@ -2,5 +2,7 @@
 import 'package:hyper_supabase/core.dart';
 
 abstract class GetApplicationConfigUseCase {
-  Future<ApplicationConfigEntity?> call({required int id});
+  Future<ApplicationConfigEntity?> call({
+    required int id
+  });
 }

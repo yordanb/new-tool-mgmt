@@ -22,11 +22,12 @@ class RegisterState {
 
   factory RegisterState.fromJson(Map<String, dynamic> json) {
     return RegisterState(
-        viewState: json['view_state'],
-        fullViewState: json['full_view_state'],
-        name: json['name'],
-        email: json['email'],
-        password: json['password']);
+      viewState: json['view_state'],
+      fullViewState: json['full_view_state'],
+      name: json['name'],
+      email: json['email'],
+      password: json['password']
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -40,17 +41,19 @@ class RegisterState {
   }
 
   //@copyWith
-  RegisterState copyWith(
-      {ViewState? viewState,
-      FullViewState? fullViewState,
-      String? name,
-      String? email,
-      String? password}) {
+  RegisterState copyWith({
+     ViewState? viewState,
+     FullViewState? fullViewState,
+     String? name,
+     String? email,
+     String? password
+  }) {
     return RegisterState(
-        viewState: viewState ?? this.viewState,
-        fullViewState: fullViewState ?? this.fullViewState,
-        name: name ?? this.name,
-        email: email ?? this.email,
-        password: password ?? this.password);
+      viewState: viewState ?? this.viewState,
+      fullViewState: fullViewState ?? this.fullViewState,
+      name: name ?? this.name,
+      email: email ?? this.email,
+      password: password ?? this.password
+    );
   }
 }

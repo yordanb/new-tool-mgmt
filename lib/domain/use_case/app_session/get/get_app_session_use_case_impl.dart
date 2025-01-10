@@ -7,11 +7,14 @@ class GetAppSessionUseCaseImpl implements GetAppSessionUseCase {
   GetAppSessionUseCaseImpl({
     required this.repository,
   });
-
-  Future<AppSessionEntity?> call({required int id}) async {
+  
+  Future<AppSessionEntity?> call({
+    required int id
+  }) async {
     try {
       return await repository.get(id);
-    } on Exception catch (err) {
+    }
+    on Exception catch (err) {
       throw Exception(err);
     }
   }

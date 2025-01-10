@@ -1,7 +1,6 @@
 import 'package:hyper_supabase/core.dart';
 
-class ApplicationConfigListCubitImpl extends Cubit<ApplicationConfigListState>
-    implements ApplicationConfigListCubit {
+class ApplicationConfigListCubitImpl extends Cubit<ApplicationConfigListState> implements ApplicationConfigListCubit {
   final GetCurrentAppSessionUseCase getCurrentAppSessionUseCase;
   final GetAllApplicationConfigUseCase getAllApplicationConfigUseCase;
   final DeleteApplicationConfigUseCase deleteApplicationConfigUseCase;
@@ -16,8 +15,8 @@ class ApplicationConfigListCubitImpl extends Cubit<ApplicationConfigListState>
 
   @override
   void initState({
-    Function? init,
-  }) {
+      Function? init,
+    }) {
     //initState event
     emit(ApplicationConfigListState());
     init?.call();
@@ -34,6 +33,7 @@ class ApplicationConfigListCubitImpl extends Cubit<ApplicationConfigListState>
     //ready event
   }
 
+  
   void initializeData() async {
     state.fullViewState = FullViewState.loading;
     emit(state.copyWith());
@@ -45,6 +45,7 @@ class ApplicationConfigListCubitImpl extends Cubit<ApplicationConfigListState>
     emit(state.copyWith());
   }
 
+
   Future getData() async {
     printg("[Pagination] Load more.. ${state.page}");
     if (state.page == 0) {
@@ -54,15 +55,15 @@ class ApplicationConfigListCubitImpl extends Cubit<ApplicationConfigListState>
     final newItems = await getAllApplicationConfigUseCase.call(
       //::FILTER_SNAPSHOT_STATE_PARAMS
       id: state.id,
-      appMode: state.appMode,
-      companyName: state.companyName,
-      address: state.address,
-      phoneNumber: state.phoneNumber,
-      idOperatorAndValue: state.idOperatorAndValue,
-      createdAtFrom: state.createdAtFrom,
-      createdAtTo: state.createdAtTo,
-      updatedAtFrom: state.updatedAtFrom,
-      updatedAtTo: state.updatedAtTo,
+appMode: state.appMode,
+companyName: state.companyName,
+address: state.address,
+phoneNumber: state.phoneNumber,
+idOperatorAndValue: state.idOperatorAndValue,
+createdAtFrom: state.createdAtFrom,
+createdAtTo: state.createdAtTo,
+updatedAtFrom: state.updatedAtFrom,
+updatedAtTo: state.updatedAtTo,
       page: state.page,
       limit: state.limit,
     );
@@ -77,6 +78,7 @@ class ApplicationConfigListCubitImpl extends Cubit<ApplicationConfigListState>
       ...newItems,
     ];
   }
+
 
   Future<void> delete(int id) async {
     try {
@@ -114,17 +116,17 @@ class ApplicationConfigListCubitImpl extends Cubit<ApplicationConfigListState>
   bool get isFilterMode {
     List values = [
       //state.id,
-      state.appMode,
-      state.companyName,
-      state.address,
-      state.phoneNumber,
-      state.createdAt,
-      state.updatedAt,
-      state.idOperatorAndValue,
-      state.createdAtFrom,
-      state.createdAtTo,
-      state.updatedAtFrom,
-      state.updatedAtTo,
+state.appMode,
+state.companyName,
+state.address,
+state.phoneNumber,
+state.createdAt,
+state.updatedAt,
+state.idOperatorAndValue,
+state.createdAtFrom,
+state.createdAtTo,
+state.updatedAtFrom,
+state.updatedAtTo,
     ];
     return values.indexWhere((i) =>
             (i != null && i != "") ||
@@ -135,17 +137,17 @@ class ApplicationConfigListCubitImpl extends Cubit<ApplicationConfigListState>
 
   void resetFilter() {
     //state.id = null;
-    state.appMode = null;
-    state.companyName = null;
-    state.address = null;
-    state.phoneNumber = null;
-    state.createdAt = null;
-    state.updatedAt = null;
-    state.idOperatorAndValue = null;
-    state.createdAtFrom = null;
-    state.createdAtTo = null;
-    state.updatedAtFrom = null;
-    state.updatedAtTo = null;
+state.appMode = null;
+state.companyName = null;
+state.address = null;
+state.phoneNumber = null;
+state.createdAt = null;
+state.updatedAt = null;
+state.idOperatorAndValue = null;
+state.createdAtFrom = null;
+state.createdAtTo = null;
+state.updatedAtFrom = null;
+state.updatedAtTo = null;
     reload();
   }
 
@@ -186,3 +188,4 @@ class ApplicationConfigListCubitImpl extends Cubit<ApplicationConfigListState>
     emit(state.copyWith());
   }
 }
+  

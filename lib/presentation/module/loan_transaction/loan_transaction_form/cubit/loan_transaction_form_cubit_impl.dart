@@ -279,7 +279,7 @@ class LoanTransactionFormCubitImpl extends Cubit<LoanTransactionFormState>
     emit(state.copyWith());
   }
 
-  double getQty(ToolEntity item) {
+  int getQty(ToolEntity item) {
     final index =
         state.loanTransactionItems.indexWhere((e) => e.toolId == item.id);
     if (index == -1) return 0;
@@ -312,7 +312,7 @@ class LoanTransactionFormCubitImpl extends Cubit<LoanTransactionFormState>
     emit(state.copyWith());
   }
 
-  void updateQty(ToolEntity item, double value) {
+  void updateQty(ToolEntity item, int value) {
     addItem(item);
     final index =
         state.loanTransactionItems.indexWhere((e) => e.toolId == item.id);

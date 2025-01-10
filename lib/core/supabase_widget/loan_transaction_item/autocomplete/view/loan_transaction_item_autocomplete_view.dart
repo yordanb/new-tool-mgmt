@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hyper_supabase/core.dart';
 
+
 class LoanTransactionItemAutocompleteField extends StatelessWidget {
   final String label;
   final dynamic value;
@@ -23,8 +24,7 @@ class LoanTransactionItemAutocompleteField extends StatelessWidget {
       stream: sl<SnapshotLoanTransactionItemUseCase>().call(),
       shrinkWrap: true,
       itemsBuilder: (obj) {
-        List<LoanTransactionItemEntity> items =
-            obj as List<LoanTransactionItemEntity>;
+        List<LoanTransactionItemEntity> items = obj as List<LoanTransactionItemEntity>;
 
         return QAutoComplete(
           label: label,
@@ -47,8 +47,9 @@ class LoanTransactionItemAutocompleteField extends StatelessWidget {
               );
               return;
             }
-
-            var mapValue = items.firstWhere((element) => element.id == value);
+            
+             var mapValue =
+                items.firstWhere((element) => element.id == value);
             onChanged(
               value,
               label,

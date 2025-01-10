@@ -1,25 +1,16 @@
 import 'package:hyper_supabase/core.dart';
 
-class ApplicationConfigLocalDataSourceImpl
-    implements ApplicationConfigLocalDataSource {
+class ApplicationConfigLocalDataSourceImpl implements ApplicationConfigLocalDataSource {
   final SharedPreferences prefs;
 
   ApplicationConfigLocalDataSourceImpl({
     required this.prefs,
   });
 
-  Future<int> count({
-    int? id,
-    String? idOperatorAndValue,
-    String? appMode,
-    String? companyName,
-    String? address,
-    String? phoneNumber,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
-  }) async {
+  Future<int> count({int? id,
+String? idOperatorAndValue, String? appMode, String? companyName, String? address, String? phoneNumber, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,}) async {
     final jsonList = await prefs.getString('application_config') ?? "[]";
     final values = jsonDecode(jsonList);
     return values.length;
@@ -27,15 +18,9 @@ class ApplicationConfigLocalDataSourceImpl
 
   Future<List<ApplicationConfig>> getAll({
     int? id,
-    String? idOperatorAndValue,
-    String? appMode,
-    String? companyName,
-    String? address,
-    String? phoneNumber,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
+String? idOperatorAndValue, String? appMode, String? companyName, String? address, String? phoneNumber, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,
     int limit = 10,
     int page = 1,
   }) async {
@@ -58,21 +43,18 @@ class ApplicationConfigLocalDataSourceImpl
     return modelValues[index];
   }
 
-  Future<ApplicationConfig?> create({
-    int? id,
-    String? appMode,
-    String? companyName,
-    String? address,
-    String? phoneNumber,
-    DateTime? createdAt,
-  }) async {
+  Future<ApplicationConfig?> create({int? id, String? appMode,
+String? companyName,
+String? address,
+String? phoneNumber,
+DateTime? createdAt,}) async {
     final modelValues = await getAll();
     final newModel = ApplicationConfig(
       id: id,
-      appMode: appMode,
-      companyName: companyName,
-      address: address,
-      phoneNumber: phoneNumber,
+      appMode:appMode,
+companyName:companyName,
+address:address,
+phoneNumber:phoneNumber,
       createdAt: createdAt ?? DateTime.now(),
     );
     modelValues.add(newModel);
@@ -81,14 +63,12 @@ class ApplicationConfigLocalDataSourceImpl
     return newModel;
   }
 
-  Future<void> update({
-    required int id,
-    String? appMode,
-    String? companyName,
-    String? address,
-    String? phoneNumber,
-    DateTime? updatedAt,
-  }) async {
+  Future<void> update({required int id,
+String? appMode,
+String? companyName,
+String? address,
+String? phoneNumber,
+DateTime? updatedAt,}) async {
     final modelValues = await getAll();
     var index = modelValues.indexWhere((element) => element.id == id);
     if (index == -1) {
@@ -96,10 +76,10 @@ class ApplicationConfigLocalDataSourceImpl
     }
     modelValues[index] = modelValues[index].copyWith(
       id: id,
-      appMode: appMode,
-      companyName: companyName,
-      address: address,
-      phoneNumber: phoneNumber,
+      appMode:appMode,
+companyName:companyName,
+address:address,
+phoneNumber:phoneNumber,
       updatedAt: DateTime.now(),
     );
 
@@ -169,4 +149,5 @@ class ApplicationConfigLocalDataSourceImpl
   Future<void> stopQueue() async {
     await prefs.setBool('application_config_queued_tasks_running', false);
   }
+
 }

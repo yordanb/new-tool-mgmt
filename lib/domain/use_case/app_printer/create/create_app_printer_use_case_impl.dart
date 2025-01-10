@@ -7,15 +7,14 @@ class CreateAppPrinterUseCaseImpl implements CreateAppPrinterUseCase {
   CreateAppPrinterUseCaseImpl({
     required this.repository,
   });
-
+  
   Future<AppPrinterEntity?> call({
     String? message,
-    DateTime? createdAt,
+DateTime? createdAt,
   }) async {
     try {
       final response = await repository.create(
-        message: message,
-        createdAt: createdAt,
+        message: message,createdAt: createdAt,
       );
       return response;
     } on Exception catch (err) {

@@ -21,8 +21,7 @@ class LoanTransactionItemSelectorField extends StatelessWidget {
       stream: sl<SnapshotLoanTransactionItemUseCase>().call(),
       shrinkWrap: true,
       itemsBuilder: (obj) {
-        List<LoanTransactionItemEntity> items =
-            obj as List<LoanTransactionItemEntity>;
+        List<LoanTransactionItemEntity> items = obj as List<LoanTransactionItemEntity>;
 
         return QCategoryPicker(
           validator: validator,
@@ -38,7 +37,7 @@ class LoanTransactionItemSelectorField extends StatelessWidget {
             onChanged(index, value, label, item);
           },
         );
-      },
+      },  
     );
   }
 }

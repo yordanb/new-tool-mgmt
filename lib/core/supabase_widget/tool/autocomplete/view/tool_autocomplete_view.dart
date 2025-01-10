@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hyper_supabase/core.dart';
 
+
 class ToolAutocompleteField extends StatelessWidget {
   final String label;
   final dynamic value;
@@ -46,8 +47,9 @@ class ToolAutocompleteField extends StatelessWidget {
               );
               return;
             }
-
-            var mapValue = items.firstWhere((element) => element.id == value);
+            
+             var mapValue =
+                items.firstWhere((element) => element.id == value);
             onChanged(
               value,
               label,

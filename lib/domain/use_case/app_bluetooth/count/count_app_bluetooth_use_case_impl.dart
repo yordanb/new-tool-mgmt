@@ -7,26 +7,16 @@ class CountAppBluetoothUseCaseImpl implements CountAppBluetoothUseCase {
   CountAppBluetoothUseCaseImpl({
     required this.repository,
   });
-
-  Future<int> call({
-    int? id,
-    String? idOperatorAndValue,
-    String? deviceName,
-    String? deviceAddress,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
-  }) async {
+  
+  Future<int> call({int? id,
+String? idOperatorAndValue, String? deviceName, String? deviceAddress, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,}) async {
     return await repository.count(
       id: id,
-      idOperatorAndValue: idOperatorAndValue,
-      deviceName: deviceName,
-      deviceAddress: deviceAddress,
-      createdAtFrom: createdAtFrom,
-      createdAtTo: createdAtTo,
-      updatedAtFrom: updatedAtFrom,
-      updatedAtTo: updatedAtTo,
+idOperatorAndValue: idOperatorAndValue, deviceName: deviceName, deviceAddress: deviceAddress, createdAtFrom: createdAtFrom,
+createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
+updatedAtTo: updatedAtTo,
     );
   }
 }

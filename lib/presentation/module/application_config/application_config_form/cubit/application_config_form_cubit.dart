@@ -1,7 +1,6 @@
 import 'package:hyper_supabase/core.dart';
 
-abstract class ApplicationConfigFormCubit
-    extends Cubit<ApplicationConfigFormState> {
+abstract class ApplicationConfigFormCubit  extends Cubit<ApplicationConfigFormState> {
   ApplicationConfigFormCubit(ApplicationConfigFormState state) : super(state);
 
   void initState({
@@ -19,3 +18,4 @@ abstract class ApplicationConfigFormCubit
   Future<void> update();
   Future<void> refresh();
 }
+  

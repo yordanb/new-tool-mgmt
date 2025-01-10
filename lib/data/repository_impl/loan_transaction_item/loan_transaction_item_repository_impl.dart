@@ -1,7 +1,6 @@
 import 'package:hyper_supabase/core.dart';
 
-class LoanTransactionItemRepositoryImpl
-    implements LoanTransactionItemRepository {
+class LoanTransactionItemRepositoryImpl implements LoanTransactionItemRepository {
   final LoanTransactionItemRemoteDataSource remoteDataSource;
   final LoanTransactionItemLocalDataSource localDataSource;
   final NetworkManager networkManager;
@@ -11,78 +10,48 @@ class LoanTransactionItemRepositoryImpl
     required this.localDataSource,
     required this.networkManager,
   });
-
-  Future<int> count({
-    int? id,
-    String? idOperatorAndValue,
-    int? loanTransactionId,
-    String? loanTransactionIdOperatorAndValue,
-    int? toolId,
-    String? toolIdOperatorAndValue,
-    double? qty,
-    String? qtyOperatorAndValue,
-    String? memo,
-    String? status,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
-  }) async {
+  
+  Future<int> count({int? id,
+String? idOperatorAndValue, int? loanTransactionId,
+String? loanTransactionIdOperatorAndValue, int? toolId,
+String? toolIdOperatorAndValue, int? qty,
+String? qtyOperatorAndValue, String? memo, String? status, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,}) async {
     //@ OFFLINE MODE HANDLER
     if (await networkManager.isOffline()) {
       printo("OfflineMode: LoanTransactionItemRepositoryImpl count");
       return await localDataSource.count(
         id: id,
-        idOperatorAndValue: idOperatorAndValue,
-        loanTransactionId: loanTransactionId,
-        loanTransactionIdOperatorAndValue: loanTransactionIdOperatorAndValue,
-        toolId: toolId,
-        toolIdOperatorAndValue: toolIdOperatorAndValue,
-        qty: qty,
-        qtyOperatorAndValue: qtyOperatorAndValue,
-        memo: memo,
-        status: status,
-        createdAtFrom: createdAtFrom,
-        createdAtTo: createdAtTo,
-        updatedAtFrom: updatedAtFrom,
-        updatedAtTo: updatedAtTo,
+idOperatorAndValue: idOperatorAndValue, loanTransactionId: loanTransactionId,
+loanTransactionIdOperatorAndValue: loanTransactionIdOperatorAndValue, toolId: toolId,
+toolIdOperatorAndValue: toolIdOperatorAndValue, qty: qty,
+qtyOperatorAndValue: qtyOperatorAndValue, memo: memo, status: status, createdAtFrom: createdAtFrom,
+createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
+updatedAtTo: updatedAtTo,
       );
     }
     //:@ OFFLINE MODE HANDLER
 
     return await remoteDataSource.count(
       id: id,
-      idOperatorAndValue: idOperatorAndValue,
-      loanTransactionId: loanTransactionId,
-      loanTransactionIdOperatorAndValue: loanTransactionIdOperatorAndValue,
-      toolId: toolId,
-      toolIdOperatorAndValue: toolIdOperatorAndValue,
-      qty: qty,
-      qtyOperatorAndValue: qtyOperatorAndValue,
-      memo: memo,
-      status: status,
-      createdAtFrom: createdAtFrom,
-      createdAtTo: createdAtTo,
-      updatedAtFrom: updatedAtFrom,
-      updatedAtTo: updatedAtTo,
+idOperatorAndValue: idOperatorAndValue, loanTransactionId: loanTransactionId,
+loanTransactionIdOperatorAndValue: loanTransactionIdOperatorAndValue, toolId: toolId,
+toolIdOperatorAndValue: toolIdOperatorAndValue, qty: qty,
+qtyOperatorAndValue: qtyOperatorAndValue, memo: memo, status: status, createdAtFrom: createdAtFrom,
+createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
+updatedAtTo: updatedAtTo,
     );
   }
 
   Future<List<LoanTransactionItemEntity>> getAll({
     int? id,
-    String? idOperatorAndValue,
-    int? loanTransactionId,
-    String? loanTransactionIdOperatorAndValue,
-    int? toolId,
-    String? toolIdOperatorAndValue,
-    double? qty,
-    String? qtyOperatorAndValue,
-    String? memo,
-    String? status,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
+String? idOperatorAndValue, int? loanTransactionId,
+String? loanTransactionIdOperatorAndValue, int? toolId,
+String? toolIdOperatorAndValue, int? qty,
+String? qtyOperatorAndValue, String? memo, String? status, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,
     int limit = 10,
     int page = 1,
   }) async {
@@ -91,19 +60,12 @@ class LoanTransactionItemRepositoryImpl
       printo("OfflineMode: LoanTransactionItemRepositoryImpl getAll");
       final models = await localDataSource.getAll(
         id: id,
-        idOperatorAndValue: idOperatorAndValue,
-        loanTransactionId: loanTransactionId,
-        loanTransactionIdOperatorAndValue: loanTransactionIdOperatorAndValue,
-        toolId: toolId,
-        toolIdOperatorAndValue: toolIdOperatorAndValue,
-        qty: qty,
-        qtyOperatorAndValue: qtyOperatorAndValue,
-        memo: memo,
-        status: status,
-        createdAtFrom: createdAtFrom,
-        createdAtTo: createdAtTo,
-        updatedAtFrom: updatedAtFrom,
-        updatedAtTo: updatedAtTo,
+idOperatorAndValue: idOperatorAndValue, loanTransactionId: loanTransactionId,
+loanTransactionIdOperatorAndValue: loanTransactionIdOperatorAndValue, toolId: toolId,
+toolIdOperatorAndValue: toolIdOperatorAndValue, qty: qty,
+qtyOperatorAndValue: qtyOperatorAndValue, memo: memo, status: status, createdAtFrom: createdAtFrom,
+createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
+updatedAtTo: updatedAtTo,
         limit: limit,
         page: page,
       );
@@ -114,19 +76,12 @@ class LoanTransactionItemRepositoryImpl
 
     final models = await remoteDataSource.getAll(
       id: id,
-      idOperatorAndValue: idOperatorAndValue,
-      loanTransactionId: loanTransactionId,
-      loanTransactionIdOperatorAndValue: loanTransactionIdOperatorAndValue,
-      toolId: toolId,
-      toolIdOperatorAndValue: toolIdOperatorAndValue,
-      qty: qty,
-      qtyOperatorAndValue: qtyOperatorAndValue,
-      memo: memo,
-      status: status,
-      createdAtFrom: createdAtFrom,
-      createdAtTo: createdAtTo,
-      updatedAtFrom: updatedAtFrom,
-      updatedAtTo: updatedAtTo,
+idOperatorAndValue: idOperatorAndValue, loanTransactionId: loanTransactionId,
+loanTransactionIdOperatorAndValue: loanTransactionIdOperatorAndValue, toolId: toolId,
+toolIdOperatorAndValue: toolIdOperatorAndValue, qty: qty,
+qtyOperatorAndValue: qtyOperatorAndValue, memo: memo, status: status, createdAtFrom: createdAtFrom,
+createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
+updatedAtTo: updatedAtTo,
       limit: limit,
       page: page,
     );
@@ -136,19 +91,12 @@ class LoanTransactionItemRepositoryImpl
   //@ SNAPSHOT
   Stream<List<LoanTransactionItemEntity>> snapshot({
     int? id,
-    String? idOperatorAndValue,
-    int? loanTransactionId,
-    String? loanTransactionIdOperatorAndValue,
-    int? toolId,
-    String? toolIdOperatorAndValue,
-    double? qty,
-    String? qtyOperatorAndValue,
-    String? memo,
-    String? status,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
+String? idOperatorAndValue, int? loanTransactionId,
+String? loanTransactionIdOperatorAndValue, int? toolId,
+String? toolIdOperatorAndValue, int? qty,
+String? qtyOperatorAndValue, String? memo, String? status, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,
     int limit = 10,
     int page = 1,
   }) async* {
@@ -157,19 +105,12 @@ class LoanTransactionItemRepositoryImpl
       print("OfflineMode: LoanTransactionItemRepositoryImpl snapshot");
       final localData = await localDataSource.getAll(
         id: id,
-        idOperatorAndValue: idOperatorAndValue,
-        loanTransactionId: loanTransactionId,
-        loanTransactionIdOperatorAndValue: loanTransactionIdOperatorAndValue,
-        toolId: toolId,
-        toolIdOperatorAndValue: toolIdOperatorAndValue,
-        qty: qty,
-        qtyOperatorAndValue: qtyOperatorAndValue,
-        memo: memo,
-        status: status,
-        createdAtFrom: createdAtFrom,
-        createdAtTo: createdAtTo,
-        updatedAtFrom: updatedAtFrom,
-        updatedAtTo: updatedAtTo,
+idOperatorAndValue: idOperatorAndValue, loanTransactionId: loanTransactionId,
+loanTransactionIdOperatorAndValue: loanTransactionIdOperatorAndValue, toolId: toolId,
+toolIdOperatorAndValue: toolIdOperatorAndValue, qty: qty,
+qtyOperatorAndValue: qtyOperatorAndValue, memo: memo, status: status, createdAtFrom: createdAtFrom,
+createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
+updatedAtTo: updatedAtTo,
         limit: limit,
         page: page,
       );
@@ -179,43 +120,31 @@ class LoanTransactionItemRepositoryImpl
       // Online mode: Gunakan stream dari remoteDataSource
       var stream = remoteDataSource.snapshot(
         id: id,
-        idOperatorAndValue: idOperatorAndValue,
-        loanTransactionId: loanTransactionId,
-        loanTransactionIdOperatorAndValue: loanTransactionIdOperatorAndValue,
-        toolId: toolId,
-        toolIdOperatorAndValue: toolIdOperatorAndValue,
-        qty: qty,
-        qtyOperatorAndValue: qtyOperatorAndValue,
-        memo: memo,
-        status: status,
-        createdAtFrom: createdAtFrom,
-        createdAtTo: createdAtTo,
-        updatedAtFrom: updatedAtFrom,
-        updatedAtTo: updatedAtTo,
+idOperatorAndValue: idOperatorAndValue, loanTransactionId: loanTransactionId,
+loanTransactionIdOperatorAndValue: loanTransactionIdOperatorAndValue, toolId: toolId,
+toolIdOperatorAndValue: toolIdOperatorAndValue, qty: qty,
+qtyOperatorAndValue: qtyOperatorAndValue, memo: memo, status: status, createdAtFrom: createdAtFrom,
+createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
+updatedAtTo: updatedAtTo,
         limit: limit,
         page: page,
       );
       List<LoanTransactionItem> models = [];
       await for (List<Map<String, dynamic>> datas in stream) {
-        for (var data in datas) {
-          models.add(LoanTransactionItem.fromJson(data));
-        }
-
-        await localDataSource.deleteAll();
-        for (var model in models) {
-          await localDataSource.create(
-            id: model.id!,
-            loanTransactionId: model.loanTransactionId,
-            toolId: model.toolId,
-            qty: model.qty,
-            memo: model.memo,
-            status: model.status,
-            createdAt: DateTime.now(),
-          );
-        }
-
-        yield models.toEntityList();
+      for (var data in datas) {
+        models.add(LoanTransactionItem.fromJson(data));
       }
+
+      await localDataSource.deleteAll();
+      for (var model in models) {
+        await localDataSource.create(
+          id: model.id!,
+          loanTransactionId: model.loanTransactionId,toolId: model.toolId,qty: model.qty,memo: model.memo,status: model.status,createdAt: DateTime.now(),
+        );
+      }
+      
+      yield models.toEntityList();
+    }
     }
   }
   //:@ SNAPSHOT
@@ -226,26 +155,27 @@ class LoanTransactionItemRepositoryImpl
       if (await networkManager.isOffline()) {
         printo("OfflineMode: LoanTransactionItemRepositoryImpl getByID $id");
         final model = await localDataSource.get(id);
-        if (model == null) return null;
+        if(model==null) return null;
         return model.toEntity();
       }
       //:@ OFFLINE MODE HANDLER
-
+      
       final model = await remoteDataSource.get(id);
       if (model == null) return null;
       return model.toEntity();
-    } on Exception catch (err) {
+    }
+    on Exception catch (err) {
       throw Exception(err);
     }
   }
 
   Future<LoanTransactionItemEntity?> create({
     int? loanTransactionId,
-    int? toolId,
-    double? qty,
-    String? memo,
-    String? status,
-    DateTime? createdAt,
+int? toolId,
+int? qty,
+String? memo,
+String? status,
+DateTime? createdAt,
   }) async {
     try {
       //@ OFFLINE MODE HANDLER
@@ -253,30 +183,21 @@ class LoanTransactionItemRepositoryImpl
         printo("OfflineMode: LoanTransactionItemRepositoryImpl create");
         final model = await localDataSource.create(
           id: -1,
-          loanTransactionId: loanTransactionId,
-          toolId: toolId,
-          qty: qty,
-          memo: memo,
-          status: status,
-          createdAt: createdAt,
+          loanTransactionId: loanTransactionId,toolId: toolId,qty: qty,memo: memo,status: status,createdAt: createdAt,
         );
 
         await localDataSource.createQueue(
           queueAction: QueueAction.create,
           data: model!,
         );
-
+        
         return model.toEntity();
       }
       //:@ OFFLINE MODE HANDLER
-
+      
       final model = await remoteDataSource.create(
-        loanTransactionId: loanTransactionId,
-        toolId: toolId,
-        qty: qty,
-        memo: memo,
-        status: status,
-        createdAt: createdAt,
+        
+        loanTransactionId: loanTransactionId,toolId: toolId,qty: qty,memo: memo,status: status,createdAt: createdAt,
       );
       return model!.toEntity();
     } on Exception catch (err) {
@@ -286,25 +207,19 @@ class LoanTransactionItemRepositoryImpl
 
   Future<void> update({
     required int id,
-    int? loanTransactionId,
-    int? toolId,
-    double? qty,
-    String? memo,
-    String? status,
-    DateTime? updatedAt,
-  }) async {
+int? loanTransactionId,
+int? toolId,
+int? qty,
+String? memo,
+String? status,
+DateTime? updatedAt,
+  }) async { 
     try {
       //@ OFFLINE MODE HANDLER
       if (await networkManager.isOffline()) {
         printo("OfflineMode: LoanTransactionItemRepositoryImpl update $id");
         await localDataSource.update(
-          id: id,
-          loanTransactionId: loanTransactionId,
-          toolId: toolId,
-          qty: qty,
-          memo: memo,
-          status: status,
-          updatedAt: updatedAt,
+          id: id,loanTransactionId: loanTransactionId,toolId: toolId,qty: qty,memo: memo,status: status,updatedAt: updatedAt,
         );
 
         var model = await localDataSource.get(id);
@@ -316,15 +231,9 @@ class LoanTransactionItemRepositoryImpl
         return;
       }
       //:@ OFFLINE MODE HANDLER
-
+      
       await remoteDataSource.update(
-        id: id,
-        loanTransactionId: loanTransactionId,
-        toolId: toolId,
-        qty: qty,
-        memo: memo,
-        status: status,
-        updatedAt: updatedAt,
+        id: id,loanTransactionId: loanTransactionId,toolId: toolId,qty: qty,memo: memo,status: status,updatedAt: updatedAt,
       );
     } on Exception catch (err) {
       throw Exception(err);
@@ -335,7 +244,7 @@ class LoanTransactionItemRepositoryImpl
     try {
       //@ OFFLINE MODE HANDLER
       if (await networkManager.isOffline()) {
-        printo("OfflineMode: LoanTransactionItemRepositoryImpl delete $id");
+         printo("OfflineMode: LoanTransactionItemRepositoryImpl delete $id");
 
         var model = await localDataSource.get(
           id,
@@ -349,11 +258,11 @@ class LoanTransactionItemRepositoryImpl
           queueAction: QueueAction.delete,
           data: model!,
         );
-
+        
         return;
       }
       //:@ OFFLINE MODE HANDLER
-
+      
       await remoteDataSource.delete(
         id,
       );
@@ -398,23 +307,12 @@ class LoanTransactionItemRepositoryImpl
         switch (action) {
           case 'create':
             await remoteDataSource.create(
-              loanTransactionId: data.loanTransactionId,
-              toolId: data.toolId,
-              qty: data.qty,
-              memo: data.memo,
-              status: data.status,
-              createdAt: data.createdAt,
+              loanTransactionId: data.loanTransactionId,toolId: data.toolId,qty: data.qty,memo: data.memo,status: data.status,createdAt: data.createdAt,
             );
             break;
           case 'update':
             await remoteDataSource.update(
-              id: data.id!,
-              loanTransactionId: data.loanTransactionId,
-              toolId: data.toolId,
-              qty: data.qty,
-              memo: data.memo,
-              status: data.status,
-              updatedAt: data.updatedAt,
+              id: data.id!,loanTransactionId: data.loanTransactionId,toolId: data.toolId,qty: data.qty,memo: data.memo,status: data.status,updatedAt: data.updatedAt,
             );
             break;
           case 'delete':

@@ -48,26 +48,25 @@ class LoanTransactionListState {
 
   factory LoanTransactionListState.fromJson(Map<String, dynamic> json) {
     return LoanTransactionListState(
-        fullViewState: json['full_view_state'],
-        viewState: json['view_state'],
-        listViewItemState: json['list_view_item_state'],
-        page: json['page'],
-        limit: json['limit'],
-        session: AppSessionEntity.fromJson(json['session'] ?? {}),
-        items: List<LoanTransactionEntity>.from((json['items'])
-            .map((model) => LoanTransactionEntity.fromJson(model))),
-        id: json['id'],
-        status: json['status'],
-        userProfileId: json['user_profile_id'],
-        createdAt: DateTime.tryParse(json['created_at'].toString()),
-        updatedAt: DateTime.tryParse(json['updated_at'].toString()),
-        idOperatorAndValue: json['id_operator_and_value'],
-        userProfileIdOperatorAndValue:
-            json['user_profile_id_operator_and_value'],
-        createdAtFrom: DateTime.tryParse(json['created_at_from'].toString()),
-        createdAtTo: DateTime.tryParse(json['created_at_to'].toString()),
-        updatedAtFrom: DateTime.tryParse(json['updated_at_from'].toString()),
-        updatedAtTo: DateTime.tryParse(json['updated_at_to'].toString()));
+      fullViewState: json['full_view_state'],
+      viewState: json['view_state'],
+      listViewItemState: json['list_view_item_state'],
+      page: json['page'],
+      limit: json['limit'],
+      session: AppSessionEntity.fromJson(json['session']  ?? {}),
+      items: List<LoanTransactionEntity>.from((json['items'] ).map((model) => LoanTransactionEntity.fromJson(model))),
+      id: json['id'],
+      status: json['status'],
+      userProfileId: json['user_profile_id'],
+      createdAt: DateTime.tryParse(json['created_at'].toString()),
+      updatedAt: DateTime.tryParse(json['updated_at'].toString()),
+      idOperatorAndValue: json['id_operator_and_value'],
+      userProfileIdOperatorAndValue: json['user_profile_id_operator_and_value'],
+      createdAtFrom: DateTime.tryParse(json['created_at_from'].toString()),
+      createdAtTo: DateTime.tryParse(json['created_at_to'].toString()),
+      updatedAtFrom: DateTime.tryParse(json['updated_at_from'].toString()),
+      updatedAtTo: DateTime.tryParse(json['updated_at_to'].toString())
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -94,44 +93,45 @@ class LoanTransactionListState {
   }
 
   //@copyWith
-  LoanTransactionListState copyWith(
-      {FullViewState? fullViewState,
-      ViewState? viewState,
-      ListViewItemState? listViewItemState,
-      int? page,
-      int? limit,
-      AppSessionEntity? session,
-      List<LoanTransactionEntity>? items,
-      int? id,
-      String? status,
-      int? userProfileId,
-      DateTime? createdAt,
-      DateTime? updatedAt,
-      String? idOperatorAndValue,
-      String? userProfileIdOperatorAndValue,
-      DateTime? createdAtFrom,
-      DateTime? createdAtTo,
-      DateTime? updatedAtFrom,
-      DateTime? updatedAtTo}) {
+  LoanTransactionListState copyWith({
+     FullViewState? fullViewState,
+     ViewState? viewState,
+     ListViewItemState? listViewItemState,
+     int? page,
+     int? limit,
+     AppSessionEntity? session,
+     List<LoanTransactionEntity>? items,
+     int? id,
+     String? status,
+     int? userProfileId,
+     DateTime? createdAt,
+     DateTime? updatedAt,
+     String? idOperatorAndValue,
+     String? userProfileIdOperatorAndValue,
+     DateTime? createdAtFrom,
+     DateTime? createdAtTo,
+     DateTime? updatedAtFrom,
+     DateTime? updatedAtTo
+  }) {
     return LoanTransactionListState(
-        fullViewState: fullViewState ?? this.fullViewState,
-        viewState: viewState ?? this.viewState,
-        listViewItemState: listViewItemState ?? this.listViewItemState,
-        page: page ?? this.page,
-        limit: limit ?? this.limit,
-        session: session ?? this.session,
-        items: items ?? this.items,
-        id: id ?? this.id,
-        status: status ?? this.status,
-        userProfileId: userProfileId ?? this.userProfileId,
-        createdAt: createdAt ?? this.createdAt,
-        updatedAt: updatedAt ?? this.updatedAt,
-        idOperatorAndValue: idOperatorAndValue ?? this.idOperatorAndValue,
-        userProfileIdOperatorAndValue:
-            userProfileIdOperatorAndValue ?? this.userProfileIdOperatorAndValue,
-        createdAtFrom: createdAtFrom ?? this.createdAtFrom,
-        createdAtTo: createdAtTo ?? this.createdAtTo,
-        updatedAtFrom: updatedAtFrom ?? this.updatedAtFrom,
-        updatedAtTo: updatedAtTo ?? this.updatedAtTo);
+      fullViewState: fullViewState ?? this.fullViewState,
+      viewState: viewState ?? this.viewState,
+      listViewItemState: listViewItemState ?? this.listViewItemState,
+      page: page ?? this.page,
+      limit: limit ?? this.limit,
+      session: session ?? this.session,
+      items: items ?? this.items,
+      id: id ?? this.id,
+      status: status ?? this.status,
+      userProfileId: userProfileId ?? this.userProfileId,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      idOperatorAndValue: idOperatorAndValue ?? this.idOperatorAndValue,
+      userProfileIdOperatorAndValue: userProfileIdOperatorAndValue ?? this.userProfileIdOperatorAndValue,
+      createdAtFrom: createdAtFrom ?? this.createdAtFrom,
+      createdAtTo: createdAtTo ?? this.createdAtTo,
+      updatedAtFrom: updatedAtFrom ?? this.updatedAtFrom,
+      updatedAtTo: updatedAtTo ?? this.updatedAtTo
+    );
   }
 }

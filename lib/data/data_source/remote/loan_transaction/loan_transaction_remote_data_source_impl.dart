@@ -1,7 +1,6 @@
 import 'package:hyper_supabase/core.dart';
 
-class LoanTransactionRemoteDataSourceImpl
-    implements LoanTransactionRemoteDataSource {
+class LoanTransactionRemoteDataSourceImpl implements LoanTransactionRemoteDataSource {
   final SupabaseClient client;
   final RandomDataGenerator r;
 
@@ -10,120 +9,117 @@ class LoanTransactionRemoteDataSourceImpl
     required this.r,
   });
 
-  Future<int> count(
-      {int? id,
-      String? idOperatorAndValue,
-      String? status,
-      int? userProfileId,
-      String? userProfileIdOperatorAndValue,
-      DateTime? createdAtFrom,
-      DateTime? createdAtTo,
-      DateTime? updatedAtFrom,
-      DateTime? updatedAtTo}) async {
-    var query = client.from('loan_transaction').select(
-      """
+  Future<int> count({
+    int? id,
+String? idOperatorAndValue, String? status, int? userProfileId,
+String? userProfileIdOperatorAndValue, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo
+  }) async {
+    var query = client
+      .from('loan_transaction')
+      .select(
+"""
 *,
 user_profile:user_profile_id!inner(*)
 """,
-    );
+  );
 
-    if (idOperatorAndValue != null) {
-      query = query.eqo('id', idOperatorAndValue);
-    }
-    if (status != null) {
-      query = query.eq('status', status);
-    }
-    if (userProfileId != null) {
-      query = query.eq('user_profile_id', userProfileId);
-    }
-    if (createdAtFrom != null && createdAtTo != null) {
-      final startOfDayFrom =
-          DateTime(createdAtFrom.year, createdAtFrom.month, createdAtFrom.day)
-              .toUtc();
-      final startOfDayTo =
-          DateTime(createdAtTo.year, createdAtTo.month, createdAtTo.day)
-              .toUtc()
-              .add(const Duration(days: 1));
-      query = query
-          .gte('created_at', startOfDayFrom.toIso8601String())
-          .lt('created_at', startOfDayTo.toIso8601String());
-    }
-    if (updatedAtFrom != null && updatedAtTo != null) {
-      final startOfDayFrom =
-          DateTime(updatedAtFrom.year, updatedAtFrom.month, updatedAtFrom.day)
-              .toUtc();
-      final startOfDayTo =
-          DateTime(updatedAtTo.year, updatedAtTo.month, updatedAtTo.day)
-              .toUtc()
-              .add(const Duration(days: 1));
-      query = query
-          .gte('updated_at', startOfDayFrom.toIso8601String())
-          .lt('updated_at', startOfDayTo.toIso8601String());
-    }
-
+  if (idOperatorAndValue != null) {
+  query = query.eqo('id', idOperatorAndValue);
+}
+if (status != null) {
+  query = query.eq('status', status);
+}
+if (userProfileId != null) {
+  query = query.eq('user_profile_id', userProfileId);
+}
+if (createdAtFrom != null && createdAtTo != null) {
+    final startOfDayFrom =
+        DateTime(createdAtFrom.year, createdAtFrom.month, createdAtFrom.day)
+            .toUtc();
+    final startOfDayTo =
+        DateTime(createdAtTo.year, createdAtTo.month, createdAtTo.day)
+            .toUtc()
+            .add(const Duration(days: 1));
+    query = query
+        .gte('created_at', startOfDayFrom.toIso8601String())
+        .lt('created_at', startOfDayTo.toIso8601String());
+  }
+if (updatedAtFrom != null && updatedAtTo != null) {
+    final startOfDayFrom =
+        DateTime(updatedAtFrom.year, updatedAtFrom.month, updatedAtFrom.day)
+            .toUtc();
+    final startOfDayTo =
+        DateTime(updatedAtTo.year, updatedAtTo.month, updatedAtTo.day)
+            .toUtc()
+            .add(const Duration(days: 1));
+    query = query
+        .gte('updated_at', startOfDayFrom.toIso8601String())
+        .lt('updated_at', startOfDayTo.toIso8601String());
+  }
+    
     var response = await query.count();
     return response.count;
   }
 
   Future<List<LoanTransaction>> getAll({
     int? id,
-    String? idOperatorAndValue,
-    String? status,
-    int? userProfileId,
-    String? userProfileIdOperatorAndValue,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
+String? idOperatorAndValue, String? status, int? userProfileId,
+String? userProfileIdOperatorAndValue, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,
     int limit = 10,
     int page = 1,
   }) async {
-    var query = client.from('loan_transaction').select(
-      """
+    var query = client
+      .from('loan_transaction')
+      .select(
+"""
 *,
 user_profile:user_profile_id!inner(*)
 """,
-    );
+  );
 
-    if (idOperatorAndValue != null) {
-      query = query.eqo('id', idOperatorAndValue);
-    }
-    if (status != null) {
-      query = query.eq('status', status);
-    }
-    if (userProfileId != null) {
-      query = query.eq('user_profile_id', userProfileId);
-    }
-    if (createdAtFrom != null && createdAtTo != null) {
-      final startOfDayFrom =
-          DateTime(createdAtFrom.year, createdAtFrom.month, createdAtFrom.day)
-              .toUtc();
-      final startOfDayTo =
-          DateTime(createdAtTo.year, createdAtTo.month, createdAtTo.day)
-              .toUtc()
-              .add(const Duration(days: 1));
-      query = query
-          .gte('created_at', startOfDayFrom.toIso8601String())
-          .lt('created_at', startOfDayTo.toIso8601String());
-    }
-    if (updatedAtFrom != null && updatedAtTo != null) {
-      final startOfDayFrom =
-          DateTime(updatedAtFrom.year, updatedAtFrom.month, updatedAtFrom.day)
-              .toUtc();
-      final startOfDayTo =
-          DateTime(updatedAtTo.year, updatedAtTo.month, updatedAtTo.day)
-              .toUtc()
-              .add(const Duration(days: 1));
-      query = query
-          .gte('updated_at', startOfDayFrom.toIso8601String())
-          .lt('updated_at', startOfDayTo.toIso8601String());
-    }
-
+  if (idOperatorAndValue != null) {
+  query = query.eqo('id', idOperatorAndValue);
+}
+if (status != null) {
+  query = query.eq('status', status);
+}
+if (userProfileId != null) {
+  query = query.eq('user_profile_id', userProfileId);
+}
+if (createdAtFrom != null && createdAtTo != null) {
+    final startOfDayFrom =
+        DateTime(createdAtFrom.year, createdAtFrom.month, createdAtFrom.day)
+            .toUtc();
+    final startOfDayTo =
+        DateTime(createdAtTo.year, createdAtTo.month, createdAtTo.day)
+            .toUtc()
+            .add(const Duration(days: 1));
+    query = query
+        .gte('created_at', startOfDayFrom.toIso8601String())
+        .lt('created_at', startOfDayTo.toIso8601String());
+  }
+if (updatedAtFrom != null && updatedAtTo != null) {
+    final startOfDayFrom =
+        DateTime(updatedAtFrom.year, updatedAtFrom.month, updatedAtFrom.day)
+            .toUtc();
+    final startOfDayTo =
+        DateTime(updatedAtTo.year, updatedAtTo.month, updatedAtTo.day)
+            .toUtc()
+            .add(const Duration(days: 1));
+    query = query
+        .gte('updated_at', startOfDayFrom.toIso8601String())
+        .lt('updated_at', startOfDayTo.toIso8601String());
+  }
+    
     var response = await query
-        .order('id', ascending: false)
-        .range((page - 1) * limit, page * limit)
-        .limit(limit)
-        .exec();
+      .order('id', ascending: false)
+      .range((page - 1) * limit, page * limit)
+      .limit(limit)
+      .exec();
 
     List<LoanTransaction> result = [];
     for (var item in response!) {
@@ -134,58 +130,56 @@ user_profile:user_profile_id!inner(*)
 
   Stream snapshot({
     int? id,
-    String? idOperatorAndValue,
-    String? status,
-    int? userProfileId,
-    String? userProfileIdOperatorAndValue,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
+String? idOperatorAndValue, String? status, int? userProfileId,
+String? userProfileIdOperatorAndValue, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,
     int limit = 10,
     int page = 1,
   }) {
-    var query = client.from('loan_transaction').select(
-      """
+    var query = client
+      .from('loan_transaction')
+      .select(
+"""
 *,
 user_profile:user_profile_id!inner(*)
 """,
-    );
+  );
 
-    if (idOperatorAndValue != null) {
-      query = query.eqo('id', idOperatorAndValue);
-    }
-    if (status != null) {
-      query = query.eq('status', status);
-    }
-    if (userProfileId != null) {
-      query = query.eq('user_profile_id', userProfileId);
-    }
-    if (createdAtFrom != null && createdAtTo != null) {
-      final startOfDayFrom =
-          DateTime(createdAtFrom.year, createdAtFrom.month, createdAtFrom.day)
-              .toUtc();
-      final startOfDayTo =
-          DateTime(createdAtTo.year, createdAtTo.month, createdAtTo.day)
-              .toUtc()
-              .add(const Duration(days: 1));
-      query = query
-          .gte('created_at', startOfDayFrom.toIso8601String())
-          .lt('created_at', startOfDayTo.toIso8601String());
-    }
-    if (updatedAtFrom != null && updatedAtTo != null) {
-      final startOfDayFrom =
-          DateTime(updatedAtFrom.year, updatedAtFrom.month, updatedAtFrom.day)
-              .toUtc();
-      final startOfDayTo =
-          DateTime(updatedAtTo.year, updatedAtTo.month, updatedAtTo.day)
-              .toUtc()
-              .add(const Duration(days: 1));
-      query = query
-          .gte('updated_at', startOfDayFrom.toIso8601String())
-          .lt('updated_at', startOfDayTo.toIso8601String());
-    }
-
+  if (idOperatorAndValue != null) {
+  query = query.eqo('id', idOperatorAndValue);
+}
+if (status != null) {
+  query = query.eq('status', status);
+}
+if (userProfileId != null) {
+  query = query.eq('user_profile_id', userProfileId);
+}
+if (createdAtFrom != null && createdAtTo != null) {
+    final startOfDayFrom =
+        DateTime(createdAtFrom.year, createdAtFrom.month, createdAtFrom.day)
+            .toUtc();
+    final startOfDayTo =
+        DateTime(createdAtTo.year, createdAtTo.month, createdAtTo.day)
+            .toUtc()
+            .add(const Duration(days: 1));
+    query = query
+        .gte('created_at', startOfDayFrom.toIso8601String())
+        .lt('created_at', startOfDayTo.toIso8601String());
+  }
+if (updatedAtFrom != null && updatedAtTo != null) {
+    final startOfDayFrom =
+        DateTime(updatedAtFrom.year, updatedAtFrom.month, updatedAtFrom.day)
+            .toUtc();
+    final startOfDayTo =
+        DateTime(updatedAtTo.year, updatedAtTo.month, updatedAtTo.day)
+            .toUtc()
+            .add(const Duration(days: 1));
+    query = query
+        .gte('updated_at', startOfDayFrom.toIso8601String())
+        .lt('updated_at', startOfDayTo.toIso8601String());
+  }
+    
     return query
         .order('id', ascending: false)
         .range((page - 1) * limit, page * limit)
@@ -197,24 +191,20 @@ user_profile:user_profile_id!inner(*)
     final response = await client
         .from('loan_transaction')
         .select(
-          """
+  """
   *,
 user_profile:user_profile_id!inner(*)
   """,
-        )
-        .eq('id', id)
-        .exec();
+    )
+        .eq('id', id).exec();
     if (response == null) return null;
     if (response.isEmpty) return null;
     return LoanTransaction.fromJson(response.first);
   }
 
-  Future<LoanTransaction?> create({
-    int? id,
-    String? status,
-    int? userProfileId,
-    DateTime? createdAt,
-  }) async {
+  Future<LoanTransaction?> create({int? id, String? status,
+int? userProfileId,
+DateTime? createdAt,}) async {
     try {
       var value = {
         'status': status,
@@ -222,10 +212,13 @@ user_profile:user_profile_id!inner(*)
         'created_at': createdAt?.yMdkkmmss,
       };
       value.removeWhere((key, value) => value == null);
-
-      var values =
-          await client.from('loan_transaction').insert([value]).select().exec();
-
+      
+      var values = await client
+          .from('loan_transaction')
+          .insert([value])
+          .select()
+          .exec();
+      
       if (values == null) return null;
       if (values.isEmpty) return null;
 
@@ -235,25 +228,26 @@ user_profile:user_profile_id!inner(*)
     }
   }
 
-  Future<void> update({
-    required int id,
-    String? status,
-    int? userProfileId,
-    DateTime? updatedAt,
-  }) async {
+  Future<void> update({required int id,
+String? status,
+int? userProfileId,
+DateTime? updatedAt,}) async {
     try {
       //@BEFORE_UPDATE
       var current = await get(id);
       if (current == null) return null;
 
-      var value = {
+      var value = { 
         'status': status ?? current.status,
-        'user_profile_id': userProfileId ?? current.userProfileId,
-        'updated_at': (updatedAt ?? DateTime.now()).yMdkkmmss,
+'user_profile_id': userProfileId ?? current.userProfileId,
+        'updated_at':( updatedAt ?? DateTime.now()).yMdkkmmss, 
       };
       value.removeWhere((key, value) => value == null);
-
-      await client.from('loan_transaction').update(value).eq('id', id).exec();
+      
+      await client
+          .from('loan_transaction')
+          .update(value)
+          .eq('id', id).exec();
     } on Exception catch (err) {
       throw Exception(err);
     }
@@ -261,7 +255,11 @@ user_profile:user_profile_id!inner(*)
 
   Future<void> delete(int id) async {
     try {
-      await client.from('loan_transaction').delete().eq('id', id).exec();
+      await client
+          .from('loan_transaction')
+          .delete()
+          .eq('id', id)
+          .exec();
     } on Exception catch (err) {
       throw Exception(err);
     }
@@ -269,10 +267,13 @@ user_profile:user_profile_id!inner(*)
 
   Future<void> deleteAll() async {
     try {
-      await client.from('loan_transaction').delete().neq('id', -1).exec();
-      ;
+      await client
+          .from('loan_transaction')
+          .delete().neq('id', -1)
+          .exec();;
     } on Exception catch (err) {
       throw Exception(err);
     }
   }
+
 }

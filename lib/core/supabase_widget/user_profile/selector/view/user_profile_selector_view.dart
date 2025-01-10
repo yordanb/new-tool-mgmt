@@ -37,7 +37,7 @@ class UserProfileSelectorField extends StatelessWidget {
             onChanged(index, value, label, item);
           },
         );
-      },
+      },  
     );
   }
 }

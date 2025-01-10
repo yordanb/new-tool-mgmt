@@ -1,7 +1,6 @@
 import 'package:hyper_supabase/core.dart';
 
-class ApplicationConfigFormCubitImpl extends Cubit<ApplicationConfigFormState>
-    implements ApplicationConfigFormCubit {
+class ApplicationConfigFormCubitImpl extends Cubit<ApplicationConfigFormState> implements ApplicationConfigFormCubit {
   final GetCurrentAppSessionUseCase getCurrentAppSessionUseCase;
   final GetApplicationConfigUseCase getApplicationConfigUseCase;
   final CreateApplicationConfigUseCase createApplicationConfigUseCase;
@@ -18,8 +17,8 @@ class ApplicationConfigFormCubitImpl extends Cubit<ApplicationConfigFormState>
 
   @override
   void initState({
-    Function? init,
-  }) {
+      Function? init,
+    }) {
     //initState event
     emit(ApplicationConfigFormState());
     init?.call();
@@ -46,7 +45,8 @@ class ApplicationConfigFormCubitImpl extends Cubit<ApplicationConfigFormState>
 
     if (state.isEditMode) {
       await getData();
-    } else {
+    }
+    else {
       if (appDevConfig.enableRandomData) await initialRandomValues();
     }
 
@@ -56,7 +56,7 @@ class ApplicationConfigFormCubitImpl extends Cubit<ApplicationConfigFormState>
 
   Future<void> getData() async {
     if (state.isEditMode == false) return;
-
+      
     state.fullViewState = FullViewState.loading;
     emit(state.copyWith());
 
@@ -64,29 +64,29 @@ class ApplicationConfigFormCubitImpl extends Cubit<ApplicationConfigFormState>
       id: state.id!,
     );
 
-    if (state.current == null) {
+      if (state.current == null) {
       state.fullViewState = FullViewState.error;
       emit(state.copyWith());
       return;
     }
 
     state.appMode = state.current!.appMode;
-    state.companyName = state.current!.companyName;
-    state.address = state.current!.address;
-    state.phoneNumber = state.current!.phoneNumber;
-    state.createdAt = state.current!.createdAt;
+state.companyName = state.current!.companyName;
+state.address = state.current!.address;
+state.phoneNumber = state.current!.phoneNumber;
+state.createdAt = state.current!.createdAt;
 
     state.fullViewState = FullViewState.ready;
     emit(state.copyWith());
   }
 
   Future<void> initialRandomValues() async {
-    state.appMode =
-        r.firstValueFromList(["Production", "Development", "Maintenance"]);
-    state.companyName = r.randomName();
-    state.address = r.randomAddress();
-    state.phoneNumber = r.randomPhone();
-    state.createdAt = DateTime.now();
+    state.appMode = r.firstValueFromList(["Production", "Development", "Maintenance"]);
+state.companyName = r.randomName();
+state.address = r.randomAddress();
+state.phoneNumber = r.randomPhone();
+state.createdAt = DateTime.now();
+
   }
 
   Future<void> create() async {
@@ -97,12 +97,12 @@ class ApplicationConfigFormCubitImpl extends Cubit<ApplicationConfigFormState>
       await createApplicationConfigUseCase.call(
         //@BEGIN_FORM_CREATE_VALUES
         appMode: state.appMode,
-        companyName: state.companyName,
-        address: state.address,
-        phoneNumber: state.phoneNumber,
+companyName: state.companyName,
+address: state.address,
+phoneNumber: state.phoneNumber,
         //@END_FORM_CREATE_VALUES
       );
-
+      
       state.viewState = ViewState.success;
       emit(state.copyWith());
     } on Exception catch (_) {
@@ -120,12 +120,12 @@ class ApplicationConfigFormCubitImpl extends Cubit<ApplicationConfigFormState>
         //@BEGIN_FORM_UPDATE_VALUES
         id: state.id!,
         appMode: state.appMode,
-        companyName: state.companyName,
-        address: state.address,
-        phoneNumber: state.phoneNumber,
+companyName: state.companyName,
+address: state.address,
+phoneNumber: state.phoneNumber,
         //@END_FORM_CREATE_VALUES
       );
-
+      
       state.viewState = ViewState.success;
       emit(state.copyWith());
     } on Exception catch (_) {
@@ -144,3 +144,4 @@ class ApplicationConfigFormCubitImpl extends Cubit<ApplicationConfigFormState>
     emit(state.copyWith());
   }
 }
+  

@@ -7,7 +7,7 @@ class DeleteAllAppQueueUseCaseImpl implements DeleteAllAppQueueUseCase {
   DeleteAllAppQueueUseCaseImpl({
     required this.repository,
   });
-
+  
   Future<void> call() async {
     try {
       await repository.deleteAll();

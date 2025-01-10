@@ -1,24 +1,16 @@
 import 'package:hyper_supabase/core.dart';
 
 abstract class AppPrinterLocalDataSource {
-  Future<int> count({
-    int? id,
-    String? idOperatorAndValue,
-    String? message,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
-  });
+  Future<int> count({int? id,
+String? idOperatorAndValue, String? message, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,});
 
   Future<List<AppPrinter>> getAll({
     int? id,
-    String? idOperatorAndValue,
-    String? message,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
+String? idOperatorAndValue, String? message, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,
     int limit = 10,
     int page = 1,
   });
@@ -28,20 +20,20 @@ abstract class AppPrinterLocalDataSource {
   Future<AppPrinter?> create({
     required int id,
     String? message,
-    DateTime? createdAt,
+DateTime? createdAt,
   });
 
   Future<void> update({
     required int id,
-    String? message,
-    DateTime? updatedAt,
+String? message,
+DateTime? updatedAt,
   });
 
   Future<void> delete(int id);
 
   Future<void> deleteAll();
 
-  Future<void> createQueue({
+   Future<void> createQueue({
     required QueueAction queueAction,
     required AppPrinter data,
   });
@@ -55,4 +47,5 @@ abstract class AppPrinterLocalDataSource {
   Future<void> startQueue();
 
   Future<void> stopQueue();
+
 }

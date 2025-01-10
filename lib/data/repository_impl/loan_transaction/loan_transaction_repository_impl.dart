@@ -10,58 +10,40 @@ class LoanTransactionRepositoryImpl implements LoanTransactionRepository {
     required this.localDataSource,
     required this.networkManager,
   });
-
-  Future<int> count({
-    int? id,
-    String? idOperatorAndValue,
-    String? status,
-    int? userProfileId,
-    String? userProfileIdOperatorAndValue,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
-  }) async {
+  
+  Future<int> count({int? id,
+String? idOperatorAndValue, String? status, int? userProfileId,
+String? userProfileIdOperatorAndValue, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,}) async {
     //@ OFFLINE MODE HANDLER
     if (await networkManager.isOffline()) {
       printo("OfflineMode: LoanTransactionRepositoryImpl count");
       return await localDataSource.count(
         id: id,
-        idOperatorAndValue: idOperatorAndValue,
-        status: status,
-        userProfileId: userProfileId,
-        userProfileIdOperatorAndValue: userProfileIdOperatorAndValue,
-        createdAtFrom: createdAtFrom,
-        createdAtTo: createdAtTo,
-        updatedAtFrom: updatedAtFrom,
-        updatedAtTo: updatedAtTo,
+idOperatorAndValue: idOperatorAndValue, status: status, userProfileId: userProfileId,
+userProfileIdOperatorAndValue: userProfileIdOperatorAndValue, createdAtFrom: createdAtFrom,
+createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
+updatedAtTo: updatedAtTo,
       );
     }
     //:@ OFFLINE MODE HANDLER
 
     return await remoteDataSource.count(
       id: id,
-      idOperatorAndValue: idOperatorAndValue,
-      status: status,
-      userProfileId: userProfileId,
-      userProfileIdOperatorAndValue: userProfileIdOperatorAndValue,
-      createdAtFrom: createdAtFrom,
-      createdAtTo: createdAtTo,
-      updatedAtFrom: updatedAtFrom,
-      updatedAtTo: updatedAtTo,
+idOperatorAndValue: idOperatorAndValue, status: status, userProfileId: userProfileId,
+userProfileIdOperatorAndValue: userProfileIdOperatorAndValue, createdAtFrom: createdAtFrom,
+createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
+updatedAtTo: updatedAtTo,
     );
   }
 
   Future<List<LoanTransactionEntity>> getAll({
     int? id,
-    String? idOperatorAndValue,
-    String? status,
-    int? userProfileId,
-    String? userProfileIdOperatorAndValue,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
+String? idOperatorAndValue, String? status, int? userProfileId,
+String? userProfileIdOperatorAndValue, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,
     int limit = 10,
     int page = 1,
   }) async {
@@ -70,14 +52,10 @@ class LoanTransactionRepositoryImpl implements LoanTransactionRepository {
       printo("OfflineMode: LoanTransactionRepositoryImpl getAll");
       final models = await localDataSource.getAll(
         id: id,
-        idOperatorAndValue: idOperatorAndValue,
-        status: status,
-        userProfileId: userProfileId,
-        userProfileIdOperatorAndValue: userProfileIdOperatorAndValue,
-        createdAtFrom: createdAtFrom,
-        createdAtTo: createdAtTo,
-        updatedAtFrom: updatedAtFrom,
-        updatedAtTo: updatedAtTo,
+idOperatorAndValue: idOperatorAndValue, status: status, userProfileId: userProfileId,
+userProfileIdOperatorAndValue: userProfileIdOperatorAndValue, createdAtFrom: createdAtFrom,
+createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
+updatedAtTo: updatedAtTo,
         limit: limit,
         page: page,
       );
@@ -88,14 +66,10 @@ class LoanTransactionRepositoryImpl implements LoanTransactionRepository {
 
     final models = await remoteDataSource.getAll(
       id: id,
-      idOperatorAndValue: idOperatorAndValue,
-      status: status,
-      userProfileId: userProfileId,
-      userProfileIdOperatorAndValue: userProfileIdOperatorAndValue,
-      createdAtFrom: createdAtFrom,
-      createdAtTo: createdAtTo,
-      updatedAtFrom: updatedAtFrom,
-      updatedAtTo: updatedAtTo,
+idOperatorAndValue: idOperatorAndValue, status: status, userProfileId: userProfileId,
+userProfileIdOperatorAndValue: userProfileIdOperatorAndValue, createdAtFrom: createdAtFrom,
+createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
+updatedAtTo: updatedAtTo,
       limit: limit,
       page: page,
     );
@@ -105,14 +79,10 @@ class LoanTransactionRepositoryImpl implements LoanTransactionRepository {
   //@ SNAPSHOT
   Stream<List<LoanTransactionEntity>> snapshot({
     int? id,
-    String? idOperatorAndValue,
-    String? status,
-    int? userProfileId,
-    String? userProfileIdOperatorAndValue,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
+String? idOperatorAndValue, String? status, int? userProfileId,
+String? userProfileIdOperatorAndValue, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,
     int limit = 10,
     int page = 1,
   }) async* {
@@ -121,14 +91,10 @@ class LoanTransactionRepositoryImpl implements LoanTransactionRepository {
       print("OfflineMode: LoanTransactionRepositoryImpl snapshot");
       final localData = await localDataSource.getAll(
         id: id,
-        idOperatorAndValue: idOperatorAndValue,
-        status: status,
-        userProfileId: userProfileId,
-        userProfileIdOperatorAndValue: userProfileIdOperatorAndValue,
-        createdAtFrom: createdAtFrom,
-        createdAtTo: createdAtTo,
-        updatedAtFrom: updatedAtFrom,
-        updatedAtTo: updatedAtTo,
+idOperatorAndValue: idOperatorAndValue, status: status, userProfileId: userProfileId,
+userProfileIdOperatorAndValue: userProfileIdOperatorAndValue, createdAtFrom: createdAtFrom,
+createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
+updatedAtTo: updatedAtTo,
         limit: limit,
         page: page,
       );
@@ -138,35 +104,29 @@ class LoanTransactionRepositoryImpl implements LoanTransactionRepository {
       // Online mode: Gunakan stream dari remoteDataSource
       var stream = remoteDataSource.snapshot(
         id: id,
-        idOperatorAndValue: idOperatorAndValue,
-        status: status,
-        userProfileId: userProfileId,
-        userProfileIdOperatorAndValue: userProfileIdOperatorAndValue,
-        createdAtFrom: createdAtFrom,
-        createdAtTo: createdAtTo,
-        updatedAtFrom: updatedAtFrom,
-        updatedAtTo: updatedAtTo,
+idOperatorAndValue: idOperatorAndValue, status: status, userProfileId: userProfileId,
+userProfileIdOperatorAndValue: userProfileIdOperatorAndValue, createdAtFrom: createdAtFrom,
+createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
+updatedAtTo: updatedAtTo,
         limit: limit,
         page: page,
       );
       List<LoanTransaction> models = [];
       await for (List<Map<String, dynamic>> datas in stream) {
-        for (var data in datas) {
-          models.add(LoanTransaction.fromJson(data));
-        }
-
-        await localDataSource.deleteAll();
-        for (var model in models) {
-          await localDataSource.create(
-            id: model.id!,
-            status: model.status,
-            userProfileId: model.userProfileId,
-            createdAt: DateTime.now(),
-          );
-        }
-
-        yield models.toEntityList();
+      for (var data in datas) {
+        models.add(LoanTransaction.fromJson(data));
       }
+
+      await localDataSource.deleteAll();
+      for (var model in models) {
+        await localDataSource.create(
+          id: model.id!,
+          status: model.status,userProfileId: model.userProfileId,createdAt: DateTime.now(),
+        );
+      }
+      
+      yield models.toEntityList();
+    }
     }
   }
   //:@ SNAPSHOT
@@ -177,23 +137,24 @@ class LoanTransactionRepositoryImpl implements LoanTransactionRepository {
       if (await networkManager.isOffline()) {
         printo("OfflineMode: LoanTransactionRepositoryImpl getByID $id");
         final model = await localDataSource.get(id);
-        if (model == null) return null;
+        if(model==null) return null;
         return model.toEntity();
       }
       //:@ OFFLINE MODE HANDLER
-
+      
       final model = await remoteDataSource.get(id);
       if (model == null) return null;
       return model.toEntity();
-    } on Exception catch (err) {
+    }
+    on Exception catch (err) {
       throw Exception(err);
     }
   }
 
   Future<LoanTransactionEntity?> create({
     String? status,
-    int? userProfileId,
-    DateTime? createdAt,
+int? userProfileId,
+DateTime? createdAt,
   }) async {
     try {
       //@ OFFLINE MODE HANDLER
@@ -201,24 +162,21 @@ class LoanTransactionRepositoryImpl implements LoanTransactionRepository {
         printo("OfflineMode: LoanTransactionRepositoryImpl create");
         final model = await localDataSource.create(
           id: -1,
-          status: status,
-          userProfileId: userProfileId,
-          createdAt: createdAt,
+          status: status,userProfileId: userProfileId,createdAt: createdAt,
         );
 
         await localDataSource.createQueue(
           queueAction: QueueAction.create,
           data: model!,
         );
-
+        
         return model.toEntity();
       }
       //:@ OFFLINE MODE HANDLER
-
+      
       final model = await remoteDataSource.create(
-        status: status,
-        userProfileId: userProfileId,
-        createdAt: createdAt,
+        
+        status: status,userProfileId: userProfileId,createdAt: createdAt,
       );
       return model!.toEntity();
     } on Exception catch (err) {
@@ -228,19 +186,16 @@ class LoanTransactionRepositoryImpl implements LoanTransactionRepository {
 
   Future<void> update({
     required int id,
-    String? status,
-    int? userProfileId,
-    DateTime? updatedAt,
-  }) async {
+String? status,
+int? userProfileId,
+DateTime? updatedAt,
+  }) async { 
     try {
       //@ OFFLINE MODE HANDLER
       if (await networkManager.isOffline()) {
         printo("OfflineMode: LoanTransactionRepositoryImpl update $id");
         await localDataSource.update(
-          id: id,
-          status: status,
-          userProfileId: userProfileId,
-          updatedAt: updatedAt,
+          id: id,status: status,userProfileId: userProfileId,updatedAt: updatedAt,
         );
 
         var model = await localDataSource.get(id);
@@ -252,12 +207,9 @@ class LoanTransactionRepositoryImpl implements LoanTransactionRepository {
         return;
       }
       //:@ OFFLINE MODE HANDLER
-
+      
       await remoteDataSource.update(
-        id: id,
-        status: status,
-        userProfileId: userProfileId,
-        updatedAt: updatedAt,
+        id: id,status: status,userProfileId: userProfileId,updatedAt: updatedAt,
       );
     } on Exception catch (err) {
       throw Exception(err);
@@ -268,7 +220,7 @@ class LoanTransactionRepositoryImpl implements LoanTransactionRepository {
     try {
       //@ OFFLINE MODE HANDLER
       if (await networkManager.isOffline()) {
-        printo("OfflineMode: LoanTransactionRepositoryImpl delete $id");
+         printo("OfflineMode: LoanTransactionRepositoryImpl delete $id");
 
         var model = await localDataSource.get(
           id,
@@ -282,11 +234,11 @@ class LoanTransactionRepositoryImpl implements LoanTransactionRepository {
           queueAction: QueueAction.delete,
           data: model!,
         );
-
+        
         return;
       }
       //:@ OFFLINE MODE HANDLER
-
+      
       await remoteDataSource.delete(
         id,
       );
@@ -331,17 +283,12 @@ class LoanTransactionRepositoryImpl implements LoanTransactionRepository {
         switch (action) {
           case 'create':
             await remoteDataSource.create(
-              status: data.status,
-              userProfileId: data.userProfileId,
-              createdAt: data.createdAt,
+              status: data.status,userProfileId: data.userProfileId,createdAt: data.createdAt,
             );
             break;
           case 'update':
             await remoteDataSource.update(
-              id: data.id!,
-              status: data.status,
-              userProfileId: data.userProfileId,
-              updatedAt: data.updatedAt,
+              id: data.id!,status: data.status,userProfileId: data.userProfileId,updatedAt: data.updatedAt,
             );
             break;
           case 'delete':

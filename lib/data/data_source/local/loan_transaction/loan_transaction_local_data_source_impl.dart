@@ -1,24 +1,17 @@
 import 'package:hyper_supabase/core.dart';
 
-class LoanTransactionLocalDataSourceImpl
-    implements LoanTransactionLocalDataSource {
+class LoanTransactionLocalDataSourceImpl implements LoanTransactionLocalDataSource {
   final SharedPreferences prefs;
 
   LoanTransactionLocalDataSourceImpl({
     required this.prefs,
   });
 
-  Future<int> count({
-    int? id,
-    String? idOperatorAndValue,
-    String? status,
-    int? userProfileId,
-    String? userProfileIdOperatorAndValue,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
-  }) async {
+  Future<int> count({int? id,
+String? idOperatorAndValue, String? status, int? userProfileId,
+String? userProfileIdOperatorAndValue, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,}) async {
     final jsonList = await prefs.getString('loan_transaction') ?? "[]";
     final values = jsonDecode(jsonList);
     return values.length;
@@ -26,14 +19,10 @@ class LoanTransactionLocalDataSourceImpl
 
   Future<List<LoanTransaction>> getAll({
     int? id,
-    String? idOperatorAndValue,
-    String? status,
-    int? userProfileId,
-    String? userProfileIdOperatorAndValue,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
+String? idOperatorAndValue, String? status, int? userProfileId,
+String? userProfileIdOperatorAndValue, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,
     int limit = 10,
     int page = 1,
   }) async {
@@ -56,17 +45,14 @@ class LoanTransactionLocalDataSourceImpl
     return modelValues[index];
   }
 
-  Future<LoanTransaction?> create({
-    int? id,
-    String? status,
-    int? userProfileId,
-    DateTime? createdAt,
-  }) async {
+  Future<LoanTransaction?> create({int? id, String? status,
+int? userProfileId,
+DateTime? createdAt,}) async {
     final modelValues = await getAll();
     final newModel = LoanTransaction(
       id: id,
-      status: status,
-      userProfileId: userProfileId,
+      status:status,
+userProfileId:userProfileId,
       createdAt: createdAt ?? DateTime.now(),
     );
     modelValues.add(newModel);
@@ -75,12 +61,10 @@ class LoanTransactionLocalDataSourceImpl
     return newModel;
   }
 
-  Future<void> update({
-    required int id,
-    String? status,
-    int? userProfileId,
-    DateTime? updatedAt,
-  }) async {
+  Future<void> update({required int id,
+String? status,
+int? userProfileId,
+DateTime? updatedAt,}) async {
     final modelValues = await getAll();
     var index = modelValues.indexWhere((element) => element.id == id);
     if (index == -1) {
@@ -88,8 +72,8 @@ class LoanTransactionLocalDataSourceImpl
     }
     modelValues[index] = modelValues[index].copyWith(
       id: id,
-      status: status,
-      userProfileId: userProfileId,
+      status:status,
+userProfileId:userProfileId,
       updatedAt: DateTime.now(),
     );
 
@@ -126,7 +110,8 @@ class LoanTransactionLocalDataSourceImpl
       "data": data.toJson(),
       "created_at": DateTime.now().toString(),
     });
-    await prefs.setString('loan_transaction_queued_tasks', jsonEncode(values));
+    await prefs.setString(
+        'loan_transaction_queued_tasks', jsonEncode(values));
   }
 
   Future<List> getQueuedTasks() async {
@@ -141,7 +126,8 @@ class LoanTransactionLocalDataSourceImpl
         await prefs.getString('loan_transaction_queued_tasks') ?? "[]";
     List values = jsonDecode(jsonList);
     values.removeWhere((element) => element['id'] == id);
-    await prefs.setString('loan_transaction_queued_tasks', jsonEncode(values));
+    await prefs.setString(
+        'loan_transaction_queued_tasks', jsonEncode(values));
   }
 
   Future<bool> isRunningQueuedTask() async {
@@ -157,4 +143,5 @@ class LoanTransactionLocalDataSourceImpl
   Future<void> stopQueue() async {
     await prefs.setBool('loan_transaction_queued_tasks_running', false);
   }
+
 }

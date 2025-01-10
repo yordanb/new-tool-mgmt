@@ -20,10 +20,11 @@ class MainState {
 
   factory MainState.fromJson(Map<String, dynamic> json) {
     return MainState(
-        fullViewState: json['full_view_state'],
-        viewState: json['view_state'],
-        themeIndex: json['theme_index'],
-        langIndex: json['lang_index']);
+      fullViewState: json['full_view_state'],
+      viewState: json['view_state'],
+      themeIndex: json['theme_index'],
+      langIndex: json['lang_index']
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -36,15 +37,17 @@ class MainState {
   }
 
   //@copyWith
-  MainState copyWith(
-      {FullViewState? fullViewState,
-      ViewState? viewState,
-      int? themeIndex,
-      int? langIndex}) {
+  MainState copyWith({
+     FullViewState? fullViewState,
+     ViewState? viewState,
+     int? themeIndex,
+     int? langIndex
+  }) {
     return MainState(
-        fullViewState: fullViewState ?? this.fullViewState,
-        viewState: viewState ?? this.viewState,
-        themeIndex: themeIndex ?? this.themeIndex,
-        langIndex: langIndex ?? this.langIndex);
+      fullViewState: fullViewState ?? this.fullViewState,
+      viewState: viewState ?? this.viewState,
+      themeIndex: themeIndex ?? this.themeIndex,
+      langIndex: langIndex ?? this.langIndex
+    );
   }
 }

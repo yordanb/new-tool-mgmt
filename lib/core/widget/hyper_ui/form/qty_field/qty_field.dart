@@ -85,11 +85,14 @@ class _QQtyFieldState extends State<QQtyField> {
           children: [
             InkWell(
               onTap: () {
-                double current = double.tryParse(controller.text) ?? 0;
+                int current = int.tryParse(controller.text) ?? 0;
                 if (current == 1) return;
                 current--;
                 controller.text = current.toString();
-                widget.onChanged(current.toString());
+                if (widget.onSubmitted != null) {
+                  widget.onSubmitted!(
+                      current.toString().replaceAll(RegExp(r'\D'), ''));
+                }
               },
               child: const Icon(Icons.remove, color: Colors.grey),
             ),
@@ -122,7 +125,6 @@ class _QQtyFieldState extends State<QQtyField> {
                 onFieldSubmitted: (newValue) {
                   final newValue = controller.text;
                   print('newValue: $newValue');
-
                   value = newValue.replaceAll(RegExp('[^0-9.]'), '');
 
                   print('value: $value');
@@ -138,10 +140,13 @@ class _QQtyFieldState extends State<QQtyField> {
             ),
             InkWell(
               onTap: () {
-                double current = double.tryParse(controller.text) ?? 0;
+                int current = int.tryParse(controller.text) ?? 0;
                 current++;
                 controller.text = current.toString();
-                widget.onChanged(current.toString());
+                if (widget.onSubmitted != null) {
+                  widget.onSubmitted!(
+                      current.toString().replaceAll(RegExp(r'\D'), ''));
+                }
               },
               child: const Icon(Icons.add, color: Colors.grey),
             ),

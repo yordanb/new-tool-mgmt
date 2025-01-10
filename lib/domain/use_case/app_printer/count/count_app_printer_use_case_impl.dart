@@ -7,24 +7,16 @@ class CountAppPrinterUseCaseImpl implements CountAppPrinterUseCase {
   CountAppPrinterUseCaseImpl({
     required this.repository,
   });
-
-  Future<int> call({
-    int? id,
-    String? idOperatorAndValue,
-    String? message,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
-  }) async {
+  
+  Future<int> call({int? id,
+String? idOperatorAndValue, String? message, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,}) async {
     return await repository.count(
       id: id,
-      idOperatorAndValue: idOperatorAndValue,
-      message: message,
-      createdAtFrom: createdAtFrom,
-      createdAtTo: createdAtTo,
-      updatedAtFrom: updatedAtFrom,
-      updatedAtTo: updatedAtTo,
+idOperatorAndValue: idOperatorAndValue, message: message, createdAtFrom: createdAtFrom,
+createdAtTo: createdAtTo, updatedAtFrom: updatedAtFrom,
+updatedAtTo: updatedAtTo,
     );
   }
 }

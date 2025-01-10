@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hyper_supabase/core.dart';
 
+
 class ApplicationConfigAutocompleteField extends StatelessWidget {
   final String label;
   final dynamic value;
@@ -23,8 +24,7 @@ class ApplicationConfigAutocompleteField extends StatelessWidget {
       stream: sl<SnapshotApplicationConfigUseCase>().call(),
       shrinkWrap: true,
       itemsBuilder: (obj) {
-        List<ApplicationConfigEntity> items =
-            obj as List<ApplicationConfigEntity>;
+        List<ApplicationConfigEntity> items = obj as List<ApplicationConfigEntity>;
 
         return QAutoComplete(
           label: label,
@@ -47,8 +47,9 @@ class ApplicationConfigAutocompleteField extends StatelessWidget {
               );
               return;
             }
-
-            var mapValue = items.firstWhere((element) => element.id == value);
+            
+             var mapValue =
+                items.firstWhere((element) => element.id == value);
             onChanged(
               value,
               label,

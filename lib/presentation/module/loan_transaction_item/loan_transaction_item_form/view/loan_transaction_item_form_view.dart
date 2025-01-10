@@ -10,12 +10,10 @@ class LoanTransactionItemFormView extends StatefulWidget {
   });
 
   @override
-  State<LoanTransactionItemFormView> createState() =>
-      _LoanTransactionItemFormViewState();
+  State<LoanTransactionItemFormView> createState() => _LoanTransactionItemFormViewState();
 }
 
-class _LoanTransactionItemFormViewState
-    extends State<LoanTransactionItemFormView> {
+class _LoanTransactionItemFormViewState extends State<LoanTransactionItemFormView> {
   final LoanTransactionItemFormCubit cubit = sl<LoanTransactionItemFormCubit>();
   AppLocalizations get lang => AppLocalizations.of(context)!;
   LoanTransactionItemFormState get state => cubit.state;
@@ -45,14 +43,14 @@ class _LoanTransactionItemFormViewState
       listeners: const [
         LoanTransactionItemFormListener(),
       ],
-      child: BlocSelector<LoanTransactionItemFormCubit,
-          LoanTransactionItemFormState, FullViewState>(
+      child: BlocSelector<LoanTransactionItemFormCubit, LoanTransactionItemFormState,
+          FullViewState>(
         selector: (state) => state.fullViewState,
         builder: (context, _) {
           if (cubit.state.fullViewState == FullViewState.loading) {
             return const Center(child: CircularProgressIndicator());
           }
-
+          
           return Scaffold(
             appBar: AppBar(
               title: const Text("LoanTransactionItemForm"),
@@ -64,44 +62,45 @@ class _LoanTransactionItemFormViewState
               formKey: formKey,
               children: [
                 //::FORM
-                LoanTransactionAutocompleteField(
-                  label: "Loan Transaction",
-                  validator: Validator.required,
-                  value: cubit.state.loanTransactionId?.toString(),
-                  onChanged: (value, label, mapValue) {
-                    cubit.state.loanTransactionId = value;
-                  },
-                ),
-                ToolAutocompleteField(
-                  label: "Tool",
-                  validator: Validator.required,
-                  value: cubit.state.toolId?.toString(),
-                  onChanged: (value, label, mapValue) {
-                    cubit.state.toolId = value;
-                  },
-                ),
-                QTextField(
-                  label: "Memo",
-                  validator: Validator.required,
-                  value: cubit.state.memo,
-                  onChanged: (value) {
-                    cubit.state.memo = value;
-                  },
-                ),
-                QDropdownField(
-                  label: "Status",
-                  validator: Validator.required,
-                  items: [
-                    {"label": "Borrowed", "value": "Borrowed"},
-                    {"label": "Returned", "value": "Returned"},
-                    {"label": "Damaged", "value": "Damaged"},
-                    {"label": "Lost", "value": "Lost"}
-                  ],
-                  value: cubit.state.status,
-                  onChanged: (value, label) {
-                    cubit.state.status = value;
-                  },
-                ),
+LoanTransactionAutocompleteField(
+  label: "Loan Transaction",
+  
+  validator: Validator.required,
+  value: cubit.state.loanTransactionId?.toString(),
+  onChanged: (value, label, mapValue) {
+      cubit.state.loanTransactionId = value;
+      
+  },
+),
+ToolAutocompleteField(
+  label: "Tool",
+  
+  validator: Validator.required,
+  value: cubit.state.toolId?.toString(),
+  onChanged: (value, label, mapValue) {
+      cubit.state.toolId = value;
+      
+  },
+),
+QTextField(
+  label: "Memo",
+  validator: Validator.required ,
+  value: cubit.state.memo,
+  
+  
+  onChanged: (value) {
+    cubit.state.memo = value;
+  },
+),
+QDropdownField(
+  label: "Status",
+  validator: Validator.required,
+  items: [{"label":"Borrowed","value":"Borrowed"},{"label":"Returned","value":"Returned"},{"label":"Damaged","value":"Damaged"},{"label":"Lost","value":"Lost"}],
+  value: cubit.state.status,
+  onChanged: (value, label) {
+    cubit.state.status = value;
+  },
+),
                 //@BOTTOM_FORM
               ],
             ),
@@ -109,13 +108,14 @@ class _LoanTransactionItemFormViewState
               label: "Save",
               onPressed: () {
                 bool isNotValid = formKey.currentState!.validate() == false;
-                if (isNotValid) {
+                if(isNotValid) {
                   return;
                 }
 
-                if (state.isCreateMode) {
+                if(state.isCreateMode) {
                   cubit.create();
-                } else if (state.isEditMode) {
+                }
+                else if(state.isEditMode) {
                   cubit.update();
                 }
               },
@@ -126,3 +126,5 @@ class _LoanTransactionItemFormViewState
     );
   }
 }
+  
+  

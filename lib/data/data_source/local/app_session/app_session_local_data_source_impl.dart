@@ -7,18 +7,11 @@ class AppSessionLocalDataSourceImpl implements AppSessionLocalDataSource {
     required this.prefs,
   });
 
-  Future<int> count({
-    int? id,
-    String? idOperatorAndValue,
-    int? userProfileId,
-    String? userProfileIdOperatorAndValue,
-    String? role,
-    String? email,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
-  }) async {
+  Future<int> count({int? id,
+String? idOperatorAndValue, int? userProfileId,
+String? userProfileIdOperatorAndValue, String? role, String? email, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,}) async {
     final jsonList = await prefs.getString('app_session') ?? "[]";
     final values = jsonDecode(jsonList);
     return values.length;
@@ -26,15 +19,10 @@ class AppSessionLocalDataSourceImpl implements AppSessionLocalDataSource {
 
   Future<List<AppSession>> getAll({
     int? id,
-    String? idOperatorAndValue,
-    int? userProfileId,
-    String? userProfileIdOperatorAndValue,
-    String? role,
-    String? email,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
+String? idOperatorAndValue, int? userProfileId,
+String? userProfileIdOperatorAndValue, String? role, String? email, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,
     int limit = 10,
     int page = 1,
   }) async {
@@ -57,19 +45,16 @@ class AppSessionLocalDataSourceImpl implements AppSessionLocalDataSource {
     return modelValues[index];
   }
 
-  Future<AppSession?> create({
-    int? id,
-    int? userProfileId,
-    String? role,
-    String? email,
-    DateTime? createdAt,
-  }) async {
+  Future<AppSession?> create({int? id, int? userProfileId,
+String? role,
+String? email,
+DateTime? createdAt,}) async {
     final modelValues = await getAll();
     final newModel = AppSession(
       id: id,
-      userProfileId: userProfileId,
-      role: role,
-      email: email,
+      userProfileId:userProfileId,
+role:role,
+email:email,
       createdAt: createdAt ?? DateTime.now(),
     );
     modelValues.add(newModel);
@@ -78,13 +63,11 @@ class AppSessionLocalDataSourceImpl implements AppSessionLocalDataSource {
     return newModel;
   }
 
-  Future<void> update({
-    required int id,
-    int? userProfileId,
-    String? role,
-    String? email,
-    DateTime? updatedAt,
-  }) async {
+  Future<void> update({required int id,
+int? userProfileId,
+String? role,
+String? email,
+DateTime? updatedAt,}) async {
     final modelValues = await getAll();
     var index = modelValues.indexWhere((element) => element.id == id);
     if (index == -1) {
@@ -92,9 +75,9 @@ class AppSessionLocalDataSourceImpl implements AppSessionLocalDataSource {
     }
     modelValues[index] = modelValues[index].copyWith(
       id: id,
-      userProfileId: userProfileId,
-      role: role,
-      email: email,
+      userProfileId:userProfileId,
+role:role,
+email:email,
       updatedAt: DateTime.now(),
     );
 
@@ -122,7 +105,8 @@ class AppSessionLocalDataSourceImpl implements AppSessionLocalDataSource {
   }) async {
     printg("createQueue: $queueAction");
 
-    String jsonList = await prefs.getString('app_session_queued_tasks') ?? "[]";
+    String jsonList =
+        await prefs.getString('app_session_queued_tasks') ?? "[]";
     List values = jsonDecode(jsonList);
     values.add({
       "id": const Uuid().v4(),
@@ -130,20 +114,24 @@ class AppSessionLocalDataSourceImpl implements AppSessionLocalDataSource {
       "data": data.toJson(),
       "created_at": DateTime.now().toString(),
     });
-    await prefs.setString('app_session_queued_tasks', jsonEncode(values));
+    await prefs.setString(
+        'app_session_queued_tasks', jsonEncode(values));
   }
 
   Future<List> getQueuedTasks() async {
-    String jsonList = await prefs.getString('app_session_queued_tasks') ?? "[]";
+    String jsonList =
+        await prefs.getString('app_session_queued_tasks') ?? "[]";
     List values = jsonDecode(jsonList);
     return values;
   }
 
   Future<void> deleteQueuedTask(String id) async {
-    String jsonList = await prefs.getString('app_session_queued_tasks') ?? "[]";
+    String jsonList =
+        await prefs.getString('app_session_queued_tasks') ?? "[]";
     List values = jsonDecode(jsonList);
     values.removeWhere((element) => element['id'] == id);
-    await prefs.setString('app_session_queued_tasks', jsonEncode(values));
+    await prefs.setString(
+        'app_session_queued_tasks', jsonEncode(values));
   }
 
   Future<bool> isRunningQueuedTask() async {
@@ -159,4 +147,5 @@ class AppSessionLocalDataSourceImpl implements AppSessionLocalDataSource {
   Future<void> stopQueue() async {
     await prefs.setBool('app_session_queued_tasks_running', false);
   }
+
 }

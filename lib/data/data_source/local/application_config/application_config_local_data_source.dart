@@ -1,30 +1,16 @@
 import 'package:hyper_supabase/core.dart';
 
 abstract class ApplicationConfigLocalDataSource {
-  Future<int> count({
-    int? id,
-    String? idOperatorAndValue,
-    String? appMode,
-    String? companyName,
-    String? address,
-    String? phoneNumber,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
-  });
+  Future<int> count({int? id,
+String? idOperatorAndValue, String? appMode, String? companyName, String? address, String? phoneNumber, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,});
 
   Future<List<ApplicationConfig>> getAll({
     int? id,
-    String? idOperatorAndValue,
-    String? appMode,
-    String? companyName,
-    String? address,
-    String? phoneNumber,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
+String? idOperatorAndValue, String? appMode, String? companyName, String? address, String? phoneNumber, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,
     int limit = 10,
     int page = 1,
   });
@@ -34,26 +20,26 @@ abstract class ApplicationConfigLocalDataSource {
   Future<ApplicationConfig?> create({
     required int id,
     String? appMode,
-    String? companyName,
-    String? address,
-    String? phoneNumber,
-    DateTime? createdAt,
+String? companyName,
+String? address,
+String? phoneNumber,
+DateTime? createdAt,
   });
 
   Future<void> update({
     required int id,
-    String? appMode,
-    String? companyName,
-    String? address,
-    String? phoneNumber,
-    DateTime? updatedAt,
+String? appMode,
+String? companyName,
+String? address,
+String? phoneNumber,
+DateTime? updatedAt,
   });
 
   Future<void> delete(int id);
 
   Future<void> deleteAll();
 
-  Future<void> createQueue({
+   Future<void> createQueue({
     required QueueAction queueAction,
     required ApplicationConfig data,
   });
@@ -67,4 +53,5 @@ abstract class ApplicationConfigLocalDataSource {
   Future<void> startQueue();
 
   Future<void> stopQueue();
+
 }

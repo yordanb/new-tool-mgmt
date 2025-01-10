@@ -7,17 +7,15 @@ class CreateAppBluetoothUseCaseImpl implements CreateAppBluetoothUseCase {
   CreateAppBluetoothUseCaseImpl({
     required this.repository,
   });
-
+  
   Future<AppBluetoothEntity?> call({
     String? deviceName,
-    String? deviceAddress,
-    DateTime? createdAt,
+String? deviceAddress,
+DateTime? createdAt,
   }) async {
     try {
       final response = await repository.create(
-        deviceName: deviceName,
-        deviceAddress: deviceAddress,
-        createdAt: createdAt,
+        deviceName: deviceName,deviceAddress: deviceAddress,createdAt: createdAt,
       );
       return response;
     } on Exception catch (err) {

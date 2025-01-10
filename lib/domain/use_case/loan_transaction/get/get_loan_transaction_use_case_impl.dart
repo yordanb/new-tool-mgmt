@@ -7,11 +7,14 @@ class GetLoanTransactionUseCaseImpl implements GetLoanTransactionUseCase {
   GetLoanTransactionUseCaseImpl({
     required this.repository,
   });
-
-  Future<LoanTransactionEntity?> call({required int id}) async {
+  
+  Future<LoanTransactionEntity?> call({
+    required int id
+  }) async {
     try {
       return await repository.get(id);
-    } on Exception catch (err) {
+    }
+    on Exception catch (err) {
       throw Exception(err);
     }
   }

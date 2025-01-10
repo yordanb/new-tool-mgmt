@@ -6,7 +6,7 @@ class LoanTransactionItemEntity {
   int? id;
   int? loanTransactionId;
   int? toolId;
-  double? qty;
+  int? qty;
   String? memo;
   String? status;
   DateTime? createdAt;
@@ -15,35 +15,34 @@ class LoanTransactionItemEntity {
   ToolEntity? tool;
   //:@declaration
 
-  LoanTransactionItemEntity(
-      {
-      //@constructor
-      this.id,
-      this.loanTransactionId,
-      this.toolId,
-      this.qty,
-      this.memo,
-      this.status,
-      this.createdAt,
-      this.updatedAt,
-      this.loanTransaction,
-      this.tool
-      //:@constructor
-      });
+  LoanTransactionItemEntity({
+    //@constructor
+    this.id,
+    this.loanTransactionId,
+    this.toolId,
+    this.qty,
+    this.memo,
+    this.status,
+    this.createdAt,
+    this.updatedAt,
+    this.loanTransaction,
+    this.tool
+    //:@constructor
+  });
 
   factory LoanTransactionItemEntity.fromJson(Map<String, dynamic> json) {
     return LoanTransactionItemEntity(
-        id: json['id'],
-        loanTransactionId: json['loan_transaction_id'],
-        toolId: json['tool_id'],
-        qty: json['qty'],
-        memo: json['memo'],
-        status: json['status'],
-        createdAt: DateTime.tryParse(json['created_at'].toString()),
-        updatedAt: DateTime.tryParse(json['updated_at'].toString()),
-        loanTransaction:
-            LoanTransactionEntity.fromJson(json['loan_transaction'] ?? {}),
-        tool: ToolEntity.fromJson(json['tool'] ?? {}));
+      id: json['id'],
+      loanTransactionId: json['loan_transaction_id'],
+      toolId: json['tool_id'],
+      qty: json['qty'],
+      memo: json['memo'],
+      status: json['status'],
+      createdAt: DateTime.tryParse(json['created_at'].toString()),
+      updatedAt: DateTime.tryParse(json['updated_at'].toString()),
+      loanTransaction: LoanTransactionEntity.fromJson(json['loan_transaction']  ?? {}),
+      tool: ToolEntity.fromJson(json['tool']  ?? {})
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -62,27 +61,29 @@ class LoanTransactionItemEntity {
   }
 
   //@copyWith
-  LoanTransactionItemEntity copyWith(
-      {int? id,
-      int? loanTransactionId,
-      int? toolId,
-      double? qty,
-      String? memo,
-      String? status,
-      DateTime? createdAt,
-      DateTime? updatedAt,
-      LoanTransactionEntity? loanTransaction,
-      ToolEntity? tool}) {
+  LoanTransactionItemEntity copyWith({
+     int? id,
+     int? loanTransactionId,
+     int? toolId,
+     int? qty,
+     String? memo,
+     String? status,
+     DateTime? createdAt,
+     DateTime? updatedAt,
+     LoanTransactionEntity? loanTransaction,
+     ToolEntity? tool
+  }) {
     return LoanTransactionItemEntity(
-        id: id ?? this.id,
-        loanTransactionId: loanTransactionId ?? this.loanTransactionId,
-        toolId: toolId ?? this.toolId,
-        qty: qty ?? this.qty,
-        memo: memo ?? this.memo,
-        status: status ?? this.status,
-        createdAt: createdAt ?? this.createdAt,
-        updatedAt: updatedAt ?? this.updatedAt,
-        loanTransaction: loanTransaction ?? this.loanTransaction,
-        tool: tool ?? this.tool);
+      id: id ?? this.id,
+      loanTransactionId: loanTransactionId ?? this.loanTransactionId,
+      toolId: toolId ?? this.toolId,
+      qty: qty ?? this.qty,
+      memo: memo ?? this.memo,
+      status: status ?? this.status,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      loanTransaction: loanTransaction ?? this.loanTransaction,
+      tool: tool ?? this.tool
+    );
   }
 }

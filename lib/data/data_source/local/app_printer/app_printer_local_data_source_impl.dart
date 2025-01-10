@@ -7,15 +7,10 @@ class AppPrinterLocalDataSourceImpl implements AppPrinterLocalDataSource {
     required this.prefs,
   });
 
-  Future<int> count({
-    int? id,
-    String? idOperatorAndValue,
-    String? message,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
-  }) async {
+  Future<int> count({int? id,
+String? idOperatorAndValue, String? message, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,}) async {
     final jsonList = await prefs.getString('app_printer') ?? "[]";
     final values = jsonDecode(jsonList);
     return values.length;
@@ -23,12 +18,9 @@ class AppPrinterLocalDataSourceImpl implements AppPrinterLocalDataSource {
 
   Future<List<AppPrinter>> getAll({
     int? id,
-    String? idOperatorAndValue,
-    String? message,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
+String? idOperatorAndValue, String? message, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,
     int limit = 10,
     int page = 1,
   }) async {
@@ -51,15 +43,12 @@ class AppPrinterLocalDataSourceImpl implements AppPrinterLocalDataSource {
     return modelValues[index];
   }
 
-  Future<AppPrinter?> create({
-    int? id,
-    String? message,
-    DateTime? createdAt,
-  }) async {
+  Future<AppPrinter?> create({int? id, String? message,
+DateTime? createdAt,}) async {
     final modelValues = await getAll();
     final newModel = AppPrinter(
       id: id,
-      message: message,
+      message:message,
       createdAt: createdAt ?? DateTime.now(),
     );
     modelValues.add(newModel);
@@ -68,11 +57,9 @@ class AppPrinterLocalDataSourceImpl implements AppPrinterLocalDataSource {
     return newModel;
   }
 
-  Future<void> update({
-    required int id,
-    String? message,
-    DateTime? updatedAt,
-  }) async {
+  Future<void> update({required int id,
+String? message,
+DateTime? updatedAt,}) async {
     final modelValues = await getAll();
     var index = modelValues.indexWhere((element) => element.id == id);
     if (index == -1) {
@@ -80,7 +67,7 @@ class AppPrinterLocalDataSourceImpl implements AppPrinterLocalDataSource {
     }
     modelValues[index] = modelValues[index].copyWith(
       id: id,
-      message: message,
+      message:message,
       updatedAt: DateTime.now(),
     );
 
@@ -108,7 +95,8 @@ class AppPrinterLocalDataSourceImpl implements AppPrinterLocalDataSource {
   }) async {
     printg("createQueue: $queueAction");
 
-    String jsonList = await prefs.getString('app_printer_queued_tasks') ?? "[]";
+    String jsonList =
+        await prefs.getString('app_printer_queued_tasks') ?? "[]";
     List values = jsonDecode(jsonList);
     values.add({
       "id": const Uuid().v4(),
@@ -116,20 +104,24 @@ class AppPrinterLocalDataSourceImpl implements AppPrinterLocalDataSource {
       "data": data.toJson(),
       "created_at": DateTime.now().toString(),
     });
-    await prefs.setString('app_printer_queued_tasks', jsonEncode(values));
+    await prefs.setString(
+        'app_printer_queued_tasks', jsonEncode(values));
   }
 
   Future<List> getQueuedTasks() async {
-    String jsonList = await prefs.getString('app_printer_queued_tasks') ?? "[]";
+    String jsonList =
+        await prefs.getString('app_printer_queued_tasks') ?? "[]";
     List values = jsonDecode(jsonList);
     return values;
   }
 
   Future<void> deleteQueuedTask(String id) async {
-    String jsonList = await prefs.getString('app_printer_queued_tasks') ?? "[]";
+    String jsonList =
+        await prefs.getString('app_printer_queued_tasks') ?? "[]";
     List values = jsonDecode(jsonList);
     values.removeWhere((element) => element['id'] == id);
-    await prefs.setString('app_printer_queued_tasks', jsonEncode(values));
+    await prefs.setString(
+        'app_printer_queued_tasks', jsonEncode(values));
   }
 
   Future<bool> isRunningQueuedTask() async {
@@ -145,4 +137,5 @@ class AppPrinterLocalDataSourceImpl implements AppPrinterLocalDataSource {
   Future<void> stopQueue() async {
     await prefs.setBool('app_printer_queued_tasks_running', false);
   }
+
 }

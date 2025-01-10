@@ -104,7 +104,7 @@ CREATE TABLE loan_transaction_item (
   id SERIAL PRIMARY KEY, 
   loan_transaction_id INT REFERENCES loan_transaction(id),
   tool_id INT REFERENCES tool(id),
-  qty FLOAT,
+  qty INT,
   memo TEXT,
   status VARCHAR(255) CHECK (status IN ('Borrowed', 'Returned', 'Damaged', 'Lost')),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

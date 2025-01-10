@@ -4,8 +4,8 @@ import 'package:hyper_supabase/core.dart';
 abstract class UpdateLoanTransactionUseCase {
   Future<void> call({
     required int id,
-    String? status,
-    int? userProfileId,
-    DateTime? updatedAt,
+String? status,
+int? userProfileId,
+DateTime? updatedAt,
   });
 }

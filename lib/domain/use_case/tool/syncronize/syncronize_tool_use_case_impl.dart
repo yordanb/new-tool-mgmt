@@ -7,7 +7,7 @@ class SyncronizeToolUseCaseImpl implements SyncronizeToolUseCase {
   SyncronizeToolUseCaseImpl({
     required this.repository,
   });
-
+  
   Future<void> call({
     bool forceSyncronize = false,
   }) async {

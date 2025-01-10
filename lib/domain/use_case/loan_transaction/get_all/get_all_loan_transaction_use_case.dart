@@ -2,17 +2,13 @@
 import 'package:hyper_supabase/core.dart';
 
 abstract class GetAllLoanTransactionUseCase {
-  Future<List<LoanTransactionEntity>> call({
-    int? id,
-    String? idOperatorAndValue,
-    String? status,
-    int? userProfileId,
-    String? userProfileIdOperatorAndValue,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
-    int limit = 10,
-    int page = 1,
-  });
+   Future<List<LoanTransactionEntity>> call({
+      int? id,
+String? idOperatorAndValue, String? status, int? userProfileId,
+String? userProfileIdOperatorAndValue, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,
+      int limit = 10,
+      int page = 1,
+   });
 }

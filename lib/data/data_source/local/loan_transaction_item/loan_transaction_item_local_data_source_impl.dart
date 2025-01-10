@@ -1,29 +1,19 @@
 import 'package:hyper_supabase/core.dart';
 
-class LoanTransactionItemLocalDataSourceImpl
-    implements LoanTransactionItemLocalDataSource {
+class LoanTransactionItemLocalDataSourceImpl implements LoanTransactionItemLocalDataSource {
   final SharedPreferences prefs;
 
   LoanTransactionItemLocalDataSourceImpl({
     required this.prefs,
   });
 
-  Future<int> count({
-    int? id,
-    String? idOperatorAndValue,
-    int? loanTransactionId,
-    String? loanTransactionIdOperatorAndValue,
-    int? toolId,
-    String? toolIdOperatorAndValue,
-    double? qty,
-    String? qtyOperatorAndValue,
-    String? memo,
-    String? status,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
-  }) async {
+  Future<int> count({int? id,
+String? idOperatorAndValue, int? loanTransactionId,
+String? loanTransactionIdOperatorAndValue, int? toolId,
+String? toolIdOperatorAndValue, int? qty,
+String? qtyOperatorAndValue, String? memo, String? status, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,}) async {
     final jsonList = await prefs.getString('loan_transaction_item') ?? "[]";
     final values = jsonDecode(jsonList);
     return values.length;
@@ -31,19 +21,12 @@ class LoanTransactionItemLocalDataSourceImpl
 
   Future<List<LoanTransactionItem>> getAll({
     int? id,
-    String? idOperatorAndValue,
-    int? loanTransactionId,
-    String? loanTransactionIdOperatorAndValue,
-    int? toolId,
-    String? toolIdOperatorAndValue,
-    double? qty,
-    String? qtyOperatorAndValue,
-    String? memo,
-    String? status,
-    DateTime? createdAtFrom,
-    DateTime? createdAtTo,
-    DateTime? updatedAtFrom,
-    DateTime? updatedAtTo,
+String? idOperatorAndValue, int? loanTransactionId,
+String? loanTransactionIdOperatorAndValue, int? toolId,
+String? toolIdOperatorAndValue, int? qty,
+String? qtyOperatorAndValue, String? memo, String? status, DateTime? createdAtFrom,
+DateTime? createdAtTo, DateTime? updatedAtFrom,
+DateTime? updatedAtTo,
     int limit = 10,
     int page = 1,
   }) async {
@@ -66,23 +49,20 @@ class LoanTransactionItemLocalDataSourceImpl
     return modelValues[index];
   }
 
-  Future<LoanTransactionItem?> create({
-    int? id,
-    int? loanTransactionId,
-    int? toolId,
-    double? qty,
-    String? memo,
-    String? status,
-    DateTime? createdAt,
-  }) async {
+  Future<LoanTransactionItem?> create({int? id, int? loanTransactionId,
+int? toolId,
+int? qty,
+String? memo,
+String? status,
+DateTime? createdAt,}) async {
     final modelValues = await getAll();
     final newModel = LoanTransactionItem(
       id: id,
-      loanTransactionId: loanTransactionId,
-      toolId: toolId,
-      qty: qty,
-      memo: memo,
-      status: status,
+      loanTransactionId:loanTransactionId,
+toolId:toolId,
+qty:qty,
+memo:memo,
+status:status,
       createdAt: createdAt ?? DateTime.now(),
     );
     modelValues.add(newModel);
@@ -91,15 +71,13 @@ class LoanTransactionItemLocalDataSourceImpl
     return newModel;
   }
 
-  Future<void> update({
-    required int id,
-    int? loanTransactionId,
-    int? toolId,
-    double? qty,
-    String? memo,
-    String? status,
-    DateTime? updatedAt,
-  }) async {
+  Future<void> update({required int id,
+int? loanTransactionId,
+int? toolId,
+int? qty,
+String? memo,
+String? status,
+DateTime? updatedAt,}) async {
     final modelValues = await getAll();
     var index = modelValues.indexWhere((element) => element.id == id);
     if (index == -1) {
@@ -107,11 +85,11 @@ class LoanTransactionItemLocalDataSourceImpl
     }
     modelValues[index] = modelValues[index].copyWith(
       id: id,
-      loanTransactionId: loanTransactionId,
-      toolId: toolId,
-      qty: qty,
-      memo: memo,
-      status: status,
+      loanTransactionId:loanTransactionId,
+toolId:toolId,
+qty:qty,
+memo:memo,
+status:status,
       updatedAt: DateTime.now(),
     );
 
@@ -170,8 +148,7 @@ class LoanTransactionItemLocalDataSourceImpl
 
   Future<bool> isRunningQueuedTask() async {
     bool isRunning =
-        await prefs.getBool('loan_transaction_item_queued_tasks_running') ??
-            false;
+        await prefs.getBool('loan_transaction_item_queued_tasks_running') ?? false;
     return isRunning;
   }
 
@@ -182,4 +159,5 @@ class LoanTransactionItemLocalDataSourceImpl
   Future<void> stopQueue() async {
     await prefs.setBool('loan_transaction_item_queued_tasks_running', false);
   }
+
 }
