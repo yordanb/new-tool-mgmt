@@ -1,0 +1,15 @@
+{
+  "defaultError": "エラーが発生しました",
+  "defaultSuccess": "処理に成功しました",
+  "helloWorld": "こんにちは、世界！",
+  "email": "メール",
+  "password": "パスワード", 
+  "login": "ログイン",
+  "register": "登録",
+  "dashboard": "ダッシュボード",
+  "posts": "投稿",
+  "activities": "アクティビティ",
+  "meals": "食事",
+  "profile": "プロフィール",
+  "developer": "開発者"
+}

@@ -1,0 +1,15 @@
+{
+  "defaultError": "기본 오류",
+  "defaultSuccess": "기본 성공",
+  "helloWorld": "안녕 세계!",
+  "email": "이메일",
+  "password": "암호",
+  "login": "로그인",
+  "register": "등록",
+  "dashboard": "대시 보드",
+  "posts": "게시물",
+  "activities": "활동",
+  "meals": "식사",
+  "profile": "프로필",
+  "developer": "개발자"
+}

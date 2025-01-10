@@ -1,0 +1,233 @@
+#provider_generator
+#router_generator
+#sl_generator
+#sl_local_data_source
+#sl_remote_data_source
+#sl_service
+#sl_repository
+#sl_use_case
+#sl_cubit
+#packages: flutter_bloc get_it auto_route
+@@@lib/presentation/hyper_example/cubit/hyper_example_cubit.dart
+import 'package:hyper_ui/core.dart';
+
+abstract class HyperExampleCubit  extends Cubit<HyperExampleState> {
+  HyperExampleCubit(HyperExampleState state) : super(state);
+
+  void initState({
+      Function? init,
+    });
+
+  void dispose();
+  void ready();
+  void initializeData();
+}
+---
+@@@lib/presentation/hyper_example/cubit/hyper_example_cubit_impl.dart
+import 'package:hyper_ui/core.dart';
+
+class HyperExampleCubitImpl extends Cubit<HyperExampleState> implements HyperExampleCubit {
+  final GetCurrentAppSessionUseCase getCurrentAppSessionUseCase;
+
+  HyperExampleCubitImpl({
+    required this.getCurrentAppSessionUseCase,
+  }) : super(HyperExampleState());
+
+  @override
+  void initState({
+      Function? init,
+    }) {
+    //initState event
+    emit(HyperExampleState());
+    init?.call();
+    initializeData();
+  }
+
+  @override
+  void dispose() {
+    //dispose event
+  }
+
+  @override
+  void ready() {
+    //ready event
+  }
+
+  
+  void initializeData() async {
+    state.fullViewState = FullViewState.loading;
+    emit(state.copyWith());
+
+    state.session = await getCurrentAppSessionUseCase.call();
+
+    state.fullViewState = FullViewState.ready;
+    emit(state.copyWith());
+  }
+}
+---
+@@@lib/presentation/hyper_example/listener/hyper_example_listener.dart
+import 'package:hyper_ui/core.dart';
+import 'package:flutter/material.dart';
+
+class HyperExampleListener extends SingleChildStatelessWidget {
+    const HyperExampleListener({
+        super.key,
+        super.child,
+    });
+    
+    @override
+    Widget buildWithChild(BuildContext context, Widget? child) {
+    return BlocListener<HyperExampleCubit, HyperExampleState>(
+        listener: (context, state) {
+        AppLocalizations lang = AppLocalizations.of(context)!;
+
+        if (state.viewState == ViewState.idle) {
+          hideLoading();
+          return;
+        }
+
+        if (state.viewState == ViewState.success) {
+            hideLoading();
+            snackSuccess(message: lang.defaultSuccess);
+            return;
+        }
+
+        if (state.viewState == ViewState.error) {
+            hideLoading();
+            snackError(message: lang.defaultError);
+            return;
+        }
+
+        if (state.viewState == ViewState.loading) {
+            showLoading();
+            return;
+        }
+
+        if (state.viewState == ViewState.hideLoading) {
+            hideLoading();
+            return;
+        }
+        },
+        child: child,
+    );
+    }
+}
+---
+@@@lib/presentation/hyper_example/state/hyper_example_state.dart
+// ignore: unused_import
+import 'package:hyper_ui/core.dart';
+
+class HyperExampleState {
+  //@declaration
+  FullViewState fullViewState;
+  ViewState viewState;
+  AppSessionEntity? session;
+  //:@declaration
+
+  HyperExampleState({
+    //@constructor
+    this.fullViewState = FullViewState.idle,
+    this.viewState = ViewState.idle,
+    this.session,
+    //:@constructor
+  });
+
+  factory HyperExampleState.fromJson(Map<String, dynamic> json) {
+    return HyperExampleState(
+      fullViewState: json['full_view_state'],
+      viewState: json['view_state'],
+      session: json['session'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'full_view_state': fullViewState,
+      'view_state': viewState,
+      'session': session,
+    };
+  }
+
+  //@copyWith
+  HyperExampleState copyWith({
+     FullViewState? fullViewState,
+     ViewState? viewState,
+     AppSessionEntity? session,
+  }) {
+    return HyperExampleState(
+      fullViewState: fullViewState ?? this.fullViewState,
+      viewState: viewState ?? this.viewState,
+      session: session ?? this.session,
+    );
+  }
+}
+---
+@@@lib/presentation/hyper_example/view/hyper_example_view.dart
+import 'package:flutter/material.dart';
+import 'package:hyper_ui/core.dart';
+
+@RoutePage()
+class HyperExampleView extends StatefulWidget {
+
+const HyperExampleView({
+  super.key,
+});
+
+@override
+State<HyperExampleView> createState() => _HyperExampleViewState();
+}
+
+class _HyperExampleViewState extends State<HyperExampleView> {
+  final HyperExampleCubit cubit = sl<HyperExampleCubit>();
+  AppLocalizations get lang => AppLocalizations.of(context)!;
+  HyperExampleState get state => cubit.state;
+
+  @override
+  void initState() {
+    cubit.initState();
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => cubit.ready(),
+    );
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    cubit.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+  return MultiBlocListener(
+      listeners: const [
+        HyperExampleListener(),
+      ],
+      child: BlocSelector<HyperExampleCubit, HyperExampleState,
+          FullViewState>(
+        selector: (state) => state.fullViewState,
+        builder: (context, _) {
+          if (cubit.state.fullViewState == FullViewState.loading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          
+          return Scaffold(
+            appBar: AppBar(
+              title: Text("HyperExample"),
+            ),
+            body: SingleChildScrollView(
+              padding: EdgeInsets.all(12.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+---
