@@ -30,9 +30,9 @@ class AppSessionEntity {
       userProfileId: json['user_profile_id'],
       role: json['role'],
       email: json['email'],
-      createdAt: DateTime.tryParse(json['created_at'].toString()),
-      updatedAt: DateTime.tryParse(json['updated_at'].toString()),
-      userProfile: json['user_profile']
+      createdAt: json['created_at'] == null ? null : DateTime.tryParse(json['created_at'].toString()),
+      updatedAt: json['updated_at'] == null ? null : DateTime.tryParse(json['updated_at'].toString()),
+      userProfile: UserProfileEntity.fromJson(json['user_profile'])
     );
   }
 

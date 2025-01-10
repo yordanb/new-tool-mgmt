@@ -60,24 +60,24 @@ class LoanTransactionItemFormState {
       viewState: json['view_state'],
       isEditMode: json['is_edit_mode'],
       isCreateMode: json['is_create_mode'],
-      session: json['session'],
-      current: json['current'],
+      session: AppSessionEntity.fromJson(json['session']),
+      current: LoanTransactionItemEntity.fromJson(json['current']),
       id: json['id'],
       loanTransactionId: json['loan_transaction_id'],
       toolId: json['tool_id'],
       qty: json['qty'],
       memo: json['memo'],
       status: json['status'],
-      createdAt: DateTime.tryParse(json['created_at'].toString()),
-      updatedAt: DateTime.tryParse(json['updated_at'].toString()),
+      createdAt: json['created_at'] == null ? null : DateTime.tryParse(json['created_at'].toString()),
+      updatedAt: json['updated_at'] == null ? null : DateTime.tryParse(json['updated_at'].toString()),
       idOperatorAndValue: json['id_operator_and_value'],
       loanTransactionIdOperatorAndValue: json['loan_transaction_id_operator_and_value'],
       toolIdOperatorAndValue: json['tool_id_operator_and_value'],
       qtyOperatorAndValue: json['qty_operator_and_value'],
-      createdAtFrom: DateTime.tryParse(json['created_at_from'].toString()),
-      createdAtTo: DateTime.tryParse(json['created_at_to'].toString()),
-      updatedAtFrom: DateTime.tryParse(json['updated_at_from'].toString()),
-      updatedAtTo: DateTime.tryParse(json['updated_at_to'].toString())
+      createdAtFrom: json['created_at_from'] == null ? null : DateTime.tryParse(json['created_at_from'].toString()),
+      createdAtTo: json['created_at_to'] == null ? null : DateTime.tryParse(json['created_at_to'].toString()),
+      updatedAtFrom: json['updated_at_from'] == null ? null : DateTime.tryParse(json['updated_at_from'].toString()),
+      updatedAtTo: json['updated_at_to'] == null ? null : DateTime.tryParse(json['updated_at_to'].toString())
     );
   }
 

@@ -34,8 +34,8 @@ class AuthModel {
       email: json['email'],
       imageUrl: json['image_url'],
       accessToken: json['access_token'],
-      createdAt: DateTime.tryParse(json['created_at'].toString()),
-      updatedAt: DateTime.tryParse(json['updated_at'].toString())
+      createdAt: json['created_at'] == null ? null : DateTime.tryParse(json['created_at'].toString()),
+      updatedAt: json['updated_at'] == null ? null : DateTime.tryParse(json['updated_at'].toString())
     );
   }
 

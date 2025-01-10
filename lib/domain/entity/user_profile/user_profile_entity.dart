@@ -46,8 +46,8 @@ class UserProfileEntity {
       password: json['password'],
       role: json['role'],
       isActive: json['is_active'],
-      createdAt: DateTime.tryParse(json['created_at'].toString()),
-      updatedAt: DateTime.tryParse(json['updated_at'].toString())
+      createdAt: json['created_at'] == null ? null : DateTime.tryParse(json['created_at'].toString()),
+      updatedAt: json['updated_at'] == null ? null : DateTime.tryParse(json['updated_at'].toString())
     );
   }
 

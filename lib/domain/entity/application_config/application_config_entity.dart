@@ -31,8 +31,8 @@ class ApplicationConfigEntity {
       companyName: json['company_name'],
       address: json['address'],
       phoneNumber: json['phone_number'],
-      createdAt: DateTime.tryParse(json['created_at'].toString()),
-      updatedAt: DateTime.tryParse(json['updated_at'].toString())
+      createdAt: json['created_at'] == null ? null : DateTime.tryParse(json['created_at'].toString()),
+      updatedAt: json['updated_at'] == null ? null : DateTime.tryParse(json['updated_at'].toString())
     );
   }
 

@@ -25,8 +25,8 @@ class AppBluetooth {
       id: json['id'],
       deviceName: json['device_name'],
       deviceAddress: json['device_address'],
-      createdAt: DateTime.tryParse(json['created_at'].toString()),
-      updatedAt: DateTime.tryParse(json['updated_at'].toString())
+      createdAt: json['created_at'] == null ? null : DateTime.tryParse(json['created_at'].toString()),
+      updatedAt: json['updated_at'] == null ? null : DateTime.tryParse(json['updated_at'].toString())
     );
   }
 
